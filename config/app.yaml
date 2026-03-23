@@ -1,0 +1,22 @@
+app_name: solar_ingestion
+
+database:
+  connection_string: "DRIVER={ODBC Driver 17 for SQL Server};SERVER=PI-SOLAR\\SQLEXPRESS;DATABASE=SolarLakehouse;UID=sa;PWD=admin;TrustServerCertificate=yes;"
+
+storage:
+  raw_root: "data/raw"
+
+timezone:
+  local_tz_name: "Asia/Bangkok"
+
+api:
+  mode: "legacy"   # legacy / openapi
+  timeout_seconds: 120
+
+retry:
+  max_attempts: 3
+  backoff_seconds: 10
+
+cooldown:
+  rate_limit_minutes: 10
+  login_fail_minutes: 30

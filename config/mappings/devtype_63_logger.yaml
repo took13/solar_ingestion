@@ -1,0 +1,11 @@
+dev_type_id: 63
+table: mart.fact_dev_logger_5min
+columns:
+  total_yield: total_yield_kwh
+  total_power_consumption: total_power_consumption_kwh
+  total_supply_from_grid: total_supply_from_grid_kwh
+  total_feed_in_to_grid: total_feed_in_to_grid_kwh
+  ac_total_charge_energy: ac_total_charge_energy_kwh
+  ac_total_discharge_energy: ac_total_discharge_energy_kwh
+  total_charge: total_charge_kwh
+  total_discharge: total_discharge_kwh

@@ -1,0 +1,11 @@
+dev_type_id: 10
+table: mart.fact_dev_emi_5min
+columns:
+  temperature: temperature_c
+  wind_speed: wind_speed_ms
+  wind_direction: wind_direction_deg
+  pv_temperature: pv_temperature_c
+  radiant_line: radiant_line_wm2
+  radiant_total: radiant_total_kwhm2
+  horiz_radiant_line: horiz_radiant_line_wm2
+  horiz_radiant_total: horiz_radiant_total_kwhm2

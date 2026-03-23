@@ -1,0 +1,24 @@
+dev_type_id: 17
+table: mart.fact_dev_meter_5min
+columns:
+  active_power: active_power_w
+  reactive_power: reactive_power_var
+  power_factor: power_factor
+  total_apparent_power: total_apparent_power_kva
+  grid_frequency: grid_frequency_hz
+  a_i: a_i
+  b_i: b_i
+  c_i: c_i
+  a_u: a_u
+  b_u: b_u
+  c_u: c_u
+  ab_u: ab_u
+  bc_u: bc_u
+  ca_u: ca_u
+  active_cap: active_cap
+  reverse_active_cap: reverse_active_cap
+  forward_reactive_cap: forward_reactive_cap
+  reverse_reactive_cap: reverse_reactive_cap
+  active_power_a: active_power_a
+  active_power_b: active_power_b
+  active_power_c: active_power_c
