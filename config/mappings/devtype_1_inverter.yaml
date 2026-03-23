@@ -1,0 +1,12 @@
+dev_type_id: 1
+table: mart.fact_dev_inverter_5min
+columns:
+  active_power: active_power_kw
+  reactive_power: reactive_power_kvar
+  power_factor: power_factor
+  efficiency: efficiency_pct
+  temperature: temperature_c
+  day_cap: day_cap_kwh
+  total_cap: total_cap_kwh
+  inverter_state: inverter_state_code
+  elec_freq: elec_freq_hz

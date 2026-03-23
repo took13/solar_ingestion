@@ -58,21 +58,45 @@ class Application:
         )
 
         targets = self.metadata_service.build_targets_from_job_config(job, job_config)
+        self._run_targets_grouped_by_account(job=job, targets=targets)
 
-        # แยก run ทีละ account เพื่อ reuse token ได้ดีขึ้น
-        targets_by_account = {}
-        for t in targets:
-            targets_by_account.setdefault(t["account_id"], []).append(t)
+    def run_job_with_override_window(self, job_name: str, override_start_utc, override_end_utc):
+        config_loader = ConfigLoader()
+        job_config = config_loader.load_job_config(job_name)
+
+        job = self.run_repo.create_job_if_missing(
+            job_name=job_config["job_name"],
+            api_name=job_config["api_name"],
+            description=f"Auto-created job for {job_config['job_name']}",
+        )
+
+        targets = self.metadata_service.build_targets_from_job_config(job, job_config)
+
+        for target in targets:
+            target["override_start_utc"] = override_start_utc
+            target["override_end_utc"] = override_end_utc
+
+        self._run_targets_grouped_by_account(job=job, targets=targets)
+
+    def _run_targets_grouped_by_account(self, job: dict, targets: list[dict]):
+        targets_by_account: dict[int, list[dict]] = {}
+        for target in targets:
+            targets_by_account.setdefault(target["account_id"], []).append(target)
 
         for account_id, account_targets in targets_by_account.items():
             account = self.metadata_repo.get_account_by_id(account_id)
             if not account:
                 raise ValueError(f"Account not found or inactive: {account_id}")
 
+            if not account.get("api_password"):
+                raise ValueError(
+                    f"Account {account['account_name']} does not have api_password in dbo.dim_api_account"
+                )
+
             session_manager = SessionManager(
                 base_url=account["base_url"],
                 username=account["username"],
-                system_code=account["username"],  # ปรับตามจริงหาก system_code แยก field
+                system_code=account["api_password"],
                 timeout=self.app_config["api"]["timeout_seconds"],
             )
 
@@ -95,6 +119,8 @@ class Application:
                 window_planner=self.window_planner,
                 client=client,
                 raw_archiver=self.raw_archiver,
+                retry_policy=self.retry_policy,
+                batch_delay_seconds=self.app_config.get("api", {}).get("batch_delay_seconds", 3),
             )
 
             runner.run_targets(job=job, targets=account_targets)

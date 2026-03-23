@@ -1,4 +1,8 @@
+from __future__ import annotations
+
 import json
+import time
+
 from src.domain.hash_utils import build_batch_hash
 from src.domain.time_utils import utc_now
 from src.normalize.generic_normalizer import GenericNormalizer
@@ -20,6 +24,8 @@ class JobRunner:
         window_planner,
         client,
         raw_archiver,
+        retry_policy,
+        batch_delay_seconds: int = 3,
     ):
         self.metadata_repo = metadata_repo
         self.checkpoint_repo = checkpoint_repo
@@ -33,11 +39,18 @@ class JobRunner:
         self.window_planner = window_planner
         self.client = client
         self.raw_archiver = raw_archiver
+        self.retry_policy = retry_policy
+        self.batch_delay_seconds = batch_delay_seconds
+
         self.generic_normalizer = GenericNormalizer()
         self.typed_dispatcher = TypedDispatcher()
 
     def run_targets(self, job: dict, targets: list[dict]):
-        run_id = self.run_repo.start_run(job_id=job["job_id"], run_type="manual", triggered_by="user")
+        run_id = self.run_repo.start_run(
+            job_id=job["job_id"],
+            run_type="manual",
+            triggered_by="user",
+        )
 
         any_failed = False
 
@@ -68,6 +81,7 @@ class JobRunner:
 
             for batch_no, batch in enumerate(batches, start=1):
                 dev_ids = [x["dev_id"] for x in batch]
+
                 batch_hash = build_batch_hash(
                     account_id=target["account_id"],
                     plant_code=target["plant_code"],
@@ -88,7 +102,8 @@ class JobRunner:
                 request_started_at = utc_now()
 
                 try:
-                    result = self.client.get_dev_history_kpi(
+                    result = self.retry_policy.execute(
+                        self.client.get_dev_history_kpi,
                         dev_type_id=target["dev_type_id"],
                         dev_ids=dev_ids,
                         start_time_ms=window["start_ms"],
@@ -97,6 +112,7 @@ class JobRunner:
                 except Exception as e:
                     target_failed = True
                     any_failed = True
+
                     self.batch_audit_repo.insert({
                         "run_id": run_id,
                         "job_id": job["job_id"],
@@ -176,6 +192,8 @@ class JobRunner:
                     any_failed = True
                     continue
 
+                # Layer A-only mode: ยังไม่ต้องเปิด normalize ก็ได้
+                # ถ้าคุณต้องการคืนนี้ให้ raw-only แน่นที่สุด ให้คอมเมนต์ 2 block นี้ทิ้ง
                 generic_rows = self.generic_normalizer.normalize(
                     response_body=result.body,
                     raw_id=raw_id,
@@ -194,6 +212,9 @@ class JobRunner:
                 )
                 self.typed_repo.upsert(target["dev_type_id"], typed_rows)
 
+                if self.batch_delay_seconds > 0:
+                    time.sleep(self.batch_delay_seconds)
+
             if target_failed:
                 self.checkpoint_service.mark_partial(target, run_id, window)
             else:
@@ -202,5 +223,5 @@ class JobRunner:
         self.run_repo.finish_run(
             run_id=run_id,
             status="PARTIAL" if any_failed else "SUCCESS",
-            message=None if not any_failed else "Some targets or batches failed."
+            message=None if not any_failed else "Some targets or batches failed.",
         )

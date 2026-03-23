@@ -10,8 +10,9 @@ timezone:
   local_tz_name: "Asia/Bangkok"
 
 api:
-  mode: "legacy"   # legacy / openapi
+  mode: "legacy"
   timeout_seconds: 120
+  batch_delay_seconds: 3
 
 retry:
   max_attempts: 3
