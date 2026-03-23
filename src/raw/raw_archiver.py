@@ -19,11 +19,10 @@ class RawArchiver:
         request_payload: dict,
         response_payload: dict,
     ) -> dict:
-        now_utc = datetime.now(timezone.utc)
+        window_start_dt = self._extract_window_start_dt(request_payload)
+        folder_date = window_start_dt.strftime("%Y-%m-%d") if window_start_dt else "unknown_date"
 
-        folder_date = now_utc.strftime("%Y-%m-%d")
         safe_plant_code = self._sanitize_for_path(plant_code)
-
         folder = self.raw_root / folder_date / safe_plant_code / f"devtype_{dev_type_id}"
         folder.mkdir(parents=True, exist_ok=True)
 
@@ -49,7 +48,14 @@ class RawArchiver:
             "response_sha256": sha256(response_text.encode("utf-8")).hexdigest(),
             "request_size_bytes": len(request_text.encode("utf-8")),
             "response_size_bytes": len(response_text.encode("utf-8")),
+            "folder_date": folder_date,
         }
+
+    def _extract_window_start_dt(self, request_payload: dict) -> datetime | None:
+        start_ms = request_payload.get("startTime")
+        if start_ms is None:
+            return None
+        return datetime.fromtimestamp(start_ms / 1000, tz=timezone.utc)
 
     def _build_time_range_text(self, request_payload: dict) -> str:
         start_ms = request_payload.get("startTime")
@@ -61,7 +67,10 @@ class RawArchiver:
         start_dt = datetime.fromtimestamp(start_ms / 1000, tz=timezone.utc)
         end_dt = datetime.fromtimestamp(end_ms / 1000, tz=timezone.utc)
 
-        return f"{start_dt.strftime('%Y%m%d_%H%M%S')}_{end_dt.strftime('%H%M%S')}"
+        if start_dt.date() == end_dt.date():
+            return f"{start_dt.strftime('%Y%m%d_%H%M%S')}_{end_dt.strftime('%H%M%S')}"
+
+        return f"{start_dt.strftime('%Y%m%d_%H%M%S')}_{end_dt.strftime('%Y%m%d_%H%M%S')}"
 
     def _sanitize_for_path(self, value: str) -> str:
         if not value:
