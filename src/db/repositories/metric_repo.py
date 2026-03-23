@@ -1,6 +1,7 @@
 class MetricRepository:
-    def __init__(self, conn):
+    def __init__(self, conn, metric_catalog_repo=None):
         self.conn = conn
+        self.metric_catalog_repo = metric_catalog_repo
 
     def upsert_generic_metrics(self, rows: list[dict]):
         cursor = self.conn.cursor()
@@ -53,5 +54,15 @@ class MetricRepository:
                 r["metric_value_num"], r["metric_value_text"], r["metric_value_bool"], r["metric_value_raw_text"],
                 r["source_api"],
             ))
+
+            if self.metric_catalog_repo:
+                sample_value = r["metric_value_raw_text"]
+                self.metric_catalog_repo.upsert_observation(
+                    dev_type_id=r["dev_type_id"],
+                    metric_name=r["metric_name"],
+                    observed_data_type=r["value_type"],
+                    sample_value=sample_value,
+                    raw_id=r["raw_id"],
+                )
 
         self.conn.commit()
