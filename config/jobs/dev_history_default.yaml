@@ -1,0 +1,44 @@
+job_name: dev_history_default
+api_name: getDevHistoryKpi
+enabled: true
+
+targets:
+  - plant_code: GC
+    account_id: 1
+    dev_type_id: 1
+    enabled: true
+    batch_size: 10
+    lag_minutes: 15
+    overlap_minutes: 10
+    max_window_minutes: 60
+    bootstrap_start_utc: "2026-03-01T00:00:00Z"
+
+  - plant_code: GC
+    account_id: 1
+    dev_type_id: 10
+    enabled: true
+    batch_size: 20
+    lag_minutes: 15
+    overlap_minutes: 10
+    max_window_minutes: 60
+    bootstrap_start_utc: "2026-03-01T00:00:00Z"
+
+  - plant_code: GC
+    account_id: 1
+    dev_type_id: 17
+    enabled: true
+    batch_size: 5
+    lag_minutes: 15
+    overlap_minutes: 10
+    max_window_minutes: 60
+    bootstrap_start_utc: "2026-03-01T00:00:00Z"
+
+  - plant_code: GC
+    account_id: 1
+    dev_type_id: 63
+    enabled: true
+    batch_size: 5
+    lag_minutes: 15
+    overlap_minutes: 10
+    max_window_minutes: 60
+    bootstrap_start_utc: "2026-03-01T00:00:00Z"
