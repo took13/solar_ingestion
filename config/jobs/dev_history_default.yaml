@@ -3,7 +3,7 @@ api_name: getDevHistoryKpi
 enabled: true
 
 targets:
-  - plant_code: GC
+  - plant_code: NE=50281829
     account_id: 1
     dev_type_id: 1
     enabled: true
@@ -13,7 +13,7 @@ targets:
     max_window_minutes: 60
     bootstrap_start_utc: "2026-03-01T00:00:00Z"
 
-  - plant_code: GC
+  - plant_code: NE=50281829
     account_id: 1
     dev_type_id: 10
     enabled: true
@@ -23,7 +23,7 @@ targets:
     max_window_minutes: 60
     bootstrap_start_utc: "2026-03-01T00:00:00Z"
 
-  - plant_code: GC
+  - plant_code: NE=50281829
     account_id: 1
     dev_type_id: 17
     enabled: true
@@ -33,7 +33,7 @@ targets:
     max_window_minutes: 60
     bootstrap_start_utc: "2026-03-01T00:00:00Z"
 
-  - plant_code: GC
+  - plant_code: NE=50281829
     account_id: 1
     dev_type_id: 63
     enabled: true

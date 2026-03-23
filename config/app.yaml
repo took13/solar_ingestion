@@ -1,7 +1,7 @@
 app_name: solar_ingestion
 
 database:
-  connection_string: "DRIVER={ODBC Driver 17 for SQL Server};SERVER=PI-SOLAR\\SQLEXPRESS;DATABASE=SolarLakehouse;UID=sa;PWD=admin;TrustServerCertificate=yes;"
+  connection_string: "DRIVER={ODBC Driver 17 for SQL Server};SERVER=10.48.184.177\\SQLEXPRESS;DATABASE=SolarDataDB;UID=sa;PWD=admin;TrustServerCertificate=yes;"
 
 storage:
   raw_root: "data/raw"
