@@ -136,6 +136,7 @@ class JobRunner:
                     plant_code=target["plant_code"],
                     dev_type_id=target["dev_type_id"],
                     batch_hash=batch_hash,
+                    batch_no=batch_no,
                     request_payload=request_payload,
                     response_payload=result.body,
                 )
@@ -187,13 +188,6 @@ class JobRunner:
                     "message": result.message,
                 })
 
-                if not result.success:
-                    target_failed = True
-                    any_failed = True
-                    continue
-
-                # Layer A-only mode: ยังไม่ต้องเปิด normalize ก็ได้
-                # ถ้าคุณต้องการคืนนี้ให้ raw-only แน่นที่สุด ให้คอมเมนต์ 2 block นี้ทิ้ง
                 generic_rows = self.generic_normalizer.normalize(
                     response_body=result.body,
                     raw_id=raw_id,
