@@ -26,6 +26,7 @@ class JobRunner:
         raw_archiver,
         retry_policy,
         batch_delay_seconds: int = 3,
+        generic_metrics_enabled: bool = False,
     ):
         self.metadata_repo = metadata_repo
         self.checkpoint_repo = checkpoint_repo
@@ -41,6 +42,7 @@ class JobRunner:
         self.raw_archiver = raw_archiver
         self.retry_policy = retry_policy
         self.batch_delay_seconds = batch_delay_seconds
+        self.generic_metrics_enabled = generic_metrics_enabled
 
         self.generic_normalizer = GenericNormalizer()
         self.typed_dispatcher = TypedDispatcher()
@@ -104,7 +106,6 @@ class JobRunner:
 
             target_failed = False
 
-            # online = run_date, backfill = window_date
             archive_partition_mode = "window_date" if (
                 target.get("override_start_utc") and target.get("override_end_utc")
             ) else "run_date"
@@ -238,23 +239,26 @@ class JobRunner:
                     f"saved_to={archive['folder_date']}"
                 )
 
-                generic_rows = self.generic_normalizer.normalize(
-                    response_body=result.body,
-                    raw_id=raw_id,
-                    plant_code=target["plant_code"],
-                    plant_id=target.get("plant_id"),
-                    dev_type_id=target["dev_type_id"],
-                    source_api=job["api_name"],
-                )
-                self.metric_repo.upsert_generic_metrics(generic_rows)
+                if self.generic_metrics_enabled:
+                    generic_rows = self.generic_normalizer.normalize(
+                        response_body=result.body,
+                        raw_id=raw_id,
+                        plant_code=target["plant_code"],
+                        plant_id=target.get("plant_id"),
+                        dev_type_id=target["dev_type_id"],
+                        source_api=job["api_name"],
+                    )
+                    self.metric_repo.upsert_generic_metrics(generic_rows)
 
-                typed_rows = self.typed_dispatcher.normalize(
-                    dev_type_id=target["dev_type_id"],
-                    response_body=result.body,
-                    raw_id=raw_id,
-                    plant_code=target["plant_code"],
-                )
-                self.typed_repo.upsert(target["dev_type_id"], typed_rows)
+                    typed_rows = self.typed_dispatcher.normalize(
+                        dev_type_id=target["dev_type_id"],
+                        response_body=result.body,
+                        raw_id=raw_id,
+                        plant_code=target["plant_code"],
+                    )
+                    self.typed_repo.upsert(target["dev_type_id"], typed_rows)
+                else:
+                    print("[BATCH] generic_metrics disabled -> raw-only path")
 
                 if self.batch_delay_seconds > 0:
                     print(f"[BATCH] sleeping {self.batch_delay_seconds} sec")

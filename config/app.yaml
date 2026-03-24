@@ -4,7 +4,7 @@ database:
   connection_string: "DRIVER={ODBC Driver 17 for SQL Server};SERVER=10.48.184.177\\SQLEXPRESS;DATABASE=SolarDataDB;UID=sa;PWD=admin;TrustServerCertificate=yes;"
 
 storage:
-  raw_root: "data/raw"
+  raw_root: "C:/SOLAR_V2/DATA/raw"
 
 timezone:
   local_tz_name: "Asia/Bangkok"
@@ -12,7 +12,7 @@ timezone:
 api:
   mode: "legacy"
   timeout_seconds: 120
-  batch_delay_seconds: 5
+  batch_delay_seconds: 15
 
 retry:
   max_attempts: 3
@@ -21,3 +21,9 @@ retry:
 cooldown:
   rate_limit_minutes: 10
   login_fail_minutes: 30
+
+pipeline:
+  generic_metrics:
+    enabled: false
+    normalize_chunk_size: 5000
+    pending_limit: 100

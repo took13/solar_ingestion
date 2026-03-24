@@ -144,6 +144,9 @@ class Application:
                 raw_archiver=self.raw_archiver,
                 retry_policy=self.retry_policy,
                 batch_delay_seconds=self.app_config.get("api", {}).get("batch_delay_seconds", 3),
+                generic_metrics_enabled=self.app_config.get("pipeline", {})
+                    .get("generic_metrics", {})
+                    .get("enabled", False),
             )
 
             runner.run_targets(job=job, targets=account_targets)
