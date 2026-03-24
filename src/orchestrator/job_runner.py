@@ -4,7 +4,7 @@ import json
 import time
 
 from src.domain.hash_utils import build_batch_hash
-from src.domain.time_utils import utc_now
+from src.domain.time_utils import utc_now, fmt_local
 from src.normalize.generic_normalizer import GenericNormalizer
 from src.normalize.typed_dispatcher import TypedDispatcher
 
@@ -52,15 +52,26 @@ class JobRunner:
             triggered_by="user",
         )
 
+        print(f"[RUN] Started run_id={run_id} for job={job['job_name']} at {fmt_local(utc_now())}")
+
         any_failed = False
 
         for target in targets:
+            print(
+                f"[TARGET] plant={target['plant_code']} devType={target['dev_type_id']} "
+                f"account_id={target['account_id']} batch_size={target['batch_size']}"
+            )
+
             devices = self.metadata_repo.get_devices(
                 plant_code=target["plant_code"],
                 dev_type_id=target["dev_type_id"]
             )
 
             if not devices:
+                print(
+                    f"[TARGET] No devices found for plant={target['plant_code']} "
+                    f"devType={target['dev_type_id']}"
+                )
                 self.checkpoint_service.mark_no_devices(target, run_id)
                 continue
 
@@ -73,14 +84,40 @@ class JobRunner:
 
             window = self.window_planner.compute_window(checkpoint=checkpoint, target=target)
             if window is None:
+                print(
+                    f"[TARGET] Skip plant={target['plant_code']} devType={target['dev_type_id']} "
+                    f"(no runnable window)"
+                )
                 self.checkpoint_service.mark_skipped(target, run_id, "No runnable window")
                 continue
 
+            print(
+                f"[WINDOW] plant={target['plant_code']} devType={target['dev_type_id']} "
+                f"{fmt_local(window['start_utc'])} -> {fmt_local(window['end_utc'])}"
+            )
+
             batches = self.batch_planner.plan(devices, target["batch_size"])
+            print(
+                f"[TARGET] plant={target['plant_code']} devType={target['dev_type_id']} "
+                f"devices={len(devices)} batches={len(batches)}"
+            )
+
             target_failed = False
+
+            # online = run_date, backfill = window_date
+            archive_partition_mode = "window_date" if (
+                target.get("override_start_utc") and target.get("override_end_utc")
+            ) else "run_date"
 
             for batch_no, batch in enumerate(batches, start=1):
                 dev_ids = [x["dev_id"] for x in batch]
+
+                print(
+                    f"[BATCH] plant={target['plant_code']} devType={target['dev_type_id']} "
+                    f"batch={batch_no}/{len(batches)} devices_in_batch={len(dev_ids)} "
+                    f"window_start={fmt_local(window['start_utc'])} "
+                    f"window_end={fmt_local(window['end_utc'])}"
+                )
 
                 batch_hash = build_batch_hash(
                     account_id=target["account_id"],
@@ -113,6 +150,11 @@ class JobRunner:
                     target_failed = True
                     any_failed = True
 
+                    print(
+                        f"[BATCH][FAILED] plant={target['plant_code']} devType={target['dev_type_id']} "
+                        f"batch={batch_no} error={str(e)}"
+                    )
+
                     self.batch_audit_repo.insert({
                         "run_id": run_id,
                         "job_id": job["job_id"],
@@ -139,6 +181,7 @@ class JobRunner:
                     batch_no=batch_no,
                     request_payload=request_payload,
                     response_payload=result.body,
+                    archive_partition_mode=archive_partition_mode,
                 )
 
                 raw_id = self.raw_repo.insert_api_call({
@@ -188,6 +231,13 @@ class JobRunner:
                     "message": result.message,
                 })
 
+                print(
+                    f"[BATCH][DONE] plant={target['plant_code']} devType={target['dev_type_id']} "
+                    f"batch={batch_no} raw_id={raw_id} api_success={result.success} "
+                    f"records={len(result.body.get('data', []))} "
+                    f"saved_to={archive['folder_date']}"
+                )
+
                 generic_rows = self.generic_normalizer.normalize(
                     response_body=result.body,
                     raw_id=raw_id,
@@ -207,15 +257,28 @@ class JobRunner:
                 self.typed_repo.upsert(target["dev_type_id"], typed_rows)
 
                 if self.batch_delay_seconds > 0:
+                    print(f"[BATCH] sleeping {self.batch_delay_seconds} sec")
                     time.sleep(self.batch_delay_seconds)
 
             if target_failed:
+                print(
+                    f"[TARGET][PARTIAL] plant={target['plant_code']} devType={target['dev_type_id']}"
+                )
                 self.checkpoint_service.mark_partial(target, run_id, window)
             else:
+                print(
+                    f"[TARGET][SUCCESS] plant={target['plant_code']} devType={target['dev_type_id']} "
+                    f"up_to={fmt_local(window['end_utc'])}"
+                )
                 self.checkpoint_service.mark_success(target, run_id, window)
 
         self.run_repo.finish_run(
             run_id=run_id,
             status="PARTIAL" if any_failed else "SUCCESS",
             message=None if not any_failed else "Some targets or batches failed.",
+        )
+
+        print(
+            f"[RUN] Finished run_id={run_id} status={'PARTIAL' if any_failed else 'SUCCESS'} "
+            f"at {fmt_local(utc_now())}"
         )

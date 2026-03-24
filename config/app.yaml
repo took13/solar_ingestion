@@ -12,7 +12,7 @@ timezone:
 api:
   mode: "legacy"
   timeout_seconds: 120
-  batch_delay_seconds: 3
+  batch_delay_seconds: 5
 
 retry:
   max_attempts: 3

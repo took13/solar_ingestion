@@ -3,6 +3,7 @@ from __future__ import annotations
 from src.config_loader import ConfigLoader
 from src.db.connection import create_connection
 from src.db.repositories.metadata_repo import MetadataRepository
+from src.db.repositories.target_repo import TargetRepository
 from src.db.repositories.checkpoint_repo import CheckpointRepository
 from src.db.repositories.run_repo import RunRepository
 from src.db.repositories.raw_repo import RawRepository
@@ -27,11 +28,15 @@ class Application:
         self.conn = create_connection(app_config["database"]["connection_string"])
 
         self.metadata_repo = MetadataRepository(self.conn)
+        self.target_repo = TargetRepository(self.conn)
         self.checkpoint_repo = CheckpointRepository(self.conn)
         self.run_repo = RunRepository(self.conn)
         self.raw_repo = RawRepository(self.conn)
         self.metric_catalog_repo = MetricCatalogRepository(self.conn)
-        self.metric_repo = MetricRepository(self.conn, metric_catalog_repo=self.metric_catalog_repo)
+        self.metric_repo = MetricRepository(
+            self.conn,
+            metric_catalog_repo=self.metric_catalog_repo
+        )
         self.typed_repo = TypedRepository(self.conn)
         self.batch_audit_repo = BatchAuditRepository(self.conn)
 
@@ -48,40 +53,53 @@ class Application:
         self.raw_archiver = RawArchiver(app_config["storage"]["raw_root"])
 
     def run_job(self, job_name: str):
-        config_loader = ConfigLoader()
-        job_config = config_loader.load_job_config(job_name)
+        print(f"[APP] Starting job from DB: {job_name}")
 
-        job = self.run_repo.create_job_if_missing(
-            job_name=job_config["job_name"],
-            api_name=job_config["api_name"],
-            description=f"Auto-created job for {job_config['job_name']}",
-        )
+        job = self.run_repo.get_job_by_name(job_name)
+        if not job:
+            raise ValueError(f"Job not found in ctl.ingest_job: {job_name}")
 
-        targets = self.metadata_service.build_targets_from_job_config(job, job_config)
+        targets = self.target_repo.get_targets_by_job_name(job_name)
+        if not targets:
+            raise ValueError(f"No enabled targets found for job: {job_name}")
+
+        targets = self.metadata_service.enrich_targets_from_db(targets)
+
+        print(f"[APP] Loaded {len(targets)} enabled targets for job={job_name}")
+
         self._run_targets_grouped_by_account(job=job, targets=targets)
 
     def run_job_with_override_window(self, job_name: str, override_start_utc, override_end_utc):
-        config_loader = ConfigLoader()
-        job_config = config_loader.load_job_config(job_name)
-
-        job = self.run_repo.create_job_if_missing(
-            job_name=job_config["job_name"],
-            api_name=job_config["api_name"],
-            description=f"Auto-created job for {job_config['job_name']}",
+        print(
+            f"[APP] Starting override-window job from DB: {job_name} | "
+            f"{override_start_utc.isoformat()} -> {override_end_utc.isoformat()}"
         )
 
-        targets = self.metadata_service.build_targets_from_job_config(job, job_config)
+        job = self.run_repo.get_job_by_name(job_name)
+        if not job:
+            raise ValueError(f"Job not found in ctl.ingest_job: {job_name}")
+
+        targets = self.target_repo.get_targets_by_job_name(job_name)
+        if not targets:
+            raise ValueError(f"No enabled targets found for job: {job_name}")
+
+        targets = self.metadata_service.enrich_targets_from_db(targets)
 
         for target in targets:
             target["override_start_utc"] = override_start_utc
             target["override_end_utc"] = override_end_utc
 
+        print(f"[APP] Loaded {len(targets)} enabled targets for job={job_name} with override window")
+
         self._run_targets_grouped_by_account(job=job, targets=targets)
 
     def _run_targets_grouped_by_account(self, job: dict, targets: list[dict]):
         targets_by_account: dict[int, list[dict]] = {}
+
         for target in targets:
             targets_by_account.setdefault(target["account_id"], []).append(target)
+
+        print(f"[APP] Grouped into {len(targets_by_account)} account bucket(s)")
 
         for account_id, account_targets in targets_by_account.items():
             account = self.metadata_repo.get_account_by_id(account_id)
@@ -92,6 +110,11 @@ class Application:
                 raise ValueError(
                     f"Account {account['account_name']} does not have api_password in dbo.dim_api_account"
                 )
+
+            print(
+                f"[APP] Account={account['account_name']} (id={account_id}) "
+                f"will run {len(account_targets)} target(s)"
+            )
 
             session_manager = SessionManager(
                 base_url=account["base_url"],

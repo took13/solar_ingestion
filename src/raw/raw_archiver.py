@@ -5,6 +5,8 @@ from pathlib import Path
 from hashlib import sha256
 from datetime import datetime, timezone
 
+from src.domain.time_utils import LOCAL_TZ, to_local, local_now
+
 
 class RawArchiver:
     def __init__(self, raw_root: str):
@@ -18,18 +20,23 @@ class RawArchiver:
         batch_no: int,
         request_payload: dict,
         response_payload: dict,
+        archive_partition_mode: str = "run_date",   # run_date | window_date
     ) -> dict:
-        window_start_dt = self._extract_window_start_dt(request_payload)
-        folder_date = window_start_dt.strftime("%Y-%m-%d") if window_start_dt else "unknown_date"
+        partition_dt_local = self._resolve_partition_dt_local(
+            request_payload=request_payload,
+            archive_partition_mode=archive_partition_mode,
+        )
 
+        folder_date = partition_dt_local.strftime("%Y-%m-%d")
         safe_plant_code = self._sanitize_for_path(plant_code)
+
         folder = self.raw_root / folder_date / safe_plant_code / f"devtype_{dev_type_id}"
         folder.mkdir(parents=True, exist_ok=True)
 
         request_text = json.dumps(request_payload, ensure_ascii=False, indent=2)
         response_text = json.dumps(response_payload, ensure_ascii=False, indent=2)
 
-        time_range_text = self._build_time_range_text(request_payload)
+        time_range_text = self._build_time_range_text_local(request_payload)
         short_hash = batch_hash[:8]
         batch_text = f"batch{batch_no:03d}"
 
@@ -51,26 +58,33 @@ class RawArchiver:
             "folder_date": folder_date,
         }
 
-    def _extract_window_start_dt(self, request_payload: dict) -> datetime | None:
-        start_ms = request_payload.get("startTime")
-        if start_ms is None:
-            return None
-        return datetime.fromtimestamp(start_ms / 1000, tz=timezone.utc)
+    def _resolve_partition_dt_local(self, request_payload: dict, archive_partition_mode: str) -> datetime:
+        if archive_partition_mode == "window_date":
+            start_ms = request_payload.get("startTime")
+            if start_ms is not None:
+                start_dt_utc = datetime.fromtimestamp(start_ms / 1000, tz=timezone.utc)
+                return start_dt_utc.astimezone(LOCAL_TZ)
 
-    def _build_time_range_text(self, request_payload: dict) -> str:
+        # default = online style → วันเวลาที่รันจริง
+        return local_now()
+
+    def _build_time_range_text_local(self, request_payload: dict) -> str:
         start_ms = request_payload.get("startTime")
         end_ms = request_payload.get("endTime")
 
         if start_ms is None or end_ms is None:
             return "no_window"
 
-        start_dt = datetime.fromtimestamp(start_ms / 1000, tz=timezone.utc)
-        end_dt = datetime.fromtimestamp(end_ms / 1000, tz=timezone.utc)
+        start_dt_utc = datetime.fromtimestamp(start_ms / 1000, tz=timezone.utc)
+        end_dt_utc = datetime.fromtimestamp(end_ms / 1000, tz=timezone.utc)
 
-        if start_dt.date() == end_dt.date():
-            return f"{start_dt.strftime('%Y%m%d_%H%M%S')}_{end_dt.strftime('%H%M%S')}"
+        start_local = to_local(start_dt_utc)
+        end_local = to_local(end_dt_utc)
 
-        return f"{start_dt.strftime('%Y%m%d_%H%M%S')}_{end_dt.strftime('%Y%m%d_%H%M%S')}"
+        if start_local.date() == end_local.date():
+            return f"{start_local.strftime('%Y%m%d_%H%M%S')}_{end_local.strftime('%H%M%S')}"
+
+        return f"{start_local.strftime('%Y%m%d_%H%M%S')}_{end_local.strftime('%Y%m%d_%H%M%S')}"
 
     def _sanitize_for_path(self, value: str) -> str:
         if not value:
