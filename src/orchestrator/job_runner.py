@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import time
+from datetime import timedelta
 
 from src.domain.hash_utils import build_batch_hash
 from src.domain.time_utils import utc_now, fmt_local
@@ -27,6 +28,7 @@ class JobRunner:
         retry_policy,
         batch_delay_seconds: int = 3,
         generic_metrics_enabled: bool = False,
+        account_cooldown_minutes: int = 15,
     ):
         self.metadata_repo = metadata_repo
         self.checkpoint_repo = checkpoint_repo
@@ -43,6 +45,7 @@ class JobRunner:
         self.retry_policy = retry_policy
         self.batch_delay_seconds = batch_delay_seconds
         self.generic_metrics_enabled = generic_metrics_enabled
+        self.account_cooldown_minutes = account_cooldown_minutes
 
         self.generic_normalizer = GenericNormalizer()
         self.typed_dispatcher = TypedDispatcher()
@@ -57,8 +60,16 @@ class JobRunner:
         print(f"[RUN] Started run_id={run_id} for job={job['job_name']} at {fmt_local(utc_now())}")
 
         any_failed = False
+        account_rate_limited = False
+        account_id_for_cooldown = targets[0]["account_id"] if targets else None
 
         for target in targets:
+            if account_rate_limited:
+                print(
+                    f"[ACCOUNT] account_id={account_id_for_cooldown} already rate-limited -> stop remaining targets"
+                )
+                break
+
             print(
                 f"[TARGET] plant={target['plant_code']} devType={target['dev_type_id']} "
                 f"account_id={target['account_id']} batch_size={target['batch_size']}"
@@ -148,12 +159,13 @@ class JobRunner:
                         end_time_ms=window["end_ms"],
                     )
                 except Exception as e:
+                    error_text = str(e)
                     target_failed = True
                     any_failed = True
 
                     print(
                         f"[BATCH][FAILED] plant={target['plant_code']} devType={target['dev_type_id']} "
-                        f"batch={batch_no} error={str(e)}"
+                        f"batch={batch_no} error={error_text}"
                     )
 
                     self.batch_audit_repo.insert({
@@ -171,8 +183,23 @@ class JobRunner:
                         "raw_id": None,
                         "status": "FAILED",
                         "fail_code": None,
-                        "message": str(e),
+                        "message": error_text,
                     })
+
+                    if self._is_rate_limit_407(error_text):
+                        cooldown_until = utc_now() + timedelta(minutes=self.account_cooldown_minutes)
+                        self.metadata_repo.set_account_interface_cooldown(
+                            target["account_id"],
+                            cooldown_until
+                        )
+                        account_rate_limited = True
+
+                        print(
+                            f"[ACCOUNT][COOLDOWN] account_id={target['account_id']} "
+                            f"set cooldown until {fmt_local(cooldown_until)} due to 407/rate-limit"
+                        )
+                        break
+
                     continue
 
                 archive = self.raw_archiver.archive(
@@ -285,4 +312,13 @@ class JobRunner:
         print(
             f"[RUN] Finished run_id={run_id} status={'PARTIAL' if any_failed else 'SUCCESS'} "
             f"at {fmt_local(utc_now())}"
+        )
+
+    def _is_rate_limit_407(self, error_text: str) -> bool:
+        text = (error_text or "").lower()
+        return (
+            "407" in text
+            or "access_frequency_is_too_high" in text
+            or "rate limit" in text
+            or "too high" in text
         )

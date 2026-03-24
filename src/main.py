@@ -20,6 +20,7 @@ from src.orchestrator.job_runner import JobRunner
 from src.api.session_manager import SessionManager
 from src.api.huawei_legacy_client import HuaweiLegacyClient
 from src.raw.raw_archiver import RawArchiver
+from src.domain.time_utils import utc_now, fmt_local
 
 
 class Application:
@@ -64,7 +65,6 @@ class Application:
             raise ValueError(f"No enabled targets found for job: {job_name}")
 
         targets = self.metadata_service.enrich_targets_from_db(targets)
-
         print(f"[APP] Loaded {len(targets)} enabled targets for job={job_name}")
 
         self._run_targets_grouped_by_account(job=job, targets=targets)
@@ -90,7 +90,6 @@ class Application:
             target["override_end_utc"] = override_end_utc
 
         print(f"[APP] Loaded {len(targets)} enabled targets for job={job_name} with override window")
-
         self._run_targets_grouped_by_account(job=job, targets=targets)
 
     def _run_targets_grouped_by_account(self, job: dict, targets: list[dict]):
@@ -110,6 +109,26 @@ class Application:
                 raise ValueError(
                     f"Account {account['account_name']} does not have api_password in dbo.dim_api_account"
                 )
+
+            cooldown_until = account.get("interface_cooldown_until")
+            now_utc = utc_now()
+
+            if cooldown_until is not None:
+                if cooldown_until.tzinfo is None:
+                    cooldown_until = cooldown_until.replace(tzinfo=now_utc.tzinfo)
+
+                if now_utc < cooldown_until:
+                    print(
+                        f"[APP] Account={account['account_name']} (id={account_id}) "
+                        f"is in cooldown until {fmt_local(cooldown_until)} -> skip this round"
+                    )
+                    continue
+                else:
+                    self.metadata_repo.clear_account_interface_cooldown(account_id)
+                    print(
+                        f"[APP] Account={account['account_name']} (id={account_id}) "
+                        f"cooldown expired -> cleared"
+                    )
 
             print(
                 f"[APP] Account={account['account_name']} (id={account_id}) "
@@ -147,6 +166,7 @@ class Application:
                 generic_metrics_enabled=self.app_config.get("pipeline", {})
                     .get("generic_metrics", {})
                     .get("enabled", False),
+                account_cooldown_minutes=self.app_config.get("api", {}).get("account_cooldown_minutes", 15),
             )
 
             runner.run_targets(job=job, targets=account_targets)

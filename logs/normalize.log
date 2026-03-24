@@ -1,0 +1,1520 @@
+[NORM] pending raw rows = 100
+[NORM] processing raw_id=303 plant=NE=50979503 devType=1
+[NORM] raw_id=303 parsed_rows=59072 deduped_rows=59072 catalog_rows=104
+[NORM] raw_id=303 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=303 chunk=12 metric_rows=4072 catalog_rows=104
+[NORM] raw_id=303 success rows=59072
+[NORM] processing raw_id=304 plant=NE=50979503 devType=10
+[NORM] raw_id=304 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=304 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=304 success rows=3480
+[NORM] processing raw_id=305 plant=NE=50979503 devType=17
+[NORM] raw_id=305 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=305 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=305 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=305 success rows=5800
+[NORM] processing raw_id=306 plant=NE=50979503 devType=63
+[NORM] raw_id=306 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=306 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=306 success rows=1160
+[NORM] processing raw_id=307 plant=NE=50281829 devType=1
+[NORM] raw_id=307 parsed_rows=26208 deduped_rows=26208 catalog_rows=104
+[NORM] raw_id=307 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=307 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=307 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=307 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=307 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=307 chunk=6 metric_rows=1208 catalog_rows=104
+[NORM] raw_id=307 success rows=26208
+[NORM] processing raw_id=308 plant=NE=50281829 devType=10
+[NORM] raw_id=308 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=308 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=308 success rows=1160
+[NORM] processing raw_id=309 plant=NE=50281829 devType=17
+[NORM] raw_id=309 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=309 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=309 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=309 success rows=5800
+[NORM] processing raw_id=310 plant=NE=50281829 devType=63
+[NORM] raw_id=310 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=310 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=310 success rows=1160
+[NORM] processing raw_id=311 plant=NE=50979503 devType=1
+[NORM] raw_id=311 parsed_rows=88088 deduped_rows=88088 catalog_rows=104
+[NORM] raw_id=311 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=15 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=16 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=17 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=311 chunk=18 metric_rows=3088 catalog_rows=104
+[NORM] raw_id=311 success rows=88088
+[NORM] processing raw_id=312 plant=NE=50979503 devType=1
+[NORM] raw_id=312 parsed_rows=70408 deduped_rows=70408 catalog_rows=104
+[NORM] raw_id=312 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=312 chunk=15 metric_rows=408 catalog_rows=104
+[NORM] raw_id=312 success rows=70408
+[NORM] processing raw_id=313 plant=NE=50979503 devType=10
+[NORM] raw_id=313 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=313 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=313 success rows=3480
+[NORM] processing raw_id=314 plant=NE=50979503 devType=17
+[NORM] raw_id=314 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=314 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=314 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=314 success rows=5800
+[NORM] processing raw_id=315 plant=NE=50979503 devType=63
+[NORM] raw_id=315 parsed_rows=1128 deduped_rows=1128 catalog_rows=8
+[NORM] raw_id=315 chunk=1 metric_rows=1128 catalog_rows=8
+[NORM] raw_id=315 success rows=1128
+[NORM] processing raw_id=316 plant=NE=50281829 devType=1
+[NORM] raw_id=316 parsed_rows=22360 deduped_rows=22360 catalog_rows=104
+[NORM] raw_id=316 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=316 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=316 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=316 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=316 chunk=5 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=316 success rows=22360
+[NORM] processing raw_id=317 plant=NE=50281829 devType=10
+[NORM] raw_id=317 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=317 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=317 success rows=1160
+[NORM] processing raw_id=318 plant=NE=50281829 devType=17
+[NORM] raw_id=318 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=318 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=318 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=318 success rows=5800
+[NORM] processing raw_id=319 plant=NE=50281829 devType=63
+[NORM] raw_id=319 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=319 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=319 success rows=1160
+[NORM] processing raw_id=320 plant=NE=50979503 devType=1
+[NORM] raw_id=320 parsed_rows=73736 deduped_rows=73736 catalog_rows=104
+[NORM] raw_id=320 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=320 chunk=15 metric_rows=3736 catalog_rows=104
+[NORM] raw_id=320 success rows=73736
+[NORM] processing raw_id=321 plant=NE=50979503 devType=1
+[NORM] raw_id=321 parsed_rows=58968 deduped_rows=58968 catalog_rows=104
+[NORM] raw_id=321 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=321 chunk=12 metric_rows=3968 catalog_rows=104
+[NORM] raw_id=321 success rows=58968
+[NORM] processing raw_id=322 plant=NE=50979503 devType=10
+[NORM] raw_id=322 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=322 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=322 success rows=3480
+[NORM] processing raw_id=323 plant=NE=50979503 devType=17
+[NORM] raw_id=323 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=323 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=323 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=323 success rows=5800
+[NORM] processing raw_id=324 plant=NE=50979503 devType=63
+[NORM] raw_id=324 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=324 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=324 success rows=1160
+[NORM] processing raw_id=325 plant=NE=50281829 devType=1
+[NORM] raw_id=325 parsed_rows=26104 deduped_rows=26104 catalog_rows=104
+[NORM] raw_id=325 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=325 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=325 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=325 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=325 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=325 chunk=6 metric_rows=1104 catalog_rows=104
+[NORM] raw_id=325 success rows=26104
+[NORM] processing raw_id=326 plant=NE=50281829 devType=10
+[NORM] raw_id=326 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=326 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=326 success rows=1160
+[NORM] processing raw_id=327 plant=NE=50281829 devType=17
+[NORM] raw_id=327 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=327 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=327 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=327 success rows=5800
+[NORM] processing raw_id=328 plant=NE=50281829 devType=63
+[NORM] raw_id=328 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=328 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=328 success rows=1160
+[NORM] processing raw_id=329 plant=NE=50979503 devType=1
+[NORM] raw_id=329 parsed_rows=87360 deduped_rows=87360 catalog_rows=104
+[NORM] raw_id=329 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=15 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=16 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=17 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=329 chunk=18 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=329 success rows=87360
+[NORM] processing raw_id=330 plant=NE=50979503 devType=1
+[NORM] raw_id=330 parsed_rows=69888 deduped_rows=69888 catalog_rows=104
+[NORM] raw_id=330 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=330 chunk=14 metric_rows=4888 catalog_rows=104
+[NORM] raw_id=330 success rows=69888
+[NORM] processing raw_id=331 plant=NE=50979503 devType=10
+[NORM] raw_id=331 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=331 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=331 success rows=3480
+[NORM] processing raw_id=332 plant=NE=50979503 devType=17
+[NORM] raw_id=332 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=332 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=332 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=332 success rows=5800
+[NORM] processing raw_id=333 plant=NE=50979503 devType=63
+[NORM] raw_id=333 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=333 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=333 success rows=1160
+[NORM] processing raw_id=334 plant=NE=50281829 devType=1
+[NORM] raw_id=334 parsed_rows=22360 deduped_rows=22360 catalog_rows=104
+[NORM] raw_id=334 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=334 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=334 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=334 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=334 chunk=5 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=334 success rows=22360
+[NORM] processing raw_id=335 plant=NE=50281829 devType=10
+[NORM] raw_id=335 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=335 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=335 success rows=1160
+[NORM] processing raw_id=336 plant=NE=50281829 devType=17
+[NORM] raw_id=336 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=336 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=336 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=336 success rows=5800
+[NORM] processing raw_id=337 plant=NE=50281829 devType=63
+[NORM] raw_id=337 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=337 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=337 success rows=1160
+[NORM] processing raw_id=338 plant=NE=50979503 devType=1
+[NORM] raw_id=338 parsed_rows=74360 deduped_rows=74360 catalog_rows=104
+[NORM] raw_id=338 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=338 chunk=15 metric_rows=4360 catalog_rows=104
+[NORM] raw_id=338 success rows=74360
+[NORM] processing raw_id=339 plant=NE=50979503 devType=1
+[NORM] raw_id=339 parsed_rows=59280 deduped_rows=59280 catalog_rows=104
+[NORM] raw_id=339 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=339 chunk=12 metric_rows=4280 catalog_rows=104
+[NORM] raw_id=339 success rows=59280
+[NORM] processing raw_id=340 plant=NE=50979503 devType=10
+[NORM] raw_id=340 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=340 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=340 success rows=3480
+[NORM] processing raw_id=341 plant=NE=50979503 devType=17
+[NORM] raw_id=341 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=341 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=341 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=341 success rows=5800
+[NORM] processing raw_id=342 plant=NE=50979503 devType=63
+[NORM] raw_id=342 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=342 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=342 success rows=1160
+[NORM] processing raw_id=343 plant=NE=50281829 devType=1
+[NORM] raw_id=343 parsed_rows=26208 deduped_rows=26208 catalog_rows=104
+[NORM] raw_id=343 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=343 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=343 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=343 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=343 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=343 chunk=6 metric_rows=1208 catalog_rows=104
+[NORM] raw_id=343 success rows=26208
+[NORM] processing raw_id=344 plant=NE=50281829 devType=1
+[NORM] raw_id=344 parsed_rows=22360 deduped_rows=22360 catalog_rows=104
+[NORM] raw_id=344 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=344 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=344 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=344 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=344 chunk=5 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=344 success rows=22360
+[NORM] processing raw_id=345 plant=NE=50281829 devType=10
+[NORM] raw_id=345 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=345 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=345 success rows=1160
+[NORM] processing raw_id=346 plant=NE=50281829 devType=17
+[NORM] raw_id=346 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=346 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=346 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=346 success rows=5800
+[NORM] processing raw_id=347 plant=NE=50281829 devType=63
+[NORM] raw_id=347 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=347 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=347 success rows=1160
+[NORM] processing raw_id=348 plant=NE=50979503 devType=1
+[NORM] raw_id=348 parsed_rows=74360 deduped_rows=74360 catalog_rows=104
+[NORM] raw_id=348 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=348 chunk=15 metric_rows=4360 catalog_rows=104
+[NORM] raw_id=348 success rows=74360
+[NORM] processing raw_id=349 plant=NE=50979503 devType=1
+[NORM] raw_id=349 parsed_rows=59280 deduped_rows=59280 catalog_rows=104
+[NORM] raw_id=349 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=349 chunk=12 metric_rows=4280 catalog_rows=104
+[NORM] raw_id=349 success rows=59280
+[NORM] processing raw_id=350 plant=NE=50979503 devType=10
+[NORM] raw_id=350 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=350 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=350 success rows=3480
+[NORM] processing raw_id=351 plant=NE=50979503 devType=17
+[NORM] raw_id=351 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=351 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=351 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=351 success rows=5800
+[NORM] processing raw_id=352 plant=NE=50979503 devType=63
+[NORM] raw_id=352 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=352 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=352 success rows=1160
+[NORM] processing raw_id=353 plant=NE=50281829 devType=1
+[NORM] raw_id=353 parsed_rows=26208 deduped_rows=26208 catalog_rows=104
+[NORM] raw_id=353 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=353 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=353 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=353 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=353 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=353 chunk=6 metric_rows=1208 catalog_rows=104
+[NORM] raw_id=353 success rows=26208
+[NORM] processing raw_id=354 plant=NE=50281829 devType=10
+[NORM] raw_id=354 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=354 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=354 success rows=1160
+[NORM] processing raw_id=355 plant=NE=50281829 devType=17
+[NORM] raw_id=355 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=355 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=355 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=355 success rows=5800
+[NORM] processing raw_id=356 plant=NE=50281829 devType=63
+[NORM] raw_id=356 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=356 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=356 success rows=1160
+[NORM] processing raw_id=357 plant=NE=50979503 devType=1
+[NORM] raw_id=357 parsed_rows=87360 deduped_rows=87360 catalog_rows=104
+[NORM] raw_id=357 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=15 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=16 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=17 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=357 chunk=18 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=357 success rows=87360
+[NORM] processing raw_id=358 plant=NE=50281829 devType=1
+[NORM] raw_id=358 parsed_rows=22360 deduped_rows=22360 catalog_rows=104
+[NORM] raw_id=358 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=358 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=358 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=358 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=358 chunk=5 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=358 success rows=22360
+[NORM] processing raw_id=359 plant=NE=50281829 devType=10
+[NORM] raw_id=359 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=359 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=359 success rows=1160
+[NORM] processing raw_id=360 plant=NE=50281829 devType=17
+[NORM] raw_id=360 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=360 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=360 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=360 success rows=5800
+[NORM] processing raw_id=361 plant=NE=50281829 devType=63
+[NORM] raw_id=361 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=361 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=361 success rows=1160
+[NORM] processing raw_id=362 plant=NE=50979503 devType=1
+[NORM] raw_id=362 parsed_rows=74360 deduped_rows=74360 catalog_rows=104
+[NORM] raw_id=362 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=362 chunk=15 metric_rows=4360 catalog_rows=104
+[NORM] raw_id=362 success rows=74360
+[NORM] processing raw_id=363 plant=NE=50281829 devType=1
+[NORM] raw_id=363 parsed_rows=22360 deduped_rows=22360 catalog_rows=104
+[NORM] raw_id=363 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=363 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=363 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=363 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=363 chunk=5 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=363 success rows=22360
+[NORM] processing raw_id=364 plant=NE=50281829 devType=1
+[NORM] raw_id=364 parsed_rows=22464 deduped_rows=22464 catalog_rows=104
+[NORM] raw_id=364 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=364 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=364 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=364 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=364 chunk=5 metric_rows=2464 catalog_rows=104
+[NORM] raw_id=364 success rows=22464
+[NORM] processing raw_id=365 plant=NE=50281829 devType=10
+[NORM] raw_id=365 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=365 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=365 success rows=1160
+[NORM] processing raw_id=366 plant=NE=50281829 devType=17
+[NORM] raw_id=366 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=366 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=366 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=366 success rows=5800
+[NORM] processing raw_id=367 plant=NE=50281829 devType=63
+[NORM] raw_id=367 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=367 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=367 success rows=1160
+[NORM] processing raw_id=368 plant=NE=50979503 devType=1
+[NORM] raw_id=368 parsed_rows=74464 deduped_rows=74464 catalog_rows=104
+[NORM] raw_id=368 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=368 chunk=15 metric_rows=4464 catalog_rows=104
+[NORM] raw_id=368 success rows=74464
+[NORM] processing raw_id=369 plant=NE=50979503 devType=1
+[NORM] raw_id=369 parsed_rows=59488 deduped_rows=59488 catalog_rows=104
+[NORM] raw_id=369 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=369 chunk=12 metric_rows=4488 catalog_rows=104
+[NORM] raw_id=369 success rows=59488
+[NORM] processing raw_id=370 plant=NE=50281829 devType=1
+[NORM] raw_id=370 parsed_rows=22464 deduped_rows=22464 catalog_rows=104
+[NORM] raw_id=370 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=370 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=370 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=370 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=370 chunk=5 metric_rows=2464 catalog_rows=104
+[NORM] raw_id=370 success rows=22464
+[NORM] processing raw_id=371 plant=NE=50281829 devType=1
+[NORM] raw_id=371 parsed_rows=7488 deduped_rows=7488 catalog_rows=104
+[NORM] raw_id=371 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=371 chunk=2 metric_rows=2488 catalog_rows=104
+[NORM] raw_id=371 success rows=7488
+[NORM] processing raw_id=372 plant=NE=50281829 devType=1
+[NORM] raw_id=372 parsed_rows=7488 deduped_rows=7488 catalog_rows=104
+[NORM] raw_id=372 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=372 chunk=2 metric_rows=2488 catalog_rows=104
+[NORM] raw_id=372 success rows=7488
+[NORM] processing raw_id=373 plant=NE=50281829 devType=1
+[NORM] raw_id=373 parsed_rows=7488 deduped_rows=7488 catalog_rows=104
+[NORM] raw_id=373 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=373 chunk=2 metric_rows=2488 catalog_rows=104
+[NORM] raw_id=373 success rows=7488
+[NORM] processing raw_id=374 plant=NE=50281829 devType=1
+[NORM] raw_id=374 parsed_rows=7488 deduped_rows=7488 catalog_rows=104
+[NORM] raw_id=374 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=374 chunk=2 metric_rows=2488 catalog_rows=104
+[NORM] raw_id=374 success rows=7488
+[NORM] processing raw_id=375 plant=NE=50281829 devType=1
+[NORM] raw_id=375 parsed_rows=7488 deduped_rows=7488 catalog_rows=104
+[NORM] raw_id=375 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=375 chunk=2 metric_rows=2488 catalog_rows=104
+[NORM] raw_id=375 success rows=7488
+[NORM] processing raw_id=376 plant=NE=50281829 devType=10
+[NORM] raw_id=376 parsed_rows=776 deduped_rows=776 catalog_rows=8
+[NORM] raw_id=376 chunk=1 metric_rows=776 catalog_rows=8
+[NORM] raw_id=376 success rows=776
+[NORM] processing raw_id=377 plant=NE=50281829 devType=17
+[NORM] raw_id=377 parsed_rows=3880 deduped_rows=3880 catalog_rows=40
+[NORM] raw_id=377 chunk=1 metric_rows=3880 catalog_rows=40
+[NORM] raw_id=377 success rows=3880
+[NORM] processing raw_id=378 plant=NE=50281829 devType=63
+[NORM] raw_id=378 parsed_rows=776 deduped_rows=776 catalog_rows=8
+[NORM] raw_id=378 chunk=1 metric_rows=776 catalog_rows=8
+[NORM] raw_id=378 success rows=776
+[NORM] processing raw_id=379 plant=NE=50281829 devType=1
+[NORM] raw_id=379 parsed_rows=22464 deduped_rows=22464 catalog_rows=104
+[NORM] raw_id=379 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=379 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=379 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=379 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=379 chunk=5 metric_rows=2464 catalog_rows=104
+[NORM] raw_id=379 success rows=22464
+[NORM] processing raw_id=380 plant=NE=50281829 devType=10
+[NORM] raw_id=380 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=380 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=380 success rows=1160
+[NORM] processing raw_id=381 plant=NE=50281829 devType=1
+[NORM] raw_id=381 parsed_rows=22464 deduped_rows=22464 catalog_rows=104
+[NORM] raw_id=381 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=381 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=381 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=381 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=381 chunk=5 metric_rows=2464 catalog_rows=104
+[NORM] raw_id=381 success rows=22464
+[NORM] processing raw_id=382 plant=NE=50281829 devType=10
+[NORM] raw_id=382 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=382 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=382 success rows=1160
+[NORM] processing raw_id=383 plant=NE=50281829 devType=1
+[NORM] raw_id=383 parsed_rows=22360 deduped_rows=22360 catalog_rows=104
+[NORM] raw_id=383 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=383 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=383 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=383 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=383 chunk=5 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=383 success rows=22360
+[NORM] processing raw_id=384 plant=NE=50281829 devType=10
+[NORM] raw_id=384 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=384 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=384 success rows=1160
+[NORM] processing raw_id=385 plant=NE=50281829 devType=17
+[NORM] raw_id=385 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=385 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=385 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=385 success rows=5800
+[NORM] processing raw_id=386 plant=NE=50281829 devType=63
+[NORM] raw_id=386 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=386 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=386 success rows=1160
+[NORM] processing raw_id=387 plant=NE=50979503 devType=1
+[NORM] raw_id=387 parsed_rows=74360 deduped_rows=74360 catalog_rows=104
+[NORM] raw_id=387 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=387 chunk=15 metric_rows=4360 catalog_rows=104
+[NORM] raw_id=387 success rows=74360
+[NORM] processing raw_id=388 plant=NE=50979503 devType=1
+[NORM] raw_id=388 parsed_rows=59280 deduped_rows=59280 catalog_rows=104
+[NORM] raw_id=388 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=388 chunk=12 metric_rows=4280 catalog_rows=104
+[NORM] raw_id=388 success rows=59280
+[NORM] processing raw_id=389 plant=NE=50979503 devType=10
+[NORM] raw_id=389 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=389 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=389 success rows=3480
+[NORM] processing raw_id=390 plant=NE=50979503 devType=17
+[NORM] raw_id=390 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=390 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=390 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=390 success rows=5800
+[NORM] processing raw_id=391 plant=NE=50979503 devType=63
+[NORM] raw_id=391 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=391 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=391 success rows=1160
+[NORM] processing raw_id=392 plant=NE=50281829 devType=1
+[NORM] raw_id=392 parsed_rows=26208 deduped_rows=26208 catalog_rows=104
+[NORM] raw_id=392 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=392 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=392 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=392 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=392 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=392 chunk=6 metric_rows=1208 catalog_rows=104
+[NORM] raw_id=392 success rows=26208
+[NORM] processing raw_id=393 plant=NE=50281829 devType=10
+[NORM] raw_id=393 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=393 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=393 success rows=1160
+[NORM] processing raw_id=394 plant=NE=50281829 devType=17
+[NORM] raw_id=394 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=394 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=394 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=394 success rows=5800
+[NORM] processing raw_id=395 plant=NE=50281829 devType=63
+[NORM] raw_id=395 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=395 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=395 success rows=1160
+[NORM] processing raw_id=396 plant=NE=50979503 devType=1
+[NORM] raw_id=396 parsed_rows=87360 deduped_rows=87360 catalog_rows=104
+[NORM] raw_id=396 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=15 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=16 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=17 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=396 chunk=18 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=396 success rows=87360
+[NORM] processing raw_id=397 plant=NE=50979503 devType=1
+[NORM] raw_id=397 parsed_rows=69888 deduped_rows=69888 catalog_rows=104
+[NORM] raw_id=397 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=397 chunk=14 metric_rows=4888 catalog_rows=104
+[NORM] raw_id=397 success rows=69888
+[NORM] processing raw_id=398 plant=NE=50979503 devType=10
+[NORM] raw_id=398 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=398 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=398 success rows=3480
+[NORM] processing raw_id=399 plant=NE=50979503 devType=17
+[NORM] raw_id=399 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=399 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=399 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=399 success rows=5800
+[NORM] processing raw_id=400 plant=NE=50979503 devType=63
+[NORM] raw_id=400 parsed_rows=1128 deduped_rows=1128 catalog_rows=8
+[NORM] raw_id=400 chunk=1 metric_rows=1128 catalog_rows=8
+[NORM] raw_id=400 success rows=1128
+[NORM] processing raw_id=401 plant=NE=50281829 devType=1
+[NORM] raw_id=401 parsed_rows=22464 deduped_rows=22464 catalog_rows=104
+[NORM] raw_id=401 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=401 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=401 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=401 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=401 chunk=5 metric_rows=2464 catalog_rows=104
+[NORM] raw_id=401 success rows=22464
+[NORM] processing raw_id=402 plant=NE=50281829 devType=10
+[NORM] raw_id=402 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=402 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=402 success rows=1160
+[NORM] pending raw rows = 100
+[NORM] processing raw_id=403 plant=NE=50281829 devType=17
+[NORM] raw_id=403 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=403 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=403 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=403 success rows=5800
+[NORM] processing raw_id=404 plant=NE=50281829 devType=63
+[NORM] raw_id=404 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=404 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=404 success rows=1160
+[NORM] processing raw_id=405 plant=NE=50979503 devType=1
+[NORM] raw_id=405 parsed_rows=74464 deduped_rows=74464 catalog_rows=104
+[NORM] raw_id=405 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=405 chunk=15 metric_rows=4464 catalog_rows=104
+[NORM] raw_id=405 success rows=74464
+[NORM] processing raw_id=406 plant=NE=50979503 devType=1
+[NORM] raw_id=406 parsed_rows=59488 deduped_rows=59488 catalog_rows=104
+[NORM] raw_id=406 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=406 chunk=12 metric_rows=4488 catalog_rows=104
+[NORM] raw_id=406 success rows=59488
+[NORM] processing raw_id=407 plant=NE=50979503 devType=10
+[NORM] raw_id=407 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=407 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=407 success rows=3480
+[NORM] processing raw_id=408 plant=NE=50979503 devType=17
+[NORM] raw_id=408 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=408 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=408 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=408 success rows=5800
+[NORM] processing raw_id=409 plant=NE=50979503 devType=63
+[NORM] raw_id=409 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=409 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=409 success rows=1160
+[NORM] processing raw_id=410 plant=NE=50281829 devType=1
+[NORM] raw_id=410 parsed_rows=26208 deduped_rows=26208 catalog_rows=104
+[NORM] raw_id=410 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=410 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=410 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=410 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=410 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=410 chunk=6 metric_rows=1208 catalog_rows=104
+[NORM] raw_id=410 success rows=26208
+[NORM] processing raw_id=411 plant=NE=50281829 devType=10
+[NORM] raw_id=411 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=411 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=411 success rows=1160
+[NORM] processing raw_id=412 plant=NE=50281829 devType=17
+[NORM] raw_id=412 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=412 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=412 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=412 success rows=5800
+[NORM] processing raw_id=413 plant=NE=50281829 devType=63
+[NORM] raw_id=413 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=413 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=413 success rows=1160
+[NORM] processing raw_id=414 plant=NE=50979503 devType=1
+[NORM] raw_id=414 parsed_rows=87360 deduped_rows=87360 catalog_rows=104
+[NORM] raw_id=414 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=15 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=16 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=17 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=414 chunk=18 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=414 success rows=87360
+[NORM] processing raw_id=415 plant=NE=50979503 devType=1
+[NORM] raw_id=415 parsed_rows=69888 deduped_rows=69888 catalog_rows=104
+[NORM] raw_id=415 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=415 chunk=14 metric_rows=4888 catalog_rows=104
+[NORM] raw_id=415 success rows=69888
+[NORM] processing raw_id=416 plant=NE=50979503 devType=10
+[NORM] raw_id=416 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=416 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=416 success rows=3480
+[NORM] processing raw_id=417 plant=NE=50979503 devType=17
+[NORM] raw_id=417 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=417 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=417 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=417 success rows=5800
+[NORM] processing raw_id=418 plant=NE=50979503 devType=63
+[NORM] raw_id=418 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=418 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=418 success rows=1160
+[NORM] processing raw_id=419 plant=NE=50281829 devType=1
+[NORM] raw_id=419 parsed_rows=22360 deduped_rows=22360 catalog_rows=104
+[NORM] raw_id=419 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=419 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=419 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=419 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=419 chunk=5 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=419 success rows=22360
+[NORM] processing raw_id=420 plant=NE=50281829 devType=10
+[NORM] raw_id=420 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=420 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=420 success rows=1160
+[NORM] processing raw_id=421 plant=NE=50281829 devType=17
+[NORM] raw_id=421 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=421 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=421 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=421 success rows=5800
+[NORM] processing raw_id=422 plant=NE=50281829 devType=63
+[NORM] raw_id=422 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=422 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=422 success rows=1160
+[NORM] processing raw_id=423 plant=NE=50979503 devType=1
+[NORM] raw_id=423 parsed_rows=74048 deduped_rows=74048 catalog_rows=104
+[NORM] raw_id=423 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=423 chunk=15 metric_rows=4048 catalog_rows=104
+[NORM] raw_id=423 success rows=74048
+[NORM] processing raw_id=424 plant=NE=50979503 devType=1
+[NORM] raw_id=424 parsed_rows=59072 deduped_rows=59072 catalog_rows=104
+[NORM] raw_id=424 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=424 chunk=12 metric_rows=4072 catalog_rows=104
+[NORM] raw_id=424 success rows=59072
+[NORM] processing raw_id=425 plant=NE=50979503 devType=10
+[NORM] raw_id=425 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=425 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=425 success rows=3480
+[NORM] processing raw_id=426 plant=NE=50979503 devType=17
+[NORM] raw_id=426 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=426 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=426 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=426 success rows=5800
+[NORM] processing raw_id=427 plant=NE=50979503 devType=63
+[NORM] raw_id=427 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=427 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=427 success rows=1160
+[NORM] processing raw_id=428 plant=NE=50281829 devType=1
+[NORM] raw_id=428 parsed_rows=26104 deduped_rows=26104 catalog_rows=104
+[NORM] raw_id=428 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=428 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=428 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=428 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=428 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=428 chunk=6 metric_rows=1104 catalog_rows=104
+[NORM] raw_id=428 success rows=26104
+[NORM] processing raw_id=429 plant=NE=50281829 devType=10
+[NORM] raw_id=429 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=429 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=429 success rows=1160
+[NORM] processing raw_id=430 plant=NE=50281829 devType=17
+[NORM] raw_id=430 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=430 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=430 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=430 success rows=5800
+[NORM] processing raw_id=431 plant=NE=50281829 devType=63
+[NORM] raw_id=431 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=431 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=431 success rows=1160
+[NORM] processing raw_id=432 plant=NE=50979503 devType=1
+[NORM] raw_id=432 parsed_rows=87360 deduped_rows=87360 catalog_rows=104
+[NORM] raw_id=432 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=15 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=16 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=17 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=432 chunk=18 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=432 success rows=87360
+[NORM] processing raw_id=433 plant=NE=50979503 devType=1
+[NORM] raw_id=433 parsed_rows=69888 deduped_rows=69888 catalog_rows=104
+[NORM] raw_id=433 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=433 chunk=14 metric_rows=4888 catalog_rows=104
+[NORM] raw_id=433 success rows=69888
+[NORM] processing raw_id=434 plant=NE=50979503 devType=10
+[NORM] raw_id=434 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=434 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=434 success rows=3480
+[NORM] processing raw_id=435 plant=NE=50979503 devType=17
+[NORM] raw_id=435 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=435 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=435 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=435 success rows=5800
+[NORM] processing raw_id=436 plant=NE=50979503 devType=63
+[NORM] raw_id=436 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=436 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=436 success rows=1160
+[NORM] processing raw_id=437 plant=NE=50281829 devType=1
+[NORM] raw_id=437 parsed_rows=21736 deduped_rows=21736 catalog_rows=104
+[NORM] raw_id=437 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=437 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=437 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=437 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=437 chunk=5 metric_rows=1736 catalog_rows=104
+[NORM] raw_id=437 success rows=21736
+[NORM] processing raw_id=438 plant=NE=50281829 devType=10
+[NORM] raw_id=438 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=438 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=438 success rows=1160
+[NORM] processing raw_id=439 plant=NE=50281829 devType=17
+[NORM] raw_id=439 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=439 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=439 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=439 success rows=5800
+[NORM] processing raw_id=440 plant=NE=50281829 devType=63
+[NORM] raw_id=440 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=440 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=440 success rows=1160
+[NORM] processing raw_id=441 plant=NE=50979503 devType=1
+[NORM] raw_id=441 parsed_rows=73840 deduped_rows=73840 catalog_rows=104
+[NORM] raw_id=441 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=441 chunk=15 metric_rows=3840 catalog_rows=104
+[NORM] raw_id=441 success rows=73840
+[NORM] processing raw_id=442 plant=NE=50979503 devType=1
+[NORM] raw_id=442 parsed_rows=59072 deduped_rows=59072 catalog_rows=104
+[NORM] raw_id=442 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=442 chunk=12 metric_rows=4072 catalog_rows=104
+[NORM] raw_id=442 success rows=59072
+[NORM] processing raw_id=443 plant=NE=50979503 devType=10
+[NORM] raw_id=443 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=443 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=443 success rows=3480
+[NORM] processing raw_id=444 plant=NE=50979503 devType=17
+[NORM] raw_id=444 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=444 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=444 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=444 success rows=5800
+[NORM] processing raw_id=445 plant=NE=50979503 devType=63
+[NORM] raw_id=445 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=445 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=445 success rows=1160
+[NORM] processing raw_id=446 plant=NE=50979503 devType=1
+[NORM] raw_id=446 parsed_rows=74880 deduped_rows=74880 catalog_rows=104
+[NORM] raw_id=446 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=446 chunk=15 metric_rows=4880 catalog_rows=104
+[NORM] raw_id=446 success rows=74880
+[NORM] processing raw_id=447 plant=NE=50979503 devType=1
+[NORM] raw_id=447 parsed_rows=59904 deduped_rows=59904 catalog_rows=104
+[NORM] raw_id=447 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=447 chunk=12 metric_rows=4904 catalog_rows=104
+[NORM] raw_id=447 success rows=59904
+[NORM] processing raw_id=448 plant=NE=50979503 devType=10
+[NORM] raw_id=448 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=448 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=448 success rows=3480
+[NORM] processing raw_id=449 plant=NE=50979503 devType=17
+[NORM] raw_id=449 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=449 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=449 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=449 success rows=5800
+[NORM] processing raw_id=450 plant=NE=50979503 devType=63
+[NORM] raw_id=450 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=450 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=450 success rows=1160
+[NORM] processing raw_id=451 plant=NE=50281829 devType=1
+[NORM] raw_id=451 parsed_rows=26208 deduped_rows=26208 catalog_rows=104
+[NORM] raw_id=451 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=451 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=451 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=451 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=451 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=451 chunk=6 metric_rows=1208 catalog_rows=104
+[NORM] raw_id=451 success rows=26208
+[NORM] processing raw_id=452 plant=NE=50281829 devType=10
+[NORM] raw_id=452 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=452 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=452 success rows=1160
+[NORM] processing raw_id=453 plant=NE=50281829 devType=17
+[NORM] raw_id=453 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=453 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=453 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=453 success rows=5800
+[NORM] processing raw_id=454 plant=NE=50281829 devType=63
+[NORM] raw_id=454 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=454 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=454 success rows=1160
+[NORM] processing raw_id=455 plant=NE=50281829 devType=1
+[NORM] raw_id=455 parsed_rows=22360 deduped_rows=22360 catalog_rows=104
+[NORM] raw_id=455 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=455 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=455 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=455 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=455 chunk=5 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=455 success rows=22360
+[NORM] processing raw_id=456 plant=NE=50281829 devType=10
+[NORM] raw_id=456 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=456 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=456 success rows=1160
+[NORM] processing raw_id=457 plant=NE=50281829 devType=17
+[NORM] raw_id=457 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=457 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=457 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=457 success rows=5800
+[NORM] processing raw_id=458 plant=NE=50281829 devType=63
+[NORM] raw_id=458 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=458 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=458 success rows=1160
+[NORM] processing raw_id=459 plant=NE=50979503 devType=1
+[NORM] raw_id=459 parsed_rows=74048 deduped_rows=74048 catalog_rows=104
+[NORM] raw_id=459 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=459 chunk=15 metric_rows=4048 catalog_rows=104
+[NORM] raw_id=459 success rows=74048
+[NORM] processing raw_id=460 plant=NE=50979503 devType=1
+[NORM] raw_id=460 parsed_rows=59072 deduped_rows=59072 catalog_rows=104
+[NORM] raw_id=460 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=460 chunk=12 metric_rows=4072 catalog_rows=104
+[NORM] raw_id=460 success rows=59072
+[NORM] processing raw_id=461 plant=NE=50979503 devType=10
+[NORM] raw_id=461 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=461 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=461 success rows=3480
+[NORM] processing raw_id=462 plant=NE=50979503 devType=17
+[NORM] raw_id=462 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=462 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=462 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=462 success rows=5800
+[NORM] processing raw_id=463 plant=NE=50979503 devType=63
+[NORM] raw_id=463 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=463 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=463 success rows=1160
+[NORM] processing raw_id=464 plant=NE=50281829 devType=1
+[NORM] raw_id=464 parsed_rows=26104 deduped_rows=26104 catalog_rows=104
+[NORM] raw_id=464 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=464 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=464 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=464 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=464 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=464 chunk=6 metric_rows=1104 catalog_rows=104
+[NORM] raw_id=464 success rows=26104
+[NORM] processing raw_id=465 plant=NE=50281829 devType=10
+[NORM] raw_id=465 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=465 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=465 success rows=1160
+[NORM] processing raw_id=466 plant=NE=50281829 devType=17
+[NORM] raw_id=466 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=466 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=466 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=466 success rows=5800
+[NORM] processing raw_id=467 plant=NE=50281829 devType=63
+[NORM] raw_id=467 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=467 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=467 success rows=1160
+[NORM] processing raw_id=468 plant=NE=50979503 devType=1
+[NORM] raw_id=468 parsed_rows=87360 deduped_rows=87360 catalog_rows=104
+[NORM] raw_id=468 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=15 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=16 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=17 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=468 chunk=18 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=468 success rows=87360
+[NORM] processing raw_id=469 plant=NE=50979503 devType=1
+[NORM] raw_id=469 parsed_rows=69888 deduped_rows=69888 catalog_rows=104
+[NORM] raw_id=469 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=469 chunk=14 metric_rows=4888 catalog_rows=104
+[NORM] raw_id=469 success rows=69888
+[NORM] processing raw_id=470 plant=NE=50979503 devType=10
+[NORM] raw_id=470 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=470 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=470 success rows=3480
+[NORM] processing raw_id=471 plant=NE=50979503 devType=17
+[NORM] raw_id=471 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=471 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=471 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=471 success rows=5800
+[NORM] processing raw_id=472 plant=NE=50979503 devType=63
+[NORM] raw_id=472 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=472 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=472 success rows=1160
+[NORM] processing raw_id=473 plant=NE=50281829 devType=1
+[NORM] raw_id=473 parsed_rows=21736 deduped_rows=21736 catalog_rows=104
+[NORM] raw_id=473 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=473 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=473 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=473 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=473 chunk=5 metric_rows=1736 catalog_rows=104
+[NORM] raw_id=473 success rows=21736
+[NORM] processing raw_id=474 plant=NE=50281829 devType=10
+[NORM] raw_id=474 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=474 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=474 success rows=1160
+[NORM] processing raw_id=475 plant=NE=50281829 devType=17
+[NORM] raw_id=475 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=475 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=475 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=475 success rows=5800
+[NORM] processing raw_id=476 plant=NE=50281829 devType=63
+[NORM] raw_id=476 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=476 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=476 success rows=1160
+[NORM] processing raw_id=477 plant=NE=50979503 devType=1
+[NORM] raw_id=477 parsed_rows=73840 deduped_rows=73840 catalog_rows=104
+[NORM] raw_id=477 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=477 chunk=15 metric_rows=3840 catalog_rows=104
+[NORM] raw_id=477 success rows=73840
+[NORM] processing raw_id=478 plant=NE=50979503 devType=1
+[NORM] raw_id=478 parsed_rows=59072 deduped_rows=59072 catalog_rows=104
+[NORM] raw_id=478 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=478 chunk=12 metric_rows=4072 catalog_rows=104
+[NORM] raw_id=478 success rows=59072
+[NORM] processing raw_id=479 plant=NE=50979503 devType=10
+[NORM] raw_id=479 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=479 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=479 success rows=3480
+[NORM] processing raw_id=480 plant=NE=50979503 devType=17
+[NORM] raw_id=480 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=480 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=480 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=480 success rows=5800
+[NORM] processing raw_id=481 plant=NE=50979503 devType=63
+[NORM] raw_id=481 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=481 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=481 success rows=1160
+[NORM] processing raw_id=482 plant=NE=50281829 devType=1
+[NORM] raw_id=482 parsed_rows=26208 deduped_rows=26208 catalog_rows=104
+[NORM] raw_id=482 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=482 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=482 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=482 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=482 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=482 chunk=6 metric_rows=1208 catalog_rows=104
+[NORM] raw_id=482 success rows=26208
+[NORM] processing raw_id=483 plant=NE=50281829 devType=10
+[NORM] raw_id=483 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=483 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=483 success rows=1160
+[NORM] processing raw_id=484 plant=NE=50281829 devType=17
+[NORM] raw_id=484 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=484 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=484 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=484 success rows=5800
+[NORM] processing raw_id=485 plant=NE=50281829 devType=63
+[NORM] raw_id=485 parsed_rows=1152 deduped_rows=1152 catalog_rows=8
+[NORM] raw_id=485 chunk=1 metric_rows=1152 catalog_rows=8
+[NORM] raw_id=485 success rows=1152
+[NORM] processing raw_id=486 plant=NE=50979503 devType=1
+[NORM] raw_id=486 parsed_rows=87360 deduped_rows=87360 catalog_rows=104
+[NORM] raw_id=486 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=15 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=16 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=17 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=486 chunk=18 metric_rows=2360 catalog_rows=104
+[NORM] raw_id=486 success rows=87360
+[NORM] processing raw_id=487 plant=NE=50979503 devType=1
+[NORM] raw_id=487 parsed_rows=69888 deduped_rows=69888 catalog_rows=104
+[NORM] raw_id=487 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=487 chunk=14 metric_rows=4888 catalog_rows=104
+[NORM] raw_id=487 success rows=69888
+[NORM] processing raw_id=488 plant=NE=50979503 devType=10
+[NORM] raw_id=488 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=488 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=488 success rows=3480
+[NORM] processing raw_id=489 plant=NE=50979503 devType=17
+[NORM] raw_id=489 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=489 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=489 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=489 success rows=5800
+[NORM] processing raw_id=490 plant=NE=50979503 devType=63
+[NORM] raw_id=490 parsed_rows=1120 deduped_rows=1120 catalog_rows=8
+[NORM] raw_id=490 chunk=1 metric_rows=1120 catalog_rows=8
+[NORM] raw_id=490 success rows=1120
+[NORM] processing raw_id=491 plant=NE=50281829 devType=1
+[NORM] raw_id=491 parsed_rows=22464 deduped_rows=22464 catalog_rows=104
+[NORM] raw_id=491 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=491 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=491 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=491 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=491 chunk=5 metric_rows=2464 catalog_rows=104
+[NORM] raw_id=491 success rows=22464
+[NORM] processing raw_id=492 plant=NE=50281829 devType=10
+[NORM] raw_id=492 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=492 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=492 success rows=1160
+[NORM] processing raw_id=493 plant=NE=50281829 devType=17
+[NORM] raw_id=493 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=493 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=493 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=493 success rows=5800
+[NORM] processing raw_id=494 plant=NE=50281829 devType=63
+[NORM] raw_id=494 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=494 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=494 success rows=1160
+[NORM] processing raw_id=495 plant=NE=50979503 devType=1
+[NORM] raw_id=495 parsed_rows=74464 deduped_rows=74464 catalog_rows=104
+[NORM] raw_id=495 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=12 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=13 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=14 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=495 chunk=15 metric_rows=4464 catalog_rows=104
+[NORM] raw_id=495 success rows=74464
+[NORM] processing raw_id=496 plant=NE=50979503 devType=1
+[NORM] raw_id=496 parsed_rows=59696 deduped_rows=59696 catalog_rows=104
+[NORM] raw_id=496 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=6 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=7 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=8 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=9 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=10 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=11 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=496 chunk=12 metric_rows=4696 catalog_rows=104
+[NORM] raw_id=496 success rows=59696
+[NORM] processing raw_id=497 plant=NE=50979503 devType=10
+[NORM] raw_id=497 parsed_rows=3480 deduped_rows=3480 catalog_rows=8
+[NORM] raw_id=497 chunk=1 metric_rows=3480 catalog_rows=8
+[NORM] raw_id=497 success rows=3480
+[NORM] processing raw_id=498 plant=NE=50979503 devType=17
+[NORM] raw_id=498 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=498 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=498 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=498 success rows=5800
+[NORM] processing raw_id=499 plant=NE=50979503 devType=63
+[NORM] raw_id=499 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=499 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=499 success rows=1160
+[NORM] processing raw_id=500 plant=NE=50281829 devType=1
+[NORM] raw_id=500 parsed_rows=25584 deduped_rows=25584 catalog_rows=104
+[NORM] raw_id=500 chunk=1 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=500 chunk=2 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=500 chunk=3 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=500 chunk=4 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=500 chunk=5 metric_rows=5000 catalog_rows=104
+[NORM] raw_id=500 chunk=6 metric_rows=584 catalog_rows=104
+[NORM] raw_id=500 success rows=25584
+[NORM] processing raw_id=501 plant=NE=50281829 devType=10
+[NORM] raw_id=501 parsed_rows=1160 deduped_rows=1160 catalog_rows=8
+[NORM] raw_id=501 chunk=1 metric_rows=1160 catalog_rows=8
+[NORM] raw_id=501 success rows=1160
+[NORM] processing raw_id=502 plant=NE=50281829 devType=17
+[NORM] raw_id=502 parsed_rows=5800 deduped_rows=5800 catalog_rows=40
+[NORM] raw_id=502 chunk=1 metric_rows=5000 catalog_rows=40
+[NORM] raw_id=502 chunk=2 metric_rows=800 catalog_rows=40
+[NORM] raw_id=502 success rows=5800

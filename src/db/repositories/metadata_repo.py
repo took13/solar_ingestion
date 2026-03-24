@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datetime import datetime
+
 
 class MetadataRepository:
     def __init__(self, conn):
@@ -94,7 +96,9 @@ class MetadataRepository:
                 a.account_name,
                 a.base_url,
                 a.username,
-                a.is_active
+                a.api_password,
+                a.is_active,
+                a.interface_cooldown_until
             FROM dbo.plant_account_assignment paa
             INNER JOIN dbo.dim_api_account a
                 ON paa.account_id = a.account_id
@@ -110,5 +114,25 @@ class MetadataRepository:
             "account_name": row.account_name,
             "base_url": row.base_url,
             "username": row.username,
+            "api_password": row.api_password,
             "is_active": row.is_active,
+            "interface_cooldown_until": row.interface_cooldown_until,
         }
+
+    def set_account_interface_cooldown(self, account_id: int, cooldown_until_utc: datetime) -> None:
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            UPDATE dbo.dim_api_account
+            SET interface_cooldown_until = ?
+            WHERE account_id = ?
+        """, (cooldown_until_utc, account_id))
+        self.conn.commit()
+
+    def clear_account_interface_cooldown(self, account_id: int) -> None:
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            UPDATE dbo.dim_api_account
+            SET interface_cooldown_until = NULL
+            WHERE account_id = ?
+        """, (account_id,))
+        self.conn.commit()

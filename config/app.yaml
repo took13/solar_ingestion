@@ -13,6 +13,7 @@ api:
   mode: "legacy"
   timeout_seconds: 120
   batch_delay_seconds: 15
+  account_cooldown_minutes: 30
 
 retry:
   max_attempts: 3
