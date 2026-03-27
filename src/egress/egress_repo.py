@@ -172,7 +172,7 @@ class EgressRepository:
                             WHEN dev_type_id = 1
                              AND metric_name = 'active_power'
                             THEN metric_value_num
-                        END) / 1000.0 AS power_kw,
+                        END) AS power_kw,
 
                     -- irradiance จาก EMI
                     MAX(CASE
