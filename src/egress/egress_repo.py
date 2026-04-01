@@ -170,39 +170,39 @@ class EgressRepository:
                     -- รวม active_power จาก inverter ทุกตัว แล้วแปลงเป็น kW
                     SUM(CASE
                             WHEN dev_type_id = 1
-                             AND metric_name = 'active_power'
+                            AND metric_name = 'active_power'
                             THEN metric_value_num
                         END) AS power_kw,
 
                     -- irradiance จาก EMI
                     MAX(CASE
                             WHEN dev_type_id = 10
-                             AND metric_name = 'radiant_line'
+                            AND metric_name = 'radiant_line'
                             THEN metric_value_num
                         END) AS irradiance_wm2,
 
                     -- temperature จาก EMI
                     AVG(CASE
                             WHEN dev_type_id = 10
-                             AND metric_name = 'temperature'
+                            AND metric_name = 'temperature'
                             THEN metric_value_num
                         END) AS temperature_c
                 FROM norm.device_metric_long
                 WHERE plant_code = ?
-                  AND collect_time_utc >= ?
-                  AND collect_time_utc < ?
-                  AND (
+                AND collect_time_utc >= ?
+                AND collect_time_utc < ?
+                AND (
                         (dev_type_id = 1 AND metric_name = 'active_power')
-                     OR (dev_type_id = 10 AND metric_name = 'radiant_line')
-                     OR (dev_type_id = 10 AND metric_name = 'temperature')
-                  )
+                    OR (dev_type_id = 10 AND metric_name = 'radiant_line')
+                    OR (dev_type_id = 10 AND metric_name = 'temperature')
+                )
                 GROUP BY plant_code, collect_time_utc
             )
             SELECT TOP (?)
                 collect_time_utc,
-                CAST(power_kw AS DECIMAL(18,3)) AS power_kw,
-                CAST(irradiance_wm2 AS DECIMAL(18,3)) AS irradiance_wm2,
-                CAST(temperature_c AS DECIMAL(18,3)) AS temperature_c
+                CAST(COALESCE(power_kw, 0) AS DECIMAL(18,3)) AS power_kw,
+                CAST(COALESCE(irradiance_wm2, 0) AS DECIMAL(18,3)) AS irradiance_wm2,
+                CAST(COALESCE(temperature_c, 0) AS DECIMAL(18,3)) AS temperature_c
             FROM src
             ORDER BY collect_time_utc
         """, (plant_code, start_utc, end_utc, record_limit))
@@ -211,9 +211,9 @@ class EgressRepository:
         return [
             {
                 "collect_time_utc": r.collect_time_utc,
-                "power_kw": float(r.power_kw) if r.power_kw is not None else None,
-                "irradiance_wm2": float(r.irradiance_wm2) if r.irradiance_wm2 is not None else None,
-                "temperature_c": float(r.temperature_c) if r.temperature_c is not None else None,
+                "power_kw": float(r.power_kw) if r.power_kw is not None else 0.0,
+                "irradiance_wm2": float(r.irradiance_wm2) if r.irradiance_wm2 is not None else 0.0,
+                "temperature_c": float(r.temperature_c) if r.temperature_c is not None else 0.0,
             }
             for r in rows
         ]
