@@ -160,60 +160,124 @@ class EgressRepository:
         self.conn.commit()
 
     def get_payload_rows(self, plant_code: str, start_utc, end_utc, record_limit: int) -> list[dict]:
+        inverter_fields = self.get_inverter_fields(plant_code)
+        timestamps = self.get_timestamps(plant_code, start_utc, end_utc, record_limit)
+
+        if not timestamps:
+            return []
+
+        emi_map = self.get_emi_rows(plant_code, start_utc, end_utc)
+        inverter_map = self.get_inverter_rows(plant_code, start_utc, end_utc)
+
+        rows = []
+        for ts in timestamps:
+            row = {
+                "collect_time_utc": ts,
+                "irradiance_wm2": None,
+                "temperature_c": None,
+            }
+
+            # default ทุก inverter เป็น -99
+            for field_name in inverter_fields:
+                row[field_name] = -99
+
+            emi = emi_map.get(ts)
+            if emi:
+                row["irradiance_wm2"] = emi.get("irradiance_wm2")
+                row["temperature_c"] = emi.get("temperature_c")
+
+            inv_values = inverter_map.get(ts, {})
+            for field_name, value in inv_values.items():
+                row[field_name] = value if value is not None else -99
+
+            rows.append(row)
+
+        return rows
+
+    def get_inverter_fields(self, plant_code: str) -> list[str]:
         cursor = self.conn.cursor()
         cursor.execute("""
-            WITH src AS (
-                SELECT
-                    plant_code,
-                    collect_time_utc,
+            SELECT inverter_field_name
+            FROM ops.api_egress_inverter_map
+            WHERE plant_code = ?
+              AND is_enabled = 1
+            ORDER BY inverter_field_name
+        """, (plant_code,))
+        return [r.inverter_field_name for r in cursor.fetchall()]
 
-                    -- รวม active_power จาก inverter ทุกตัว แล้วแปลงเป็น kW
-                    SUM(CASE
-                            WHEN dev_type_id = 1
-                            AND metric_name = 'active_power'
-                            THEN metric_value_num
-                        END) AS power_kw,
-
-                    -- irradiance จาก EMI
-                    MAX(CASE
-                            WHEN dev_type_id = 10
-                            AND metric_name = 'radiant_line'
-                            THEN metric_value_num
-                        END) AS irradiance_wm2,
-
-                    -- temperature จาก EMI
-                    AVG(CASE
-                            WHEN dev_type_id = 10
-                            AND metric_name = 'temperature'
-                            THEN metric_value_num
-                        END) AS temperature_c
+    def get_timestamps(self, plant_code: str, start_utc, end_utc, record_limit: int):
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            WITH ts AS (
+                SELECT collect_time_utc
                 FROM norm.device_metric_long
                 WHERE plant_code = ?
-                AND collect_time_utc >= ?
-                AND collect_time_utc < ?
-                AND (
+                  AND collect_time_utc >= ?
+                  AND collect_time_utc < ?
+                  AND (
                         (dev_type_id = 1 AND metric_name = 'active_power')
-                    OR (dev_type_id = 10 AND metric_name = 'radiant_line')
-                    OR (dev_type_id = 10 AND metric_name = 'temperature')
-                )
-                GROUP BY plant_code, collect_time_utc
+                     OR (dev_type_id = 10 AND metric_name = 'radiant_line')
+                     OR (dev_type_id = 10 AND metric_name = 'temperature')
+                  )
             )
             SELECT TOP (?)
-                collect_time_utc,
-                CAST(COALESCE(power_kw, 0) AS DECIMAL(18,3)) AS power_kw,
-                CAST(COALESCE(irradiance_wm2, 0) AS DECIMAL(18,3)) AS irradiance_wm2,
-                CAST(COALESCE(temperature_c, 0) AS DECIMAL(18,3)) AS temperature_c
-            FROM src
+                collect_time_utc
+            FROM ts
+            GROUP BY collect_time_utc
             ORDER BY collect_time_utc
         """, (plant_code, start_utc, end_utc, record_limit))
+        return [r.collect_time_utc for r in cursor.fetchall()]
 
+    def get_emi_rows(self, plant_code: str, start_utc, end_utc) -> dict:
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT
+                collect_time_utc,
+                MAX(CASE WHEN metric_name = 'radiant_line' THEN metric_value_num END) AS irradiance_wm2,
+                AVG(CASE WHEN metric_name = 'temperature' THEN metric_value_num END) AS temperature_c
+            FROM norm.device_metric_long
+            WHERE plant_code = ?
+              AND dev_type_id = 10
+              AND metric_name IN ('radiant_line', 'temperature')
+              AND collect_time_utc >= ?
+              AND collect_time_utc < ?
+            GROUP BY collect_time_utc
+            ORDER BY collect_time_utc
+        """, (plant_code, start_utc, end_utc))
         rows = cursor.fetchall()
-        return [
-            {
-                "collect_time_utc": r.collect_time_utc,
-                "power_kw": float(r.power_kw) if r.power_kw is not None else 0.0,
-                "irradiance_wm2": float(r.irradiance_wm2) if r.irradiance_wm2 is not None else 0.0,
-                "temperature_c": float(r.temperature_c) if r.temperature_c is not None else 0.0,
+
+        out = {}
+        for r in rows:
+            out[r.collect_time_utc] = {
+                "irradiance_wm2": float(r.irradiance_wm2) if r.irradiance_wm2 is not None else None,
+                "temperature_c": float(r.temperature_c) if r.temperature_c is not None else None,
             }
-            for r in rows
-        ]
+        return out
+
+    def get_inverter_rows(self, plant_code: str, start_utc, end_utc) -> dict:
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT
+                dml.collect_time_utc,
+                m.inverter_field_name,
+                dml.metric_value_num / 1000.0 AS inverter_kw
+            FROM norm.device_metric_long dml
+            INNER JOIN ops.api_egress_inverter_map m
+                ON m.plant_code = dml.plant_code
+               AND m.dev_id = dml.dev_id
+               AND m.is_enabled = 1
+            WHERE dml.plant_code = ?
+              AND dml.dev_type_id = 1
+              AND dml.metric_name = 'active_power'
+              AND dml.collect_time_utc >= ?
+              AND dml.collect_time_utc < ?
+            ORDER BY dml.collect_time_utc, m.inverter_field_name
+        """, (plant_code, start_utc, end_utc))
+        rows = cursor.fetchall()
+
+        out = {}
+        for r in rows:
+            ts = r.collect_time_utc
+            out.setdefault(ts, {})
+            out[ts][r.inverter_field_name] = float(r.inverter_kw) if r.inverter_kw is not None else -99
+        return out

@@ -1,10 +1,11 @@
 app_name: solar_ingestion
 
 database:
-  connection_string: "DRIVER={ODBC Driver 17 for SQL Server};SERVER=10.48.184.177\\SQLEXPRESS;DATABASE=SolarDataDB;UID=sa;PWD=admin;TrustServerCertificate=yes;"
+  #connection_string: "DRIVER={ODBC Driver 17 for SQL Server};SERVER=10.48.184.166;DATABASE=SolarDataDB;UID=sa;PWD=p@ssw0rd;TrustServerCertificate=yes;"
+  connection_string: "DRIVER={ODBC Driver 18 for SQL Server};SERVER=SOLAR-DB\\SOLARSQL;DATABASE=SolarDataDB;UID=sa;PWD=p@ssw0rd;Encrypt=yes;TrustServerCertificate=yes;"
 
 storage:
-  raw_root: "C:/SOLAR_V2/DATA/raw"
+  raw_root: "C:/SOLAR/DATA/raw"
 
 timezone:
   local_tz_name: "Asia/Bangkok"
