@@ -119,6 +119,24 @@ class MetadataRepository:
             "interface_cooldown_until": row.interface_cooldown_until,
         }
 
+    def get_active_plants_for_account(self, account_id: int) -> list[str]:
+        """
+        Used by plant realtime target.
+        """
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT DISTINCT p.plant_code
+            FROM dbo.dim_plant p
+            INNER JOIN dbo.plant_account_assignment ap
+                ON p.plant_code = ap.plant_code
+            WHERE ap.account_id = ?
+              AND p.is_active = 1
+              AND p.plant_code IS NOT NULL
+            ORDER BY p.plant_code
+        """, (account_id,))
+        rows = cursor.fetchall()
+        return [r.plant_code for r in rows]
+
     def set_account_interface_cooldown(self, account_id: int, cooldown_until_utc: datetime) -> None:
         cursor = self.conn.cursor()
         cursor.execute("""

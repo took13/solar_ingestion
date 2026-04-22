@@ -57,7 +57,7 @@ class RunRepository:
         self.conn.commit()
         return run_id
 
-    def finish_run(self, run_id: int, status: str, message: str | None):
+    def finish_run(self, run_id: int, status: str, message: str | None = None):
         cursor = self.conn.cursor()
         cursor.execute("""
             UPDATE ctl.ingest_run

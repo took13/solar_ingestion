@@ -11,14 +11,18 @@ timezone:
   local_tz_name: "Asia/Bangkok"
 
 api:
-  mode: "legacy"
   timeout_seconds: 120
-  batch_delay_seconds: 15
-  account_cooldown_minutes: 30
+  account_min_interval_seconds: 60
 
 retry:
   max_attempts: 3
-  backoff_seconds: 10
+  backoff_seconds: 5
+
+scheduler:
+  rate_limit_backoff_seconds:
+    first: 120
+    second: 300
+    third: 900
 
 cooldown:
   rate_limit_minutes: 10
@@ -29,3 +33,16 @@ pipeline:
     enabled: false
     normalize_chunk_size: 5000
     pending_limit: 100
+
+test:
+  base_url: "https://sg5.fusionsolar.huawei.com"
+  username: "GPSC_PI_03"
+  api_password: "pi@dmin1"
+
+  station_codes:
+    - "NE=50281829"
+
+  dev_type_id: 1
+  dev_ids:
+    - 1234567890123
+    - 1234567890456

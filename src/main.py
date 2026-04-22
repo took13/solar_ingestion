@@ -6,20 +6,18 @@ from src.db.repositories.metadata_repo import MetadataRepository
 from src.db.repositories.target_repo import TargetRepository
 from src.db.repositories.checkpoint_repo import CheckpointRepository
 from src.db.repositories.run_repo import RunRepository
-from src.db.repositories.raw_repo import RawRepository
-from src.db.repositories.metric_repo import MetricRepository
-from src.db.repositories.metric_catalog_repo import MetricCatalogRepository
-from src.db.repositories.typed_repo import TypedRepository
 from src.db.repositories.batch_audit_repo import BatchAuditRepository
+from src.db.repositories.rotation_state_repo import RotationStateRepository
 from src.extract.metadata_service import MetadataService
 from src.orchestrator.batch_planner import BatchPlanner
 from src.orchestrator.window_planner import WindowPlanner
 from src.orchestrator.checkpoint_service import CheckpointService
 from src.orchestrator.retry_policy import RetryPolicy
 from src.orchestrator.job_runner import JobRunner
+from src.orchestrator.account_rate_gate import AccountRateGate
+from src.orchestrator.rotation_planner import RotationPlanner
 from src.api.session_manager import SessionManager
 from src.api.huawei_legacy_client import HuaweiLegacyClient
-from src.raw.raw_archiver import RawArchiver
 from src.domain.time_utils import utc_now, fmt_local
 
 
@@ -32,26 +30,19 @@ class Application:
         self.target_repo = TargetRepository(self.conn)
         self.checkpoint_repo = CheckpointRepository(self.conn)
         self.run_repo = RunRepository(self.conn)
-        self.raw_repo = RawRepository(self.conn)
-        self.metric_catalog_repo = MetricCatalogRepository(self.conn)
-        self.metric_repo = MetricRepository(
-            self.conn,
-            metric_catalog_repo=self.metric_catalog_repo
-        )
-        self.typed_repo = TypedRepository(self.conn)
         self.batch_audit_repo = BatchAuditRepository(self.conn)
+        self.rotation_state_repo = RotationStateRepository(self.conn)
 
         self.metadata_service = MetadataService(self.metadata_repo)
         self.batch_planner = BatchPlanner()
         self.window_planner = WindowPlanner()
         self.checkpoint_service = CheckpointService(self.checkpoint_repo)
+        self.rotation_planner = RotationPlanner()
 
         self.retry_policy = RetryPolicy(
             max_attempts=app_config.get("retry", {}).get("max_attempts", 3),
             backoff_seconds=app_config.get("retry", {}).get("backoff_seconds", 10),
         )
-
-        self.raw_archiver = RawArchiver(app_config["storage"]["raw_root"])
 
     def run_job(self, job_name: str):
         print(f"[APP] Starting job from DB: {job_name}")
@@ -148,25 +139,31 @@ class Application:
                 timeout=self.app_config["api"]["timeout_seconds"],
             )
 
+            rate_gate = AccountRateGate(
+                min_interval_seconds=self.app_config.get("api", {}).get("account_min_interval_seconds", 60)
+            )
+
             runner = JobRunner(
-                metadata_repo=self.metadata_repo,
-                checkpoint_repo=self.checkpoint_repo,
+                client=client,
                 run_repo=self.run_repo,
-                raw_repo=self.raw_repo,
-                metric_repo=self.metric_repo,
-                typed_repo=self.typed_repo,
-                batch_audit_repo=self.batch_audit_repo,
+                checkpoint_repo=self.checkpoint_repo,
+                metadata_repo=self.metadata_repo,
                 checkpoint_service=self.checkpoint_service,
+                batch_audit_repo=self.batch_audit_repo,
                 batch_planner=self.batch_planner,
                 window_planner=self.window_planner,
-                client=client,
-                raw_archiver=self.raw_archiver,
                 retry_policy=self.retry_policy,
-                batch_delay_seconds=self.app_config.get("api", {}).get("batch_delay_seconds", 3),
-                generic_metrics_enabled=self.app_config.get("pipeline", {})
-                    .get("generic_metrics", {})
-                    .get("enabled", False),
-                account_cooldown_minutes=self.app_config.get("api", {}).get("account_cooldown_minutes", 15),
+                rate_gate=rate_gate,
+                rotation_state_repo=self.rotation_state_repo,
+                rotation_planner=self.rotation_planner,
+                account_backoff_policy=self.app_config.get("scheduler", {}).get(
+                    "rate_limit_backoff_seconds",
+                    {
+                        "first": 120,
+                        "second": 300,
+                        "third": 900,
+                    },
+                ),
             )
 
             runner.run_targets(job=job, targets=account_targets)

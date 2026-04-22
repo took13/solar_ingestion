@@ -1,324 +1,357 @@
 from __future__ import annotations
 
-import json
-import time
-from datetime import timedelta
-
-from src.domain.hash_utils import build_batch_hash
-from src.domain.time_utils import utc_now, fmt_local
-from src.normalize.generic_normalizer import GenericNormalizer
-from src.normalize.typed_dispatcher import TypedDispatcher
+from src.api.exceptions import HuaweiRateLimitError
+from src.orchestrator.batch_planner import BatchPlanner
+from src.orchestrator.rotation_planner import RotationPlanner
 
 
 class JobRunner:
     def __init__(
         self,
-        metadata_repo,
-        checkpoint_repo,
-        run_repo,
-        raw_repo,
-        metric_repo,
-        typed_repo,
-        batch_audit_repo,
-        checkpoint_service,
-        batch_planner,
-        window_planner,
         client,
-        raw_archiver,
+        run_repo,
+        checkpoint_repo,
+        metadata_repo,
+        checkpoint_service,
+        batch_audit_repo,
+        batch_planner: BatchPlanner,
+        window_planner,
         retry_policy,
-        batch_delay_seconds: int = 3,
-        generic_metrics_enabled: bool = False,
-        account_cooldown_minutes: int = 15,
+        rate_gate,
+        rotation_state_repo=None,
+        rotation_planner: RotationPlanner | None = None,
+        account_backoff_policy: dict | None = None,
     ):
-        self.metadata_repo = metadata_repo
-        self.checkpoint_repo = checkpoint_repo
+        self.client = client
         self.run_repo = run_repo
-        self.raw_repo = raw_repo
-        self.metric_repo = metric_repo
-        self.typed_repo = typed_repo
-        self.batch_audit_repo = batch_audit_repo
+        self.checkpoint_repo = checkpoint_repo
+        self.metadata_repo = metadata_repo
         self.checkpoint_service = checkpoint_service
+        self.batch_audit_repo = batch_audit_repo
         self.batch_planner = batch_planner
         self.window_planner = window_planner
-        self.client = client
-        self.raw_archiver = raw_archiver
         self.retry_policy = retry_policy
-        self.batch_delay_seconds = batch_delay_seconds
-        self.generic_metrics_enabled = generic_metrics_enabled
-        self.account_cooldown_minutes = account_cooldown_minutes
+        self.rate_gate = rate_gate
+        self.rotation_state_repo = rotation_state_repo
+        self.rotation_planner = rotation_planner or RotationPlanner()
+        self.account_backoff_policy = account_backoff_policy or {
+            "first": 120,
+            "second": 300,
+            "third": 900,
+        }
 
-        self.generic_normalizer = GenericNormalizer()
-        self.typed_dispatcher = TypedDispatcher()
-
-    def run_targets(self, job: dict, targets: list[dict]):
+    def run_targets(self, job: dict, targets: list[dict]) -> int:
         run_id = self.run_repo.start_run(
             job_id=job["job_id"],
             run_type="manual",
             triggered_by="user",
         )
 
-        print(f"[RUN] Started run_id={run_id} for job={job['job_name']} at {fmt_local(utc_now())}")
-
         any_failed = False
-        account_rate_limited = False
-        account_id_for_cooldown = targets[0]["account_id"] if targets else None
 
         for target in targets:
-            if account_rate_limited:
-                print(
-                    f"[ACCOUNT] account_id={account_id_for_cooldown} already rate-limited -> stop remaining targets"
+            try:
+                self._run_target(run_id, job, target)
+            except Exception as e:
+                any_failed = True
+                self.batch_audit_repo.log_batch(
+                    run_id=run_id,
+                    target_id=target["target_id"],
+                    batch_no=0,
+                    batch_size=0,
+                    status="TARGET_FAILED",
+                    message=str(e),
                 )
-                break
 
-            print(
-                f"[TARGET] plant={target['plant_code']} devType={target['dev_type_id']} "
-                f"account_id={target['account_id']} batch_size={target['batch_size']}"
-            )
+        self.run_repo.finish_run(
+            run_id=run_id,
+            status="FAILED" if any_failed else "SUCCESS",
+        )
+        return run_id
 
-            devices = self.metadata_repo.get_devices(
-                plant_code=target["plant_code"],
-                dev_type_id=target["dev_type_id"]
-            )
+    def _run_target(self, run_id: int, job: dict, target: dict) -> None:
+        endpoint_name = target.get("endpoint_name") or job.get("api_name")
+        service_class = (target.get("service_class") or "backfill").lower()
 
-            if not devices:
-                print(
-                    f"[TARGET] No devices found for plant={target['plant_code']} "
-                    f"devType={target['dev_type_id']}"
-                )
-                self.checkpoint_service.mark_no_devices(target, run_id)
-                continue
+        if endpoint_name == "getStationRealKpi":
+            self._run_plant_realtime_target(run_id, target)
+            return
 
-            checkpoint = self.checkpoint_repo.get_checkpoint(
-                job_id=job["job_id"],
-                account_id=target["account_id"],
-                plant_code=target["plant_code"],
-                dev_type_id=target["dev_type_id"]
-            )
+        devices = self.metadata_repo.get_devices(
+            plant_code=target["plant_code"],
+            dev_type_id=target["dev_type_id"],
+        )
 
+        if not devices:
+            self.checkpoint_service.mark_no_devices(target, run_id)
+            return
+
+        checkpoint = self.checkpoint_repo.get_checkpoint(
+            job_id=target["job_id"],
+            account_id=target["account_id"],
+            plant_code=target["plant_code"],
+            dev_type_id=target["dev_type_id"],
+        )
+
+        override_start_utc = target.get("override_start_utc")
+        override_end_utc = target.get("override_end_utc")
+
+        if override_start_utc and override_end_utc:
+            window = {
+                "start_utc": override_start_utc,
+                "end_utc": override_end_utc,
+                "start_ms": int(override_start_utc.timestamp() * 1000),
+                "end_ms": int(override_end_utc.timestamp() * 1000),
+            }
+        else:
             window = self.window_planner.compute_window(checkpoint=checkpoint, target=target)
-            if window is None:
-                print(
-                    f"[TARGET] Skip plant={target['plant_code']} devType={target['dev_type_id']} "
-                    f"(no runnable window)"
-                )
-                self.checkpoint_service.mark_skipped(target, run_id, "No runnable window")
-                continue
 
-            print(
-                f"[WINDOW] plant={target['plant_code']} devType={target['dev_type_id']} "
-                f"{fmt_local(window['start_utc'])} -> {fmt_local(window['end_utc'])}"
+        if not window:
+            self.checkpoint_service.mark_skipped(target, run_id, "No runnable window")
+            return
+
+        if service_class == "nearline_rotating" and bool(target.get("rotation_enabled")):
+            self._run_rotating_device_target(run_id, target, endpoint_name, devices, window)
+        else:
+            self._run_full_device_target(run_id, target, endpoint_name, devices, window)
+
+    def _run_plant_realtime_target(self, run_id: int, target: dict) -> None:
+        """
+        Assumption:
+        metadata_repo has method get_active_plants_for_account(account_id) -> list[str]
+        """
+        plant_codes = self.metadata_repo.get_active_plants_for_account(target["account_id"])
+        if not plant_codes:
+            self.checkpoint_service.mark_skipped(target, run_id, "No active plants for account")
+            return
+
+        batches = self.batch_planner.split_items(
+            items=plant_codes,
+            endpoint_name="getStationRealKpi",
+            requested_batch_size=100,
+        )
+
+        max_batches = target.get("max_batches_per_run") or len(batches)
+        selected_batches = batches[:max_batches]
+
+        for batch_no, batch in enumerate(selected_batches, start=1):
+            self.rate_gate.wait_until_allowed()
+            try:
+                self.retry_policy.execute(
+                    self.client.get_station_real_kpi,
+                    station_codes=batch,
+                )
+                self.rate_gate.mark_successful_call()
+            except HuaweiRateLimitError as e:
+                self._apply_rate_limit_backoff()
+                self.batch_audit_repo.log_batch(
+                    run_id=run_id,
+                    target_id=target["target_id"],
+                    batch_no=batch_no,
+                    batch_size=len(batch),
+                    status="RATE_LIMITED",
+                    message=str(e),
+                )
+                self.checkpoint_service.mark_partial(target, run_id, None, str(e))
+                return
+
+            self.batch_audit_repo.log_batch(
+                run_id=run_id,
+                target_id=target["target_id"],
+                batch_no=batch_no,
+                batch_size=len(batch),
+                status="SUCCESS",
+                message=None,
             )
 
-            batches = self.batch_planner.plan(devices, target["batch_size"])
-            print(
-                f"[TARGET] plant={target['plant_code']} devType={target['dev_type_id']} "
-                f"devices={len(devices)} batches={len(batches)}"
-            )
+        self.checkpoint_service.mark_success(target, run_id, None)
 
-            target_failed = False
+    def _run_full_device_target(
+        self,
+        run_id: int,
+        target: dict,
+        endpoint_name: str,
+        devices: list[dict],
+        window: dict,
+    ) -> None:
+        requested_batch_size = (
+            target.get("requested_batch_size")
+            or target.get("batch_size")
+            or 10
+        )
 
-            archive_partition_mode = "window_date" if (
-                target.get("override_start_utc") and target.get("override_end_utc")
-            ) else "run_date"
+        batches = self.batch_planner.split_items(
+            items=devices,
+            endpoint_name=endpoint_name,
+            requested_batch_size=requested_batch_size,
+        )
 
-            for batch_no, batch in enumerate(batches, start=1):
-                dev_ids = [x["dev_id"] for x in batch]
+        max_batches = target.get("max_batches_per_run") or len(batches)
+        selected_batches = batches[:max_batches]
 
-                print(
-                    f"[BATCH] plant={target['plant_code']} devType={target['dev_type_id']} "
-                    f"batch={batch_no}/{len(batches)} devices_in_batch={len(dev_ids)} "
-                    f"window_start={fmt_local(window['start_utc'])} "
-                    f"window_end={fmt_local(window['end_utc'])}"
-                )
+        target_failed = False
+        all_batches_completed = len(selected_batches) == len(batches)
 
-                batch_hash = build_batch_hash(
-                    account_id=target["account_id"],
-                    plant_code=target["plant_code"],
-                    dev_type_id=target["dev_type_id"],
-                    api_name=job["api_name"],
-                    dev_ids=dev_ids,
-                    window_start_utc=window["start_utc"].isoformat(),
-                    window_end_utc=window["end_utc"].isoformat(),
-                )
+        for batch_no, batch in enumerate(selected_batches, start=1):
+            dev_ids = [d["dev_id"] for d in batch]
 
-                request_payload = {
-                    "devTypeId": target["dev_type_id"],
-                    "devIds": ",".join(str(x) for x in dev_ids),
-                    "startTime": window["start_ms"],
-                    "endTime": window["end_ms"],
-                }
-
-                request_started_at = utc_now()
-
-                try:
-                    result = self.retry_policy.execute(
+            self.rate_gate.wait_until_allowed()
+            try:
+                if endpoint_name == "getDevRealKpi":
+                    self.retry_policy.execute(
+                        self.client.get_dev_real_kpi,
+                        dev_type_id=target["dev_type_id"],
+                        dev_ids=dev_ids,
+                    )
+                elif endpoint_name == "getDevHistoryKpi":
+                    self.retry_policy.execute(
                         self.client.get_dev_history_kpi,
                         dev_type_id=target["dev_type_id"],
                         dev_ids=dev_ids,
                         start_time_ms=window["start_ms"],
                         end_time_ms=window["end_ms"],
                     )
-                except Exception as e:
-                    error_text = str(e)
-                    target_failed = True
-                    any_failed = True
-
-                    print(
-                        f"[BATCH][FAILED] plant={target['plant_code']} devType={target['dev_type_id']} "
-                        f"batch={batch_no} error={error_text}"
-                    )
-
-                    self.batch_audit_repo.insert({
-                        "run_id": run_id,
-                        "job_id": job["job_id"],
-                        "account_id": target["account_id"],
-                        "plant_code": target["plant_code"],
-                        "dev_type_id": target["dev_type_id"],
-                        "batch_no": batch_no,
-                        "batch_hash": batch_hash,
-                        "window_start_utc": window["start_utc"],
-                        "window_end_utc": window["end_utc"],
-                        "expected_device_count": len(dev_ids),
-                        "actual_device_count": None,
-                        "raw_id": None,
-                        "status": "FAILED",
-                        "fail_code": None,
-                        "message": error_text,
-                    })
-
-                    if self._is_rate_limit_407(error_text):
-                        cooldown_until = utc_now() + timedelta(minutes=self.account_cooldown_minutes)
-                        self.metadata_repo.set_account_interface_cooldown(
-                            target["account_id"],
-                            cooldown_until
-                        )
-                        account_rate_limited = True
-
-                        print(
-                            f"[ACCOUNT][COOLDOWN] account_id={target['account_id']} "
-                            f"set cooldown until {fmt_local(cooldown_until)} due to 407/rate-limit"
-                        )
-                        break
-
-                    continue
-
-                archive = self.raw_archiver.archive(
-                    plant_code=target["plant_code"],
-                    dev_type_id=target["dev_type_id"],
-                    batch_hash=batch_hash,
-                    batch_no=batch_no,
-                    request_payload=request_payload,
-                    response_payload=result.body,
-                    archive_partition_mode=archive_partition_mode,
-                )
-
-                raw_id = self.raw_repo.insert_api_call({
-                    "run_id": run_id,
-                    "job_id": job["job_id"],
-                    "account_id": target["account_id"],
-                    "plant_id": target.get("plant_id"),
-                    "plant_code": target["plant_code"],
-                    "dev_type_id": target["dev_type_id"],
-                    "api_family": "thirdData",
-                    "api_name": job["api_name"],
-                    "endpoint_path": "/thirdData/getDevHistoryKpi",
-                    "request_method": "POST",
-                    "request_window_start_utc": window["start_utc"],
-                    "request_window_end_utc": window["end_utc"],
-                    "request_window_start_local": None,
-                    "request_window_end_local": None,
-                    "batch_no": batch_no,
-                    "batch_hash": batch_hash,
-                    "device_count": len(dev_ids),
-                    "request_json": json.dumps(request_payload, ensure_ascii=False),
-                    "response_json": json.dumps(result.body, ensure_ascii=False),
-                    "response_size_bytes": archive["response_size_bytes"],
-                    "http_status": result.http_status,
-                    "api_success_flag": result.success,
-                    "fail_code": result.fail_code,
-                    "fail_message": result.message,
-                    "request_started_at_utc": request_started_at,
-                    "request_finished_at_utc": utc_now(),
-                })
-
-                self.batch_audit_repo.insert({
-                    "run_id": run_id,
-                    "job_id": job["job_id"],
-                    "account_id": target["account_id"],
-                    "plant_code": target["plant_code"],
-                    "dev_type_id": target["dev_type_id"],
-                    "batch_no": batch_no,
-                    "batch_hash": batch_hash,
-                    "window_start_utc": window["start_utc"],
-                    "window_end_utc": window["end_utc"],
-                    "expected_device_count": len(dev_ids),
-                    "actual_device_count": len(result.body.get("data", [])),
-                    "raw_id": raw_id,
-                    "status": "SUCCESS" if result.success else "FAILED",
-                    "fail_code": result.fail_code,
-                    "message": result.message,
-                })
-
-                print(
-                    f"[BATCH][DONE] plant={target['plant_code']} devType={target['dev_type_id']} "
-                    f"batch={batch_no} raw_id={raw_id} api_success={result.success} "
-                    f"records={len(result.body.get('data', []))} "
-                    f"saved_to={archive['folder_date']}"
-                )
-
-                if self.generic_metrics_enabled:
-                    generic_rows = self.generic_normalizer.normalize(
-                        response_body=result.body,
-                        raw_id=raw_id,
-                        plant_code=target["plant_code"],
-                        plant_id=target.get("plant_id"),
-                        dev_type_id=target["dev_type_id"],
-                        source_api=job["api_name"],
-                    )
-                    self.metric_repo.upsert_generic_metrics(generic_rows)
-
-                    typed_rows = self.typed_dispatcher.normalize(
-                        dev_type_id=target["dev_type_id"],
-                        response_body=result.body,
-                        raw_id=raw_id,
-                        plant_code=target["plant_code"],
-                    )
-                    self.typed_repo.upsert(target["dev_type_id"], typed_rows)
                 else:
-                    print("[BATCH] generic_metrics disabled -> raw-only path")
+                    raise ValueError(f"Unsupported endpoint_name: {endpoint_name}")
 
-                if self.batch_delay_seconds > 0:
-                    print(f"[BATCH] sleeping {self.batch_delay_seconds} sec")
-                    time.sleep(self.batch_delay_seconds)
+                self.rate_gate.mark_successful_call()
 
-            if target_failed:
-                print(
-                    f"[TARGET][PARTIAL] plant={target['plant_code']} devType={target['dev_type_id']}"
+            except HuaweiRateLimitError as e:
+                self._apply_rate_limit_backoff()
+                self.batch_audit_repo.log_batch(
+                    run_id=run_id,
+                    target_id=target["target_id"],
+                    batch_no=batch_no,
+                    batch_size=len(dev_ids),
+                    status="RATE_LIMITED",
+                    window=window,
+                    message=str(e),
                 )
-                self.checkpoint_service.mark_partial(target, run_id, window)
-            else:
-                print(
-                    f"[TARGET][SUCCESS] plant={target['plant_code']} devType={target['dev_type_id']} "
-                    f"up_to={fmt_local(window['end_utc'])}"
+                target_failed = True
+                break
+
+            self.batch_audit_repo.log_batch(
+                run_id=run_id,
+                target_id=target["target_id"],
+                batch_no=batch_no,
+                batch_size=len(dev_ids),
+                status="SUCCESS",
+                window=window,
+                message=None,
+            )
+
+        if target_failed:
+            self.checkpoint_service.mark_partial(
+                target,
+                run_id,
+                window,
+                "Rate limited / partial execution",
+            )
+            return
+
+        if all_batches_completed:
+            self.checkpoint_service.mark_success(target, run_id, window)
+        else:
+            self.checkpoint_service.mark_partial(
+                target,
+                run_id,
+                window,
+                "Subset executed under max_batches_per_run",
+            )
+
+    def _run_rotating_device_target(
+        self,
+        run_id: int,
+        target: dict,
+        endpoint_name: str,
+        devices: list[dict],
+        window: dict,
+    ) -> None:
+        requested_batch_size = (
+            target.get("requested_batch_size")
+            or target.get("batch_size")
+            or 10
+        )
+
+        effective_batch_size = self.batch_planner.effective_batch_size(endpoint_name, requested_batch_size)
+        max_batches_per_run = target.get("max_batches_per_run") or 1
+
+        state = self.rotation_state_repo.get_state(target["target_id"]) if self.rotation_state_repo else None
+        last_offset = (state or {}).get("last_device_offset", 0)
+
+        batches, next_offset = self.rotation_planner.select_rotating_batches(
+            devices=devices,
+            batch_size=effective_batch_size,
+            max_batches_per_run=max_batches_per_run,
+            last_offset=last_offset,
+        )
+
+        if not batches:
+            self.checkpoint_service.mark_no_devices(target, run_id)
+            return
+
+        for batch_no, batch in enumerate(batches, start=1):
+            dev_ids = [d["dev_id"] for d in batch]
+
+            self.rate_gate.wait_until_allowed()
+            try:
+                if endpoint_name != "getDevHistoryKpi":
+                    raise ValueError(
+                        f"nearline_rotating currently supports getDevHistoryKpi only, got {endpoint_name}"
+                    )
+
+                self.retry_policy.execute(
+                    self.client.get_dev_history_kpi,
+                    dev_type_id=target["dev_type_id"],
+                    dev_ids=dev_ids,
+                    start_time_ms=window["start_ms"],
+                    end_time_ms=window["end_ms"],
                 )
-                self.checkpoint_service.mark_success(target, run_id, window)
+                self.rate_gate.mark_successful_call()
 
-        self.run_repo.finish_run(
-            run_id=run_id,
-            status="PARTIAL" if any_failed else "SUCCESS",
-            message=None if not any_failed else "Some targets or batches failed.",
+            except HuaweiRateLimitError as e:
+                self._apply_rate_limit_backoff()
+                self.batch_audit_repo.log_batch(
+                    run_id=run_id,
+                    target_id=target["target_id"],
+                    batch_no=batch_no,
+                    batch_size=len(dev_ids),
+                    status="RATE_LIMITED",
+                    window=window,
+                    message=str(e),
+                )
+                self.checkpoint_service.mark_partial(
+                    target,
+                    run_id,
+                    window,
+                    "Rotating subset partially executed due to rate limit",
+                )
+                return
+
+            self.batch_audit_repo.log_batch(
+                run_id=run_id,
+                target_id=target["target_id"],
+                batch_no=batch_no,
+                batch_size=len(dev_ids),
+                status="SUCCESS",
+                window=window,
+                message=None,
+            )
+
+        if self.rotation_state_repo:
+            self.rotation_state_repo.upsert_state(
+                target_id=target["target_id"],
+                last_device_offset=next_offset,
+                fleet_size=len(devices),
+                run_id=run_id,
+            )
+
+        self.checkpoint_service.mark_partial(
+            target,
+            run_id,
+            window,
+            f"Rotating subset completed. Next offset={next_offset}",
         )
 
-        print(
-            f"[RUN] Finished run_id={run_id} status={'PARTIAL' if any_failed else 'SUCCESS'} "
-            f"at {fmt_local(utc_now())}"
-        )
-
-    def _is_rate_limit_407(self, error_text: str) -> bool:
-        text = (error_text or "").lower()
-        return (
-            "407" in text
-            or "access_frequency_is_too_high" in text
-            or "rate limit" in text
-            or "too high" in text
-        )
+    def _apply_rate_limit_backoff(self) -> None:
+        self.rate_gate.apply_backoff(self.account_backoff_policy.get("first", 120))

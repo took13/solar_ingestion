@@ -23793,3 +23793,46 @@
 [NORM] raw_id=3246 parsed_rows=104 deduped_rows=104 catalog_rows=8
 [NORM] raw_id=3246 chunk=1 metric_rows=104 catalog_rows=8
 [NORM] raw_id=3246 success rows=104
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_generic.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 6, in <module>
+    from src.db.repositories.target_repo import TargetRepository
+  File "C:\SOLAR\solar_ingestion\src\db\repositories\target_repo.py", line 3, in <module>
+    from src.db.sql_server import SqlServer
+ModuleNotFoundError: No module named 'src.db.sql_server'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_generic.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 6, in <module>
+    from src.db.repositories.target_repo import TargetRepository
+  File "C:\SOLAR\solar_ingestion\src\db\repositories\target_repo.py", line 3, in <module>
+    from src.db.sql_server import SqlServer
+ModuleNotFoundError: No module named 'src.db.sql_server'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_generic.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 10, in <module>
+    from src.db.repositories.rotation_state_repo import RotationStateRepository
+  File "C:\SOLAR\solar_ingestion\src\db\repositories\rotation_state_repo.py", line 3, in <module>
+    from src.db.sql_server import SqlServer
+ModuleNotFoundError: No module named 'src.db.sql_server'
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
