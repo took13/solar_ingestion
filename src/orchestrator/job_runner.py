@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from datetime import datetime, timezone
+
 from src.api.exceptions import HuaweiRateLimitError
 from src.orchestrator.batch_planner import BatchPlanner
 from src.orchestrator.rotation_planner import RotationPlanner
@@ -14,6 +16,7 @@ class JobRunner:
         metadata_repo,
         checkpoint_service,
         batch_audit_repo,
+        api_log_service,
         batch_planner: BatchPlanner,
         window_planner,
         retry_policy,
@@ -28,6 +31,7 @@ class JobRunner:
         self.metadata_repo = metadata_repo
         self.checkpoint_service = checkpoint_service
         self.batch_audit_repo = batch_audit_repo
+        self.api_log_service = api_log_service
         self.batch_planner = batch_planner
         self.window_planner = window_planner
         self.retry_policy = retry_policy
@@ -115,11 +119,137 @@ class JobRunner:
         else:
             self._run_full_device_target(run_id, target, endpoint_name, devices, window)
 
+    def _utcnow(self) -> datetime:
+        return datetime.now(timezone.utc)
+
+    def _plant_code_for_batch(self, target: dict, batch_items: list) -> str:
+        if target.get("plant_code"):
+            return target["plant_code"]
+
+        if not batch_items:
+            return ""
+
+        first = batch_items[0]
+        if isinstance(first, dict):
+            return first.get("plant_code") or ""
+
+        # plant realtime batch = list ของ plant_code
+        return ",".join(str(x) for x in batch_items)
+
+    def _window_locals(self, window: dict | None):
+        if not window:
+            return None, None
+        return window.get("start_local"), window.get("end_local")
+
+    def _log_and_audit_success(
+        self,
+        *,
+        run_id: int,
+        target: dict,
+        batch_no: int,
+        batch_items: list,
+        batch_size: int,
+        api_family: str,
+        api_name: str,
+        endpoint_path: str,
+        request_payload: dict,
+        response: dict,
+        started_at_utc: datetime,
+        finished_at_utc: datetime,
+        window: dict | None,
+    ) -> int:
+        start_local, end_local = self._window_locals(window)
+
+        raw_id = self.api_log_service.log_api_call(
+            run_id=run_id,
+            job_id=target["job_id"],
+            account_id=target["account_id"],
+            plant_code=self._plant_code_for_batch(target, batch_items),
+            dev_type_id=target.get("dev_type_id") or 0,
+            api_family=api_family,
+            api_name=api_name,
+            endpoint_path=endpoint_path,
+            request_method="POST",
+            batch_no=batch_no,
+            device_count=batch_size,
+            request_payload=request_payload,
+            response=response,
+            request_started_at_utc=started_at_utc,
+            request_finished_at_utc=finished_at_utc,
+            request_window_start_utc=window.get("start_utc") if window else None,
+            request_window_end_utc=window.get("end_utc") if window else None,
+            request_window_start_local=start_local,
+            request_window_end_local=end_local,
+        )
+
+        self.batch_audit_repo.log_batch(
+            run_id=run_id,
+            target_id=target["target_id"],
+            batch_no=batch_no,
+            batch_size=batch_size,
+            status="SUCCESS",
+            window=window,
+            message=None,
+            raw_id=raw_id,
+        )
+        return raw_id
+
+    def _log_and_audit_failure(
+        self,
+        *,
+        run_id: int,
+        target: dict,
+        batch_no: int,
+        batch_items: list,
+        batch_size: int,
+        api_family: str,
+        api_name: str,
+        endpoint_path: str,
+        request_payload: dict,
+        started_at_utc: datetime,
+        finished_at_utc: datetime,
+        window: dict | None,
+        exc: Exception,
+        status: str,
+    ) -> int:
+        start_local, end_local = self._window_locals(window)
+
+        raw_id = self.api_log_service.log_api_call(
+            run_id=run_id,
+            job_id=target["job_id"],
+            account_id=target["account_id"],
+            plant_code=self._plant_code_for_batch(target, batch_items),
+            dev_type_id=target.get("dev_type_id") or 0,
+            api_family=api_family,
+            api_name=api_name,
+            endpoint_path=endpoint_path,
+            request_method="POST",
+            batch_no=batch_no,
+            device_count=batch_size,
+            request_payload=request_payload,
+            response=None,
+            request_started_at_utc=started_at_utc,
+            request_finished_at_utc=finished_at_utc,
+            request_window_start_utc=window.get("start_utc") if window else None,
+            request_window_end_utc=window.get("end_utc") if window else None,
+            request_window_start_local=start_local,
+            request_window_end_local=end_local,
+            fail_message=str(exc),
+        )
+
+        self.batch_audit_repo.log_batch(
+            run_id=run_id,
+            target_id=target["target_id"],
+            batch_no=batch_no,
+            batch_size=batch_size,
+            status=status,
+            window=window,
+            message=str(exc),
+            raw_id=raw_id,
+        )
+        return raw_id
+
     def _run_plant_realtime_target(self, run_id: int, target: dict) -> None:
-        """
-        Assumption:
-        metadata_repo has method get_active_plants_for_account(account_id) -> list[str]
-        """
         plant_codes = self.metadata_repo.get_active_plants_for_account(target["account_id"])
         if not plant_codes:
             self.checkpoint_service.mark_skipped(target, run_id, "No active plants for account")
@@ -135,34 +265,81 @@ class JobRunner:
         selected_batches = batches[:max_batches]
 
         for batch_no, batch in enumerate(selected_batches, start=1):
+            request_payload = {
+                "stationCodes": ",".join(batch),
+            }
+            started_at_utc = self._utcnow()
+
             self.rate_gate.wait_until_allowed()
             try:
-                self.retry_policy.execute(
+                response = self.retry_policy.execute(
                     self.client.get_station_real_kpi,
                     station_codes=batch,
                 )
+                finished_at_utc = self._utcnow()
+
                 self.rate_gate.mark_successful_call()
-            except HuaweiRateLimitError as e:
-                self._apply_rate_limit_backoff()
-                self.batch_audit_repo.log_batch(
+
+                self._log_and_audit_success(
                     run_id=run_id,
-                    target_id=target["target_id"],
+                    target=target,
                     batch_no=batch_no,
+                    batch_items=batch,
                     batch_size=len(batch),
-                    status="RATE_LIMITED",
-                    message=str(e),
+                    api_family="plant",
+                    api_name="getStationRealKpi",
+                    endpoint_path="/thirdData/getStationRealKpi",
+                    request_payload=request_payload,
+                    response=response,
+                    started_at_utc=started_at_utc,
+                    finished_at_utc=finished_at_utc,
+                    window=None,
                 )
+
+            except HuaweiRateLimitError as e:
+                finished_at_utc = self._utcnow()
+                self._apply_rate_limit_backoff()
+
+                self._log_and_audit_failure(
+                    run_id=run_id,
+                    target=target,
+                    batch_no=batch_no,
+                    batch_items=batch,
+                    batch_size=len(batch),
+                    api_family="plant",
+                    api_name="getStationRealKpi",
+                    endpoint_path="/thirdData/getStationRealKpi",
+                    request_payload=request_payload,
+                    started_at_utc=started_at_utc,
+                    finished_at_utc=finished_at_utc,
+                    window=None,
+                    exc=e,
+                    status="RATE_LIMITED",
+                )
+
                 self.checkpoint_service.mark_partial(target, run_id, None, str(e))
                 return
 
-            self.batch_audit_repo.log_batch(
-                run_id=run_id,
-                target_id=target["target_id"],
-                batch_no=batch_no,
-                batch_size=len(batch),
-                status="SUCCESS",
-                message=None,
-            )
+            except Exception as e:
+                finished_at_utc = self._utcnow()
+
+                self._log_and_audit_failure(
+                    run_id=run_id,
+                    target=target,
+                    batch_no=batch_no,
+                    batch_items=batch,
+                    batch_size=len(batch),
+                    api_family="plant",
+                    api_name="getStationRealKpi",
+                    endpoint_path="/thirdData/getStationRealKpi",
+                    request_payload=request_payload,
+                    started_at_utc=started_at_utc,
+                    finished_at_utc=finished_at_utc,
+                    window=None,
+                    exc=e,
+                    status="FAILED",
+                )
+                raise
 
         self.checkpoint_service.mark_success(target, run_id, None)
 
@@ -195,50 +372,108 @@ class JobRunner:
         for batch_no, batch in enumerate(selected_batches, start=1):
             dev_ids = [d["dev_id"] for d in batch]
 
+            if endpoint_name == "getDevRealKpi":
+                request_payload = {
+                    "devTypeId": target["dev_type_id"],
+                    "devIds": ",".join(str(x) for x in dev_ids),
+                }
+                api_family = "device"
+                api_name = "getDevRealKpi"
+                endpoint_path = "/thirdData/getDevRealKpi"
+            elif endpoint_name == "getDevHistoryKpi":
+                request_payload = {
+                    "devTypeId": target["dev_type_id"],
+                    "devIds": ",".join(str(x) for x in dev_ids),
+                    "startTime": window["start_ms"],
+                    "endTime": window["end_ms"],
+                }
+                api_family = "device"
+                api_name = "getDevHistoryKpi"
+                endpoint_path = "/thirdData/getDevHistoryKpi"
+            else:
+                raise ValueError(f"Unsupported endpoint_name: {endpoint_name}")
+
+            started_at_utc = self._utcnow()
+
             self.rate_gate.wait_until_allowed()
             try:
                 if endpoint_name == "getDevRealKpi":
-                    self.retry_policy.execute(
+                    response = self.retry_policy.execute(
                         self.client.get_dev_real_kpi,
                         dev_type_id=target["dev_type_id"],
                         dev_ids=dev_ids,
                     )
-                elif endpoint_name == "getDevHistoryKpi":
-                    self.retry_policy.execute(
+                else:
+                    response = self.retry_policy.execute(
                         self.client.get_dev_history_kpi,
                         dev_type_id=target["dev_type_id"],
                         dev_ids=dev_ids,
                         start_time_ms=window["start_ms"],
                         end_time_ms=window["end_ms"],
                     )
-                else:
-                    raise ValueError(f"Unsupported endpoint_name: {endpoint_name}")
 
+                finished_at_utc = self._utcnow()
                 self.rate_gate.mark_successful_call()
 
-            except HuaweiRateLimitError as e:
-                self._apply_rate_limit_backoff()
-                self.batch_audit_repo.log_batch(
+                self._log_and_audit_success(
                     run_id=run_id,
-                    target_id=target["target_id"],
+                    target=target,
                     batch_no=batch_no,
+                    batch_items=batch,
                     batch_size=len(dev_ids),
-                    status="RATE_LIMITED",
+                    api_family=api_family,
+                    api_name=api_name,
+                    endpoint_path=endpoint_path,
+                    request_payload=request_payload,
+                    response=response,
+                    started_at_utc=started_at_utc,
+                    finished_at_utc=finished_at_utc,
                     window=window,
-                    message=str(e),
+                )
+
+            except HuaweiRateLimitError as e:
+                finished_at_utc = self._utcnow()
+                self._apply_rate_limit_backoff()
+
+                self._log_and_audit_failure(
+                    run_id=run_id,
+                    target=target,
+                    batch_no=batch_no,
+                    batch_items=batch,
+                    batch_size=len(dev_ids),
+                    api_family="device",
+                    api_name=api_name,
+                    endpoint_path=endpoint_path,
+                    request_payload=request_payload,
+                    started_at_utc=started_at_utc,
+                    finished_at_utc=finished_at_utc,
+                    window=window,
+                    exc=e,
+                    status="RATE_LIMITED",
                 )
                 target_failed = True
                 break
 
-            self.batch_audit_repo.log_batch(
-                run_id=run_id,
-                target_id=target["target_id"],
-                batch_no=batch_no,
-                batch_size=len(dev_ids),
-                status="SUCCESS",
-                window=window,
-                message=None,
-            )
+            except Exception as e:
+                finished_at_utc = self._utcnow()
+
+                self._log_and_audit_failure(
+                    run_id=run_id,
+                    target=target,
+                    batch_no=batch_no,
+                    batch_items=batch,
+                    batch_size=len(dev_ids),
+                    api_family="device",
+                    api_name=api_name,
+                    endpoint_path=endpoint_path,
+                    request_payload=request_payload,
+                    started_at_utc=started_at_utc,
+                    finished_at_utc=finished_at_utc,
+                    window=window,
+                    exc=e,
+                    status="FAILED",
+                )
+                raise
 
         if target_failed:
             self.checkpoint_service.mark_partial(
@@ -293,33 +528,68 @@ class JobRunner:
         for batch_no, batch in enumerate(batches, start=1):
             dev_ids = [d["dev_id"] for d in batch]
 
+            if endpoint_name != "getDevHistoryKpi":
+                raise ValueError(
+                    f"nearline_rotating currently supports getDevHistoryKpi only, got {endpoint_name}"
+                )
+
+            request_payload = {
+                "devTypeId": target["dev_type_id"],
+                "devIds": ",".join(str(x) for x in dev_ids),
+                "startTime": window["start_ms"],
+                "endTime": window["end_ms"],
+            }
+            started_at_utc = self._utcnow()
+
             self.rate_gate.wait_until_allowed()
             try:
-                if endpoint_name != "getDevHistoryKpi":
-                    raise ValueError(
-                        f"nearline_rotating currently supports getDevHistoryKpi only, got {endpoint_name}"
-                    )
-
-                self.retry_policy.execute(
+                response = self.retry_policy.execute(
                     self.client.get_dev_history_kpi,
                     dev_type_id=target["dev_type_id"],
                     dev_ids=dev_ids,
                     start_time_ms=window["start_ms"],
                     end_time_ms=window["end_ms"],
                 )
+                finished_at_utc = self._utcnow()
                 self.rate_gate.mark_successful_call()
 
-            except HuaweiRateLimitError as e:
-                self._apply_rate_limit_backoff()
-                self.batch_audit_repo.log_batch(
+                self._log_and_audit_success(
                     run_id=run_id,
-                    target_id=target["target_id"],
+                    target=target,
                     batch_no=batch_no,
+                    batch_items=batch,
                     batch_size=len(dev_ids),
-                    status="RATE_LIMITED",
+                    api_family="device",
+                    api_name="getDevHistoryKpi",
+                    endpoint_path="/thirdData/getDevHistoryKpi",
+                    request_payload=request_payload,
+                    response=response,
+                    started_at_utc=started_at_utc,
+                    finished_at_utc=finished_at_utc,
                     window=window,
-                    message=str(e),
                 )
+
+            except HuaweiRateLimitError as e:
+                finished_at_utc = self._utcnow()
+                self._apply_rate_limit_backoff()
+
+                self._log_and_audit_failure(
+                    run_id=run_id,
+                    target=target,
+                    batch_no=batch_no,
+                    batch_items=batch,
+                    batch_size=len(dev_ids),
+                    api_family="device",
+                    api_name="getDevHistoryKpi",
+                    endpoint_path="/thirdData/getDevHistoryKpi",
+                    request_payload=request_payload,
+                    started_at_utc=started_at_utc,
+                    finished_at_utc=finished_at_utc,
+                    window=window,
+                    exc=e,
+                    status="RATE_LIMITED",
+                )
+
                 self.checkpoint_service.mark_partial(
                     target,
                     run_id,
@@ -328,15 +598,26 @@ class JobRunner:
                 )
                 return
 
-            self.batch_audit_repo.log_batch(
-                run_id=run_id,
-                target_id=target["target_id"],
-                batch_no=batch_no,
-                batch_size=len(dev_ids),
-                status="SUCCESS",
-                window=window,
-                message=None,
-            )
+            except Exception as e:
+                finished_at_utc = self._utcnow()
+
+                self._log_and_audit_failure(
+                    run_id=run_id,
+                    target=target,
+                    batch_no=batch_no,
+                    batch_items=batch,
+                    batch_size=len(dev_ids),
+                    api_family="device",
+                    api_name="getDevHistoryKpi",
+                    endpoint_path="/thirdData/getDevHistoryKpi",
+                    request_payload=request_payload,
+                    started_at_utc=started_at_utc,
+                    finished_at_utc=finished_at_utc,
+                    window=window,
+                    exc=e,
+                    status="FAILED",
+                )
+                raise
 
         if self.rotation_state_repo:
             self.rotation_state_repo.upsert_state(

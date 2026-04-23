@@ -23836,3 +23836,207 @@ ModuleNotFoundError: No module named 'src.db.sql_server'
 [NORM] pending raw rows = 0
 [NORM] pending raw rows = 0
 [NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+[NORM] pending raw rows = 0
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_generic.py", line 19, in <module>
+    main()
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_generic.py", line 6, in main
+    app = build_app()
+          ^^^^^^^^^^^
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 187, in build_app
+    return Application(app_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 40, in __init__
+    self.checkpoint_service = CheckpointService(self.checkpoint_repo)
+                                                ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Application' object has no attribute 'checkpoint_repo'
+[NORM] pending raw rows = 24
+[NORM] processing raw_id=11746 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11746 no rows
+[NORM] processing raw_id=11747 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11747 no rows
+[NORM] processing raw_id=11748 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11748 no rows
+[NORM] processing raw_id=11749 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11749 no rows
+[NORM] processing raw_id=11750 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11750 no rows
+[NORM] processing raw_id=11751 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11751 no rows
+[NORM] processing raw_id=11752 plant=NE=50281829 devType=1
+[NORM] raw_id=11752 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11752 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11752 success rows=1040
+[NORM] processing raw_id=11753 plant=NE=50979503 devType=1
+[NORM] raw_id=11753 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11753 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11753 success rows=2080
+[NORM] processing raw_id=11754 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11754 no rows
+[NORM] processing raw_id=11755 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11755 no rows
+[NORM] processing raw_id=11756 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11756 no rows
+[NORM] processing raw_id=11757 plant=NE=50979503 devType=1
+[NORM] raw_id=11757 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11757 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11757 success rows=1664
+[NORM] processing raw_id=11758 plant=NE=50281829 devType=1
+[NORM] raw_id=11758 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11758 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11758 success rows=1040
+[NORM] processing raw_id=11759 plant=NE=50979503 devType=1
+[NORM] raw_id=11759 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11759 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11759 success rows=2080
+[NORM] processing raw_id=11760 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11760 no rows
+[NORM] processing raw_id=11761 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11761 no rows
+[NORM] processing raw_id=11762 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11762 no rows
+[NORM] processing raw_id=11763 plant=NE=50979503 devType=1
+[NORM] raw_id=11763 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11763 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11763 success rows=1664
+[NORM] processing raw_id=11764 plant=NE=50281829 devType=1
+[NORM] raw_id=11764 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11764 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11764 success rows=1040
+[NORM] processing raw_id=11765 plant=NE=50979503 devType=1
+[NORM] raw_id=11765 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11765 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11765 success rows=2080
+[NORM] processing raw_id=11766 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11766 no rows
+[NORM] processing raw_id=11767 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11767 no rows
+[NORM] processing raw_id=11768 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11768 no rows
+[NORM] processing raw_id=11769 plant=NE=50979503 devType=1
+[NORM] raw_id=11769 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11769 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11769 success rows=1664
+[NORM] pending raw rows = 34
+[NORM] processing raw_id=11770 plant=NE=50281829 devType=1
+[NORM] raw_id=11770 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11770 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11770 success rows=1040
+[NORM] processing raw_id=11771 plant=NE=50979503 devType=1
+[NORM] raw_id=11771 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11771 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11771 success rows=2080
+[NORM] processing raw_id=11772 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11772 no rows
+[NORM] processing raw_id=11773 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11773 no rows
+[NORM] processing raw_id=11774 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11774 no rows
+[NORM] processing raw_id=11775 plant=NE=50979503 devType=1
+[NORM] raw_id=11775 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11775 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11775 success rows=1664
+[NORM] processing raw_id=11776 plant=NE=50281829 devType=1
+[NORM] raw_id=11776 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11776 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11776 success rows=1040
+[NORM] processing raw_id=11777 plant=NE=50979503 devType=1
+[NORM] raw_id=11777 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11777 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11777 success rows=2080
+[NORM] processing raw_id=11778 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11778 no rows
+[NORM] processing raw_id=11779 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11779 no rows
+[NORM] processing raw_id=11780 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11780 no rows
+[NORM] processing raw_id=11781 plant=NE=50979503 devType=1
+[NORM] raw_id=11781 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11781 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11781 success rows=1664
+[NORM] processing raw_id=11782 plant=NE=50281829 devType=1
+[NORM] raw_id=11782 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11782 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11782 success rows=1040
+[NORM] processing raw_id=11783 plant=NE=50979503 devType=1
+[NORM] raw_id=11783 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11783 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11783 success rows=2080
+[NORM] processing raw_id=11784 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11784 no rows
+[NORM] processing raw_id=11785 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11785 no rows
+[NORM] processing raw_id=11786 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11786 no rows
+[NORM] processing raw_id=11787 plant=NE=50979503 devType=1
+[NORM] raw_id=11787 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11787 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11787 success rows=1664
+[NORM] processing raw_id=11788 plant=NE=50281829 devType=1
+[NORM] raw_id=11788 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11788 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11788 success rows=1040
+[NORM] processing raw_id=11789 plant=NE=50979503 devType=1
+[NORM] raw_id=11789 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11789 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11789 success rows=2080
+[NORM] processing raw_id=11790 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11790 no rows
+[NORM] processing raw_id=11791 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11791 no rows
+[NORM] processing raw_id=11792 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11792 no rows
+[NORM] processing raw_id=11794 plant=NE=50281829 devType=1
+[NORM] raw_id=11794 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11794 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11794 success rows=1040
+[NORM] processing raw_id=11795 plant=NE=50979503 devType=1
+[NORM] raw_id=11795 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11795 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11795 success rows=2080
+[NORM] processing raw_id=11796 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11796 no rows
+[NORM] processing raw_id=11797 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11797 no rows
+[NORM] processing raw_id=11798 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11798 no rows
+[NORM] processing raw_id=11799 plant=NE=50979503 devType=1
+[NORM] raw_id=11799 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11799 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11799 success rows=1664
+[NORM] processing raw_id=11800 plant=NE=50281829 devType=1
+[NORM] raw_id=11800 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11800 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11800 success rows=1040
+[NORM] processing raw_id=11801 plant=NE=50979503 devType=1
+[NORM] raw_id=11801 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11801 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11801 success rows=2080
+[NORM] processing raw_id=11802 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11802 no rows
+[NORM] processing raw_id=11803 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11803 no rows
+[NORM] processing raw_id=11804 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11804 no rows

@@ -8,6 +8,7 @@ from src.db.repositories.checkpoint_repo import CheckpointRepository
 from src.db.repositories.run_repo import RunRepository
 from src.db.repositories.batch_audit_repo import BatchAuditRepository
 from src.db.repositories.rotation_state_repo import RotationStateRepository
+from src.db.repositories.raw_repo import RawRepository
 from src.extract.metadata_service import MetadataService
 from src.orchestrator.batch_planner import BatchPlanner
 from src.orchestrator.window_planner import WindowPlanner
@@ -16,10 +17,12 @@ from src.orchestrator.retry_policy import RetryPolicy
 from src.orchestrator.job_runner import JobRunner
 from src.orchestrator.account_rate_gate import AccountRateGate
 from src.orchestrator.rotation_planner import RotationPlanner
+from src.orchestrator.api_log_service import ApiLogService
 from src.api.session_manager import SessionManager
 from src.api.huawei_legacy_client import HuaweiLegacyClient
 from src.domain.time_utils import utc_now, fmt_local
-
+from src.db.repositories.raw_repo import RawRepository
+from src.orchestrator.api_log_service import ApiLogService
 
 class Application:
     def __init__(self, app_config: dict):
@@ -32,18 +35,28 @@ class Application:
         self.run_repo = RunRepository(self.conn)
         self.batch_audit_repo = BatchAuditRepository(self.conn)
         self.rotation_state_repo = RotationStateRepository(self.conn)
+        self.raw_repo = RawRepository(self.conn)
 
         self.metadata_service = MetadataService(self.metadata_repo)
         self.batch_planner = BatchPlanner()
         self.window_planner = WindowPlanner()
         self.checkpoint_service = CheckpointService(self.checkpoint_repo)
         self.rotation_planner = RotationPlanner()
+        self.api_log_service = ApiLogService(
+            raw_repo=self.raw_repo,
+            raw_archiver=None,
+        )
 
         self.retry_policy = RetryPolicy(
             max_attempts=app_config.get("retry", {}).get("max_attempts", 3),
             backoff_seconds=app_config.get("retry", {}).get("backoff_seconds", 10),
         )
+        self.raw_repo = RawRepository(self.conn)
 
+        self.api_log_service = ApiLogService(
+            raw_repo=self.raw_repo,
+            raw_archiver=None
+        )
     def run_job(self, job_name: str):
         print(f"[APP] Starting job from DB: {job_name}")
 
@@ -150,6 +163,7 @@ class Application:
                 metadata_repo=self.metadata_repo,
                 checkpoint_service=self.checkpoint_service,
                 batch_audit_repo=self.batch_audit_repo,
+                api_log_service=self.api_log_service, 
                 batch_planner=self.batch_planner,
                 window_planner=self.window_planner,
                 retry_policy=self.retry_policy,
