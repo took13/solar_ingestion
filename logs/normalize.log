@@ -24040,3 +24040,1066 @@ AttributeError: 'Application' object has no attribute 'checkpoint_repo'
 [NORM] raw_id=11803 no rows
 [NORM] processing raw_id=11804 plant=__ACCOUNT__ devType=-1
 [NORM] raw_id=11804 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=11806 plant=NE=50281829 devType=1
+[NORM] raw_id=11806 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11806 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11806 success rows=1040
+[NORM] processing raw_id=11807 plant=NE=50979503 devType=1
+[NORM] raw_id=11807 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11807 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11807 success rows=2080
+[NORM] processing raw_id=11808 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11808 no rows
+[NORM] processing raw_id=11809 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11809 no rows
+[NORM] processing raw_id=11810 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11810 no rows
+[NORM] processing raw_id=11811 plant=NE=50979503 devType=1
+[NORM] raw_id=11811 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11811 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11811 success rows=1664
+[NORM] processing raw_id=11812 plant=NE=50281829 devType=1
+[NORM] raw_id=11812 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11812 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11812 success rows=1040
+[NORM] processing raw_id=11813 plant=NE=50979503 devType=1
+[NORM] raw_id=11813 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11813 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11813 success rows=2080
+[NORM] processing raw_id=11814 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11814 no rows
+[NORM] processing raw_id=11815 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11815 no rows
+[NORM] processing raw_id=11816 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11816 no rows
+[NORM] processing raw_id=11818 plant=NE=50281829 devType=1
+[NORM] raw_id=11818 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11818 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11818 success rows=1040
+[NORM] processing raw_id=11819 plant=NE=50979503 devType=1
+[NORM] raw_id=11819 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11819 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11819 success rows=2080
+[NORM] processing raw_id=11820 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11820 no rows
+[NORM] processing raw_id=11821 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11821 no rows
+[NORM] processing raw_id=11822 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11822 no rows
+[NORM] processing raw_id=11823 plant=NE=50979503 devType=1
+[NORM] raw_id=11823 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11823 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11823 success rows=1664
+[NORM] processing raw_id=11824 plant=NE=50281829 devType=1
+[NORM] raw_id=11824 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11824 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11824 success rows=1040
+[NORM] processing raw_id=11825 plant=NE=50979503 devType=1
+[NORM] raw_id=11825 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11825 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11825 success rows=2080
+[NORM] processing raw_id=11826 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11826 no rows
+[NORM] processing raw_id=11827 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11827 no rows
+[NORM] processing raw_id=11828 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11828 no rows
+[NORM] processing raw_id=11830 plant=NE=50281829 devType=1
+[NORM] raw_id=11830 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11830 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11830 success rows=1040
+[NORM] processing raw_id=11831 plant=NE=50979503 devType=1
+[NORM] raw_id=11831 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11831 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11831 success rows=2080
+[NORM] processing raw_id=11832 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11832 no rows
+[NORM] processing raw_id=11833 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11833 no rows
+[NORM] processing raw_id=11834 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11834 no rows
+[NORM] processing raw_id=11835 plant=NE=50979503 devType=1
+[NORM] raw_id=11835 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11835 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11835 success rows=1664
+[NORM] processing raw_id=11836 plant=NE=50281829 devType=1
+[NORM] raw_id=11836 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11836 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11836 success rows=1040
+[NORM] processing raw_id=11837 plant=NE=50979503 devType=1
+[NORM] raw_id=11837 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11837 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11837 success rows=2080
+[NORM] processing raw_id=11838 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11838 no rows
+[NORM] processing raw_id=11839 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11839 no rows
+[NORM] processing raw_id=11840 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11840 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=11842 plant=NE=50281829 devType=1
+[NORM] raw_id=11842 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11842 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11842 success rows=1040
+[NORM] processing raw_id=11843 plant=NE=50979503 devType=1
+[NORM] raw_id=11843 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11843 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11843 success rows=2080
+[NORM] processing raw_id=11844 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11844 no rows
+[NORM] processing raw_id=11845 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11845 no rows
+[NORM] processing raw_id=11846 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11846 no rows
+[NORM] processing raw_id=11847 plant=NE=50979503 devType=1
+[NORM] raw_id=11847 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11847 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11847 success rows=1664
+[NORM] processing raw_id=11848 plant=NE=50281829 devType=1
+[NORM] raw_id=11848 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11848 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11848 success rows=1040
+[NORM] processing raw_id=11849 plant=NE=50979503 devType=1
+[NORM] raw_id=11849 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11849 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11849 success rows=2080
+[NORM] processing raw_id=11850 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11850 no rows
+[NORM] processing raw_id=11851 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11851 no rows
+[NORM] processing raw_id=11852 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11852 no rows
+[NORM] processing raw_id=11854 plant=NE=50281829 devType=1
+[NORM] raw_id=11854 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11854 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11854 success rows=1040
+[NORM] processing raw_id=11855 plant=NE=50979503 devType=1
+[NORM] raw_id=11855 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11855 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11855 success rows=2080
+[NORM] processing raw_id=11856 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11856 no rows
+[NORM] processing raw_id=11857 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11857 no rows
+[NORM] processing raw_id=11858 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11858 no rows
+[NORM] processing raw_id=11859 plant=NE=50979503 devType=1
+[NORM] raw_id=11859 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11859 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11859 success rows=1664
+[NORM] processing raw_id=11860 plant=NE=50281829 devType=1
+[NORM] raw_id=11860 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11860 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11860 success rows=1040
+[NORM] processing raw_id=11861 plant=NE=50979503 devType=1
+[NORM] raw_id=11861 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11861 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11861 success rows=2080
+[NORM] processing raw_id=11862 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11862 no rows
+[NORM] processing raw_id=11863 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11863 no rows
+[NORM] processing raw_id=11864 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11864 no rows
+[NORM] processing raw_id=11866 plant=NE=50281829 devType=1
+[NORM] raw_id=11866 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11866 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11866 success rows=1040
+[NORM] processing raw_id=11867 plant=NE=50979503 devType=1
+[NORM] raw_id=11867 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11867 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11867 success rows=2080
+[NORM] processing raw_id=11868 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11868 no rows
+[NORM] processing raw_id=11869 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11869 no rows
+[NORM] processing raw_id=11870 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11870 no rows
+[NORM] processing raw_id=11871 plant=NE=50979503 devType=1
+[NORM] raw_id=11871 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11871 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11871 success rows=1664
+[NORM] processing raw_id=11872 plant=NE=50281829 devType=1
+[NORM] raw_id=11872 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11872 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11872 success rows=1040
+[NORM] processing raw_id=11873 plant=NE=50979503 devType=1
+[NORM] raw_id=11873 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11873 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11873 success rows=2080
+[NORM] processing raw_id=11874 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11874 no rows
+[NORM] processing raw_id=11875 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11875 no rows
+[NORM] processing raw_id=11876 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11876 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=11878 plant=NE=50281829 devType=1
+[NORM] raw_id=11878 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11878 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11878 success rows=1040
+[NORM] processing raw_id=11879 plant=NE=50979503 devType=1
+[NORM] raw_id=11879 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11879 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11879 success rows=2080
+[NORM] processing raw_id=11880 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11880 no rows
+[NORM] processing raw_id=11881 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11881 no rows
+[NORM] processing raw_id=11882 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11882 no rows
+[NORM] processing raw_id=11883 plant=NE=50979503 devType=1
+[NORM] raw_id=11883 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11883 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11883 success rows=1664
+[NORM] processing raw_id=11884 plant=NE=50281829 devType=1
+[NORM] raw_id=11884 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11884 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11884 success rows=1040
+[NORM] processing raw_id=11885 plant=NE=50979503 devType=1
+[NORM] raw_id=11885 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11885 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11885 success rows=2080
+[NORM] processing raw_id=11886 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11886 no rows
+[NORM] processing raw_id=11887 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11887 no rows
+[NORM] processing raw_id=11888 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11888 no rows
+[NORM] processing raw_id=11890 plant=NE=50281829 devType=1
+[NORM] raw_id=11890 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11890 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11890 success rows=1040
+[NORM] processing raw_id=11891 plant=NE=50979503 devType=1
+[NORM] raw_id=11891 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11891 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11891 success rows=2080
+[NORM] processing raw_id=11892 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11892 no rows
+[NORM] processing raw_id=11893 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11893 no rows
+[NORM] processing raw_id=11894 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11894 no rows
+[NORM] processing raw_id=11895 plant=NE=50979503 devType=1
+[NORM] raw_id=11895 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11895 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11895 success rows=1664
+[NORM] processing raw_id=11896 plant=NE=50281829 devType=1
+[NORM] raw_id=11896 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11896 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11896 success rows=1040
+[NORM] processing raw_id=11897 plant=NE=50979503 devType=1
+[NORM] raw_id=11897 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11897 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11897 success rows=2080
+[NORM] processing raw_id=11898 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11898 no rows
+[NORM] processing raw_id=11899 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11899 no rows
+[NORM] processing raw_id=11900 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11900 no rows
+[NORM] processing raw_id=11902 plant=NE=50281829 devType=1
+[NORM] raw_id=11902 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11902 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11902 success rows=1040
+[NORM] processing raw_id=11903 plant=NE=50979503 devType=1
+[NORM] raw_id=11903 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11903 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11903 success rows=2080
+[NORM] processing raw_id=11904 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11904 no rows
+[NORM] processing raw_id=11905 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11905 no rows
+[NORM] processing raw_id=11906 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11906 no rows
+[NORM] processing raw_id=11907 plant=NE=50979503 devType=1
+[NORM] raw_id=11907 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11907 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11907 success rows=1664
+[NORM] processing raw_id=11908 plant=NE=50281829 devType=1
+[NORM] raw_id=11908 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11908 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11908 success rows=1040
+[NORM] processing raw_id=11909 plant=NE=50979503 devType=1
+[NORM] raw_id=11909 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11909 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11909 success rows=2080
+[NORM] processing raw_id=11910 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11910 no rows
+[NORM] processing raw_id=11911 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11911 no rows
+[NORM] processing raw_id=11912 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11912 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=11914 plant=NE=50281829 devType=1
+[NORM] raw_id=11914 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11914 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11914 success rows=1040
+[NORM] processing raw_id=11915 plant=NE=50979503 devType=1
+[NORM] raw_id=11915 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11915 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11915 success rows=2080
+[NORM] processing raw_id=11916 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11916 no rows
+[NORM] processing raw_id=11917 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11917 no rows
+[NORM] processing raw_id=11918 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11918 no rows
+[NORM] processing raw_id=11919 plant=NE=50979503 devType=1
+[NORM] raw_id=11919 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11919 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11919 success rows=1664
+[NORM] processing raw_id=11920 plant=NE=50281829 devType=1
+[NORM] raw_id=11920 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11920 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11920 success rows=1040
+[NORM] processing raw_id=11921 plant=NE=50979503 devType=1
+[NORM] raw_id=11921 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11921 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11921 success rows=2080
+[NORM] processing raw_id=11922 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11922 no rows
+[NORM] processing raw_id=11923 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11923 no rows
+[NORM] processing raw_id=11924 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11924 no rows
+[NORM] processing raw_id=11926 plant=NE=50281829 devType=1
+[NORM] raw_id=11926 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11926 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11926 success rows=1040
+[NORM] processing raw_id=11927 plant=NE=50979503 devType=1
+[NORM] raw_id=11927 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11927 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11927 success rows=2080
+[NORM] processing raw_id=11928 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11928 no rows
+[NORM] processing raw_id=11929 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11929 no rows
+[NORM] processing raw_id=11930 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11930 no rows
+[NORM] processing raw_id=11931 plant=NE=50979503 devType=1
+[NORM] raw_id=11931 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11931 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11931 success rows=1664
+[NORM] processing raw_id=11932 plant=NE=50281829 devType=1
+[NORM] raw_id=11932 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11932 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11932 success rows=1040
+[NORM] processing raw_id=11933 plant=NE=50979503 devType=1
+[NORM] raw_id=11933 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11933 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11933 success rows=2080
+[NORM] processing raw_id=11934 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11934 no rows
+[NORM] processing raw_id=11935 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11935 no rows
+[NORM] processing raw_id=11936 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11936 no rows
+[NORM] processing raw_id=11938 plant=NE=50281829 devType=1
+[NORM] raw_id=11938 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11938 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11938 success rows=1040
+[NORM] processing raw_id=11939 plant=NE=50979503 devType=1
+[NORM] raw_id=11939 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11939 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11939 success rows=2080
+[NORM] processing raw_id=11940 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11940 no rows
+[NORM] processing raw_id=11941 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11941 no rows
+[NORM] processing raw_id=11942 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11942 no rows
+[NORM] processing raw_id=11943 plant=NE=50979503 devType=1
+[NORM] raw_id=11943 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11943 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11943 success rows=1664
+[NORM] processing raw_id=11944 plant=NE=50281829 devType=1
+[NORM] raw_id=11944 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11944 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11944 success rows=1040
+[NORM] processing raw_id=11945 plant=NE=50979503 devType=1
+[NORM] raw_id=11945 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11945 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11945 success rows=2080
+[NORM] processing raw_id=11946 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11946 no rows
+[NORM] processing raw_id=11947 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11947 no rows
+[NORM] processing raw_id=11948 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11948 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=11950 plant=NE=50281829 devType=1
+[NORM] raw_id=11950 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11950 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11950 success rows=1040
+[NORM] processing raw_id=11951 plant=NE=50979503 devType=1
+[NORM] raw_id=11951 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11951 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11951 success rows=2080
+[NORM] processing raw_id=11952 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11952 no rows
+[NORM] processing raw_id=11953 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11953 no rows
+[NORM] processing raw_id=11954 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11954 no rows
+[NORM] processing raw_id=11955 plant=NE=50979503 devType=1
+[NORM] raw_id=11955 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11955 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11955 success rows=1664
+[NORM] processing raw_id=11956 plant=NE=50281829 devType=1
+[NORM] raw_id=11956 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11956 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11956 success rows=1040
+[NORM] processing raw_id=11957 plant=NE=50979503 devType=1
+[NORM] raw_id=11957 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11957 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11957 success rows=2080
+[NORM] processing raw_id=11958 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11958 no rows
+[NORM] processing raw_id=11959 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11959 no rows
+[NORM] processing raw_id=11960 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11960 no rows
+[NORM] processing raw_id=11962 plant=NE=50281829 devType=1
+[NORM] raw_id=11962 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11962 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11962 success rows=1040
+[NORM] processing raw_id=11963 plant=NE=50979503 devType=1
+[NORM] raw_id=11963 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11963 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11963 success rows=2080
+[NORM] processing raw_id=11964 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11964 no rows
+[NORM] processing raw_id=11965 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11965 no rows
+[NORM] processing raw_id=11966 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11966 no rows
+[NORM] processing raw_id=11967 plant=NE=50979503 devType=1
+[NORM] raw_id=11967 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11967 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11967 success rows=1664
+[NORM] processing raw_id=11968 plant=NE=50281829 devType=1
+[NORM] raw_id=11968 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11968 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11968 success rows=1040
+[NORM] processing raw_id=11969 plant=NE=50979503 devType=1
+[NORM] raw_id=11969 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11969 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11969 success rows=2080
+[NORM] processing raw_id=11970 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11970 no rows
+[NORM] processing raw_id=11971 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11971 no rows
+[NORM] processing raw_id=11972 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11972 no rows
+[NORM] processing raw_id=11974 plant=NE=50281829 devType=1
+[NORM] raw_id=11974 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11974 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11974 success rows=1040
+[NORM] processing raw_id=11975 plant=NE=50979503 devType=1
+[NORM] raw_id=11975 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11975 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11975 success rows=2080
+[NORM] processing raw_id=11976 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11976 no rows
+[NORM] processing raw_id=11977 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11977 no rows
+[NORM] processing raw_id=11978 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11978 no rows
+[NORM] processing raw_id=11979 plant=NE=50979503 devType=1
+[NORM] raw_id=11979 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11979 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11979 success rows=1664
+[NORM] processing raw_id=11980 plant=NE=50281829 devType=1
+[NORM] raw_id=11980 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11980 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11980 success rows=1040
+[NORM] processing raw_id=11981 plant=NE=50979503 devType=1
+[NORM] raw_id=11981 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11981 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11981 success rows=2080
+[NORM] processing raw_id=11982 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11982 no rows
+[NORM] processing raw_id=11983 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11983 no rows
+[NORM] processing raw_id=11984 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11984 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=11986 plant=NE=50281829 devType=1
+[NORM] raw_id=11986 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11986 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11986 success rows=1040
+[NORM] processing raw_id=11987 plant=NE=50979503 devType=1
+[NORM] raw_id=11987 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11987 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11987 success rows=2080
+[NORM] processing raw_id=11988 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11988 no rows
+[NORM] processing raw_id=11989 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11989 no rows
+[NORM] processing raw_id=11990 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11990 no rows
+[NORM] processing raw_id=11991 plant=NE=50979503 devType=1
+[NORM] raw_id=11991 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=11991 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=11991 success rows=1664
+[NORM] processing raw_id=11992 plant=NE=50281829 devType=1
+[NORM] raw_id=11992 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11992 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11992 success rows=1040
+[NORM] processing raw_id=11993 plant=NE=50979503 devType=1
+[NORM] raw_id=11993 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11993 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11993 success rows=2080
+[NORM] processing raw_id=11994 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11994 no rows
+[NORM] processing raw_id=11995 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11995 no rows
+[NORM] processing raw_id=11996 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=11996 no rows
+[NORM] processing raw_id=11998 plant=NE=50281829 devType=1
+[NORM] raw_id=11998 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=11998 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=11998 success rows=1040
+[NORM] processing raw_id=11999 plant=NE=50979503 devType=1
+[NORM] raw_id=11999 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=11999 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=11999 success rows=2080
+[NORM] processing raw_id=12000 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12000 no rows
+[NORM] processing raw_id=12001 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12001 no rows
+[NORM] processing raw_id=12002 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12002 no rows
+[NORM] processing raw_id=12003 plant=NE=50979503 devType=1
+[NORM] raw_id=12003 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12003 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12003 success rows=1664
+[NORM] processing raw_id=12004 plant=NE=50281829 devType=1
+[NORM] raw_id=12004 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12004 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12004 success rows=1040
+[NORM] processing raw_id=12005 plant=NE=50979503 devType=1
+[NORM] raw_id=12005 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12005 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12005 success rows=2080
+[NORM] processing raw_id=12006 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12006 no rows
+[NORM] processing raw_id=12007 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12007 no rows
+[NORM] processing raw_id=12008 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12008 no rows
+[NORM] processing raw_id=12010 plant=NE=50281829 devType=1
+[NORM] raw_id=12010 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12010 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12010 success rows=1040
+[NORM] processing raw_id=12011 plant=NE=50979503 devType=1
+[NORM] raw_id=12011 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12011 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12011 success rows=2080
+[NORM] processing raw_id=12012 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12012 no rows
+[NORM] processing raw_id=12013 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12013 no rows
+[NORM] processing raw_id=12014 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12014 no rows
+[NORM] processing raw_id=12015 plant=NE=50979503 devType=1
+[NORM] raw_id=12015 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12015 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12015 success rows=1664
+[NORM] processing raw_id=12016 plant=NE=50281829 devType=1
+[NORM] raw_id=12016 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12016 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12016 success rows=1040
+[NORM] processing raw_id=12017 plant=NE=50979503 devType=1
+[NORM] raw_id=12017 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12017 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12017 success rows=2080
+[NORM] processing raw_id=12018 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12018 no rows
+[NORM] processing raw_id=12019 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12019 no rows
+[NORM] processing raw_id=12020 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12020 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=12022 plant=NE=50281829 devType=1
+[NORM] raw_id=12022 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12022 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12022 success rows=1040
+[NORM] processing raw_id=12023 plant=NE=50979503 devType=1
+[NORM] raw_id=12023 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12023 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12023 success rows=2080
+[NORM] processing raw_id=12024 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12024 no rows
+[NORM] processing raw_id=12025 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12025 no rows
+[NORM] processing raw_id=12026 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12026 no rows
+[NORM] processing raw_id=12027 plant=NE=50979503 devType=1
+[NORM] raw_id=12027 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12027 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12027 success rows=1664
+[NORM] processing raw_id=12028 plant=NE=50281829 devType=1
+[NORM] raw_id=12028 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12028 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12028 success rows=1040
+[NORM] processing raw_id=12029 plant=NE=50979503 devType=1
+[NORM] raw_id=12029 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12029 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12029 success rows=2080
+[NORM] processing raw_id=12030 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12030 no rows
+[NORM] processing raw_id=12031 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12031 no rows
+[NORM] processing raw_id=12032 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12032 no rows
+[NORM] processing raw_id=12034 plant=NE=50281829 devType=1
+[NORM] raw_id=12034 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12034 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12034 success rows=1040
+[NORM] processing raw_id=12035 plant=NE=50979503 devType=1
+[NORM] raw_id=12035 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12035 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12035 success rows=2080
+[NORM] processing raw_id=12036 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12036 no rows
+[NORM] processing raw_id=12037 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12037 no rows
+[NORM] processing raw_id=12038 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12038 no rows
+[NORM] processing raw_id=12039 plant=NE=50979503 devType=1
+[NORM] raw_id=12039 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12039 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12039 success rows=1664
+[NORM] processing raw_id=12040 plant=NE=50281829 devType=1
+[NORM] raw_id=12040 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12040 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12040 success rows=1040
+[NORM] processing raw_id=12041 plant=NE=50979503 devType=1
+[NORM] raw_id=12041 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12041 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12041 success rows=2080
+[NORM] processing raw_id=12042 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12042 no rows
+[NORM] processing raw_id=12043 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12043 no rows
+[NORM] processing raw_id=12044 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12044 no rows
+[NORM] processing raw_id=12046 plant=NE=50281829 devType=1
+[NORM] raw_id=12046 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12046 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12046 success rows=1040
+[NORM] processing raw_id=12047 plant=NE=50979503 devType=1
+[NORM] raw_id=12047 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12047 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12047 success rows=2080
+[NORM] processing raw_id=12048 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12048 no rows
+[NORM] processing raw_id=12049 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12049 no rows
+[NORM] processing raw_id=12050 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12050 no rows
+[NORM] processing raw_id=12051 plant=NE=50979503 devType=1
+[NORM] raw_id=12051 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12051 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12051 success rows=1664
+[NORM] processing raw_id=12052 plant=NE=50281829 devType=1
+[NORM] raw_id=12052 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12052 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12052 success rows=1040
+[NORM] processing raw_id=12053 plant=NE=50979503 devType=1
+[NORM] raw_id=12053 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12053 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12053 success rows=2080
+[NORM] processing raw_id=12054 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12054 no rows
+[NORM] processing raw_id=12055 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12055 no rows
+[NORM] processing raw_id=12056 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12056 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=12058 plant=NE=50281829 devType=1
+[NORM] raw_id=12058 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12058 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12058 success rows=1040
+[NORM] processing raw_id=12059 plant=NE=50979503 devType=1
+[NORM] raw_id=12059 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12059 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12059 success rows=2080
+[NORM] processing raw_id=12060 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12060 no rows
+[NORM] processing raw_id=12061 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12061 no rows
+[NORM] processing raw_id=12062 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12062 no rows
+[NORM] processing raw_id=12063 plant=NE=50979503 devType=1
+[NORM] raw_id=12063 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12063 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12063 success rows=1664
+[NORM] processing raw_id=12064 plant=NE=50281829 devType=1
+[NORM] raw_id=12064 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12064 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12064 success rows=1040
+[NORM] processing raw_id=12065 plant=NE=50979503 devType=1
+[NORM] raw_id=12065 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12065 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12065 success rows=2080
+[NORM] processing raw_id=12066 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12066 no rows
+[NORM] processing raw_id=12067 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12067 no rows
+[NORM] processing raw_id=12068 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12068 no rows
+[NORM] processing raw_id=12070 plant=NE=50281829 devType=1
+[NORM] raw_id=12070 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12070 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12070 success rows=1040
+[NORM] processing raw_id=12071 plant=NE=50979503 devType=1
+[NORM] raw_id=12071 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12071 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12071 success rows=2080
+[NORM] processing raw_id=12072 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12072 no rows
+[NORM] processing raw_id=12073 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12073 no rows
+[NORM] processing raw_id=12074 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12074 no rows
+[NORM] processing raw_id=12075 plant=NE=50979503 devType=1
+[NORM] raw_id=12075 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12075 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12075 success rows=1664
+[NORM] processing raw_id=12076 plant=NE=50281829 devType=1
+[NORM] raw_id=12076 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12076 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12076 success rows=1040
+[NORM] processing raw_id=12077 plant=NE=50979503 devType=1
+[NORM] raw_id=12077 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12077 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12077 success rows=2080
+[NORM] processing raw_id=12078 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12078 no rows
+[NORM] processing raw_id=12079 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12079 no rows
+[NORM] processing raw_id=12080 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12080 no rows
+[NORM] processing raw_id=12082 plant=NE=50281829 devType=1
+[NORM] raw_id=12082 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12082 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12082 success rows=1040
+[NORM] processing raw_id=12083 plant=NE=50979503 devType=1
+[NORM] raw_id=12083 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12083 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12083 success rows=2080
+[NORM] processing raw_id=12084 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12084 no rows
+[NORM] processing raw_id=12085 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12085 no rows
+[NORM] processing raw_id=12086 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12086 no rows
+[NORM] processing raw_id=12087 plant=NE=50979503 devType=1
+[NORM] raw_id=12087 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12087 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12087 success rows=1664
+[NORM] processing raw_id=12088 plant=NE=50281829 devType=1
+[NORM] raw_id=12088 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12088 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12088 success rows=1040
+[NORM] processing raw_id=12089 plant=NE=50979503 devType=1
+[NORM] raw_id=12089 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12089 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12089 success rows=2080
+[NORM] processing raw_id=12090 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12090 no rows
+[NORM] processing raw_id=12091 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12091 no rows
+[NORM] processing raw_id=12092 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12092 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=12094 plant=NE=50281829 devType=1
+[NORM] raw_id=12094 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12094 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12094 success rows=1040
+[NORM] processing raw_id=12095 plant=NE=50979503 devType=1
+[NORM] raw_id=12095 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12095 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12095 success rows=2080
+[NORM] processing raw_id=12096 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12096 no rows
+[NORM] processing raw_id=12097 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12097 no rows
+[NORM] processing raw_id=12098 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12098 no rows
+[NORM] processing raw_id=12099 plant=NE=50979503 devType=1
+[NORM] raw_id=12099 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12099 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12099 success rows=1664
+[NORM] processing raw_id=12100 plant=NE=50281829 devType=1
+[NORM] raw_id=12100 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12100 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12100 success rows=1040
+[NORM] processing raw_id=12101 plant=NE=50979503 devType=1
+[NORM] raw_id=12101 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12101 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12101 success rows=2080
+[NORM] processing raw_id=12102 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12102 no rows
+[NORM] processing raw_id=12103 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12103 no rows
+[NORM] processing raw_id=12104 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12104 no rows
+[NORM] processing raw_id=12106 plant=NE=50281829 devType=1
+[NORM] raw_id=12106 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12106 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12106 success rows=1040
+[NORM] processing raw_id=12107 plant=NE=50979503 devType=1
+[NORM] raw_id=12107 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12107 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12107 success rows=2080
+[NORM] processing raw_id=12108 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12108 no rows
+[NORM] processing raw_id=12109 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12109 no rows
+[NORM] processing raw_id=12110 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12110 no rows
+[NORM] processing raw_id=12111 plant=NE=50979503 devType=1
+[NORM] raw_id=12111 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12111 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12111 success rows=1664
+[NORM] processing raw_id=12112 plant=NE=50281829 devType=1
+[NORM] raw_id=12112 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12112 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12112 success rows=1040
+[NORM] processing raw_id=12113 plant=NE=50979503 devType=1
+[NORM] raw_id=12113 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12113 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12113 success rows=2080
+[NORM] processing raw_id=12114 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12114 no rows
+[NORM] processing raw_id=12115 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12115 no rows
+[NORM] processing raw_id=12116 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12116 no rows
+[NORM] processing raw_id=12118 plant=NE=50281829 devType=1
+[NORM] raw_id=12118 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12118 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12118 success rows=1040
+[NORM] processing raw_id=12119 plant=NE=50979503 devType=1
+[NORM] raw_id=12119 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12119 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12119 success rows=2080
+[NORM] processing raw_id=12120 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12120 no rows
+[NORM] processing raw_id=12121 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12121 no rows
+[NORM] processing raw_id=12122 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12122 no rows
+[NORM] processing raw_id=12123 plant=NE=50979503 devType=1
+[NORM] raw_id=12123 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12123 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12123 success rows=1664
+[NORM] processing raw_id=12124 plant=NE=50281829 devType=1
+[NORM] raw_id=12124 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12124 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12124 success rows=1040
+[NORM] processing raw_id=12125 plant=NE=50979503 devType=1
+[NORM] raw_id=12125 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12125 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12125 success rows=2080
+[NORM] processing raw_id=12126 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12126 no rows
+[NORM] processing raw_id=12127 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12127 no rows
+[NORM] processing raw_id=12128 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12128 no rows
+[NORM] pending raw rows = 33
+[NORM] processing raw_id=12130 plant=NE=50281829 devType=1
+[NORM] raw_id=12130 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12130 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12130 success rows=1040
+[NORM] processing raw_id=12131 plant=NE=50979503 devType=1
+[NORM] raw_id=12131 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12131 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12131 success rows=2080
+[NORM] processing raw_id=12132 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12132 no rows
+[NORM] processing raw_id=12133 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12133 no rows
+[NORM] processing raw_id=12134 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12134 no rows
+[NORM] processing raw_id=12135 plant=NE=50979503 devType=1
+[NORM] raw_id=12135 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12135 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12135 success rows=1664
+[NORM] processing raw_id=12136 plant=NE=50281829 devType=1
+[NORM] raw_id=12136 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12136 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12136 success rows=1040
+[NORM] processing raw_id=12137 plant=NE=50979503 devType=1
+[NORM] raw_id=12137 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12137 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12137 success rows=2080
+[NORM] processing raw_id=12138 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12138 no rows
+[NORM] processing raw_id=12139 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12139 no rows
+[NORM] processing raw_id=12140 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12140 no rows
+[NORM] processing raw_id=12142 plant=NE=50281829 devType=1
+[NORM] raw_id=12142 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12142 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12142 success rows=1040
+[NORM] processing raw_id=12143 plant=NE=50979503 devType=1
+[NORM] raw_id=12143 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12143 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12143 success rows=2080
+[NORM] processing raw_id=12144 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12144 no rows
+[NORM] processing raw_id=12145 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12145 no rows
+[NORM] processing raw_id=12146 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12146 no rows
+[NORM] processing raw_id=12147 plant=NE=50979503 devType=1
+[NORM] raw_id=12147 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12147 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12147 success rows=1664
+[NORM] processing raw_id=12148 plant=NE=50281829 devType=1
+[NORM] raw_id=12148 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12148 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12148 success rows=1040
+[NORM] processing raw_id=12149 plant=NE=50979503 devType=1
+[NORM] raw_id=12149 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12149 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12149 success rows=2080
+[NORM] processing raw_id=12150 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12150 no rows
+[NORM] processing raw_id=12151 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12151 no rows
+[NORM] processing raw_id=12152 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12152 no rows
+[NORM] processing raw_id=12154 plant=NE=50281829 devType=1
+[NORM] raw_id=12154 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12154 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12154 success rows=1040
+[NORM] processing raw_id=12155 plant=NE=50979503 devType=1
+[NORM] raw_id=12155 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12155 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12155 success rows=2080
+[NORM] processing raw_id=12156 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12156 no rows
+[NORM] processing raw_id=12157 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12157 no rows
+[NORM] processing raw_id=12158 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12158 no rows
+[NORM] processing raw_id=12159 plant=NE=50979503 devType=1
+[NORM] raw_id=12159 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12159 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12159 success rows=1664
+[NORM] processing raw_id=12160 plant=NE=50281829 devType=1
+[NORM] raw_id=12160 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12160 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12160 success rows=1040
+[NORM] processing raw_id=12161 plant=NE=50979503 devType=1
+[NORM] raw_id=12161 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12161 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12161 success rows=2080
+[NORM] processing raw_id=12162 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12162 no rows
+[NORM] processing raw_id=12163 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12163 no rows
+[NORM] processing raw_id=12164 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12164 no rows
+[NORM] pending raw rows = 35
+[NORM] processing raw_id=12166 plant=NE=50281829 devType=1
+[NORM] raw_id=12166 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12166 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12166 success rows=1040
+[NORM] processing raw_id=12167 plant=NE=50979503 devType=1
+[NORM] raw_id=12167 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12167 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12167 success rows=2080
+[NORM] processing raw_id=12168 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12168 no rows
+[NORM] processing raw_id=12169 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12169 no rows
+[NORM] processing raw_id=12170 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12170 no rows
+[NORM] processing raw_id=12171 plant=NE=50979503 devType=1
+[NORM] raw_id=12171 parsed_rows=1664 deduped_rows=1664 catalog_rows=104
+[NORM] raw_id=12171 chunk=1 metric_rows=1664 catalog_rows=104
+[NORM] raw_id=12171 success rows=1664
+[NORM] processing raw_id=12172 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12172 no rows
+[NORM] processing raw_id=12173 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12173 no rows
+[NORM] processing raw_id=12174 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12174 no rows
+[NORM] processing raw_id=12177 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12177 no rows
+[NORM] processing raw_id=12178 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12178 no rows
+[NORM] processing raw_id=12179 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12179 no rows
+[NORM] processing raw_id=12183 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12183 no rows
+[NORM] processing raw_id=12184 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12184 no rows
+[NORM] processing raw_id=12185 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12185 no rows
+[NORM] processing raw_id=12186 plant=NE=50281829 devType=1
+[NORM] raw_id=12186 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12186 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12186 success rows=1040
+[NORM] processing raw_id=12187 plant=NE=50979503 devType=1
+[NORM] raw_id=12187 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12187 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12187 success rows=2080
+[NORM] processing raw_id=12188 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12188 no rows
+[NORM] processing raw_id=12189 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12189 no rows
+[NORM] processing raw_id=12190 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12190 no rows
+[NORM] processing raw_id=12192 plant=NE=50281829 devType=1
+[NORM] raw_id=12192 parsed_rows=1040 deduped_rows=1040 catalog_rows=104
+[NORM] raw_id=12192 chunk=1 metric_rows=1040 catalog_rows=104
+[NORM] raw_id=12192 success rows=1040
+[NORM] processing raw_id=12193 plant=NE=50979503 devType=1
+[NORM] raw_id=12193 parsed_rows=2080 deduped_rows=2080 catalog_rows=104
+[NORM] raw_id=12193 chunk=1 metric_rows=2080 catalog_rows=104
+[NORM] raw_id=12193 success rows=2080
+[NORM] processing raw_id=12194 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12194 no rows
+[NORM] processing raw_id=12195 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12195 no rows
+[NORM] processing raw_id=12196 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12196 no rows
+[NORM] processing raw_id=12198 plant=NE=50281829 devType=1
+[NORM] raw_id=12198 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=12198 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=12198 success rows=624
+[NORM] processing raw_id=12199 plant=NE=50979503 devType=1
+[NORM] raw_id=12199 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=12199 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=12199 success rows=624
+[NORM] processing raw_id=12200 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12200 no rows
+[NORM] processing raw_id=12201 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12201 no rows
+[NORM] processing raw_id=12202 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12202 no rows
+[NORM] processing raw_id=12203 plant=NE=50281829 devType=1
+[NORM] raw_id=12203 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=12203 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=12203 success rows=624
+[NORM] processing raw_id=12204 plant=NE=50979503 devType=1
+[NORM] raw_id=12204 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=12204 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=12204 success rows=624
+[NORM] processing raw_id=12205 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12205 no rows
+[NORM] processing raw_id=12206 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12206 no rows
+[NORM] processing raw_id=12207 plant=__ACCOUNT__ devType=-1
+[NORM] raw_id=12207 no rows

@@ -21,8 +21,7 @@ from src.orchestrator.api_log_service import ApiLogService
 from src.api.session_manager import SessionManager
 from src.api.huawei_legacy_client import HuaweiLegacyClient
 from src.domain.time_utils import utc_now, fmt_local
-from src.db.repositories.raw_repo import RawRepository
-from src.orchestrator.api_log_service import ApiLogService
+
 
 class Application:
     def __init__(self, app_config: dict):
@@ -42,21 +41,17 @@ class Application:
         self.window_planner = WindowPlanner()
         self.checkpoint_service = CheckpointService(self.checkpoint_repo)
         self.rotation_planner = RotationPlanner()
-        self.api_log_service = ApiLogService(
-            raw_repo=self.raw_repo,
-            raw_archiver=None,
-        )
-
+        self.api_log_service = ApiLogService(raw_repo=self.raw_repo, raw_archiver=None)
         self.retry_policy = RetryPolicy(
             max_attempts=app_config.get("retry", {}).get("max_attempts", 3),
             backoff_seconds=app_config.get("retry", {}).get("backoff_seconds", 10),
         )
-        self.raw_repo = RawRepository(self.conn)
 
-        self.api_log_service = ApiLogService(
-            raw_repo=self.raw_repo,
-            raw_archiver=None
-        )
+        # Important: keep one session/token per account inside one process.
+        # Huawei invalidates the previous token when a new login happens.
+        self._session_managers: dict[int, SessionManager] = {}
+        self._clients: dict[int, HuaweiLegacyClient] = {}
+
     def run_job(self, job_name: str):
         print(f"[APP] Starting job from DB: {job_name}")
 
@@ -64,7 +59,10 @@ class Application:
         if not job:
             raise ValueError(f"Job not found in ctl.ingest_job: {job_name}")
 
-        targets = self.target_repo.get_targets_by_job_name(job_name)
+        targets = self.target_repo.get_targets_by_job_name(
+            job_name,
+            wave_group=wave_group
+        )
         if not targets:
             raise ValueError(f"No enabled targets found for job: {job_name}")
 
@@ -95,6 +93,26 @@ class Application:
 
         print(f"[APP] Loaded {len(targets)} enabled targets for job={job_name} with override window")
         self._run_targets_grouped_by_account(job=job, targets=targets)
+
+    def _get_or_create_account_client(self, account: dict) -> HuaweiLegacyClient:
+        account_id = account["account_id"]
+
+        if account_id not in self._session_managers:
+            self._session_managers[account_id] = SessionManager(
+                base_url=account["base_url"],
+                username=account["username"],
+                system_code=account["api_password"],
+                timeout=self.app_config["api"]["timeout_seconds"],
+            )
+
+        if account_id not in self._clients:
+            self._clients[account_id] = HuaweiLegacyClient(
+                session_manager=self._session_managers[account_id],
+                base_url=account["base_url"],
+                timeout=self.app_config["api"]["timeout_seconds"],
+            )
+
+        return self._clients[account_id]
 
     def _run_targets_grouped_by_account(self, job: dict, targets: list[dict]):
         targets_by_account: dict[int, list[dict]] = {}
@@ -139,19 +157,7 @@ class Application:
                 f"will run {len(account_targets)} target(s)"
             )
 
-            session_manager = SessionManager(
-                base_url=account["base_url"],
-                username=account["username"],
-                system_code=account["api_password"],
-                timeout=self.app_config["api"]["timeout_seconds"],
-            )
-
-            client = HuaweiLegacyClient(
-                session_manager=session_manager,
-                base_url=account["base_url"],
-                timeout=self.app_config["api"]["timeout_seconds"],
-            )
-
+            client = self._get_or_create_account_client(account)
             rate_gate = AccountRateGate(
                 min_interval_seconds=self.app_config.get("api", {}).get("account_min_interval_seconds", 60)
             )
@@ -163,7 +169,7 @@ class Application:
                 metadata_repo=self.metadata_repo,
                 checkpoint_service=self.checkpoint_service,
                 batch_audit_repo=self.batch_audit_repo,
-                api_log_service=self.api_log_service, 
+                api_log_service=self.api_log_service,
                 batch_planner=self.batch_planner,
                 window_planner=self.window_planner,
                 retry_policy=self.retry_policy,
@@ -173,14 +179,33 @@ class Application:
                 account_backoff_policy=self.app_config.get("scheduler", {}).get(
                     "rate_limit_backoff_seconds",
                     {
-                        "first": 120,
-                        "second": 300,
-                        "third": 900,
+                        "first": 600,
+                        "second": 1800,
+                        "third": 3600,
                     },
                 ),
             )
 
             runner.run_targets(job=job, targets=account_targets)
+
+    def normalize_plant_realtime(self):
+        from src.normalize.normalizers.plant_realtime_normalizer import PlantRealtimeNormalizer
+
+        normalizer = PlantRealtimeNormalizer(self.conn)
+        normalizer.run()
+
+    def normalize_device_realtime(self):
+        from src.normalize_jobs.generic_normalize_job import GenericNormalizeJob
+
+        limit = self.app_config.get("pipeline", {}).get("generic_metrics", {}).get("pending_limit", 100)
+        chunk_size = self.app_config.get("pipeline", {}).get("generic_metrics", {}).get("normalize_chunk_size", 5000)
+
+        job = GenericNormalizeJob(
+            conn=self.conn,
+            metadata_repo=self.metadata_repo,
+            chunk_size=chunk_size,
+        )
+        job.run(limit=limit)
 
 
 def build_app() -> Application:

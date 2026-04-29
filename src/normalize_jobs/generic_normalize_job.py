@@ -93,7 +93,10 @@ class GenericNormalizeJob:
             LEFT JOIN norm.raw_normalization_status s
                 ON s.raw_id = r.raw_id
             WHERE r.api_success_flag = 1
-              AND (s.raw_id IS NULL OR s.generic_status IN ('PENDING', 'FAILED'))
+            AND r.fail_code = 0
+            AND r.dev_type_id > 0
+            AND r.api_name IN ('getDevRealKpi', 'getDevHistoryKpi')
+            AND (s.raw_id IS NULL OR s.generic_status IN ('PENDING', 'FAILED'))
             ORDER BY r.raw_id
         """, (limit,))
         rows = cursor.fetchall()

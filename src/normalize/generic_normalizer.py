@@ -1,4 +1,5 @@
 from typing import Any, Dict, List, Optional
+
 from src.domain.enums import ValueType
 from src.domain.time_utils import epoch_ms_to_utc
 
@@ -14,21 +15,32 @@ class GenericNormalizer:
         source_api: str,
     ) -> List[dict]:
         rows: List[dict] = []
+
         data = response_body.get("data") or []
+        params = response_body.get("params") or {}
+        response_current_ms = params.get("currentTime")
 
         for record in data:
-            collect_ms = record.get("collectTime")
+            # getDevHistoryKpi has collectTime per record
+            # getDevRealKpi usually has no collectTime, so use params.currentTime
+            collect_ms = record.get("collectTime") or response_current_ms
             if collect_ms is None:
                 continue
 
-            dev_id = record.get("devId")
-            dev_dn = record.get("devDn")
+            dev_id = record.get("devId") or record.get("id")
+            dev_dn = record.get("devDn") or record.get("dn") or record.get("sn")
             metric_map = record.get("dataItemMap") or record.get("dataItems") or {}
 
-            collect_time_utc = epoch_ms_to_utc(collect_ms)
+            try:
+                collect_time_utc = epoch_ms_to_utc(int(collect_ms))
+            except Exception:
+                continue
 
-            if dev_id is None and dev_dn and "NE=" in dev_dn:
-                dev_id = int(dev_dn.split("NE=")[-1])
+            if dev_id is None and dev_dn and "NE=" in str(dev_dn):
+                try:
+                    dev_id = int(str(dev_dn).split("NE=")[-1])
+                except Exception:
+                    dev_id = None
 
             if dev_id is None:
                 continue
@@ -52,6 +64,7 @@ class GenericNormalizer:
                     "metric_value_raw_text": parsed["metric_value_raw_text"],
                     "source_api": source_api,
                 })
+
         return rows
 
     def _parse_value(self, value: Any) -> dict:
@@ -82,10 +95,32 @@ class GenericNormalizer:
                 "metric_value_raw_text": str(value),
             }
 
+        text = str(value).strip()
+
+        try:
+            return {
+                "value_type": ValueType.NUMBER.value,
+                "metric_value_num": float(text),
+                "metric_value_text": None,
+                "metric_value_bool": None,
+                "metric_value_raw_text": text,
+            }
+        except Exception:
+            pass
+
+        if text.lower() in ("true", "false"):
+            return {
+                "value_type": ValueType.BOOL.value,
+                "metric_value_num": None,
+                "metric_value_text": None,
+                "metric_value_bool": text.lower() == "true",
+                "metric_value_raw_text": text,
+            }
+
         return {
             "value_type": ValueType.TEXT.value,
             "metric_value_num": None,
-            "metric_value_text": str(value),
+            "metric_value_text": text,
             "metric_value_bool": None,
-            "metric_value_raw_text": str(value),
+            "metric_value_raw_text": text,
         }

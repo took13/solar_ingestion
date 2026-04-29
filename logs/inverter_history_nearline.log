@@ -657,3 +657,315 @@ TypeError: JobRunner.__init__() missing 1 required positional argument: 'api_log
 [APP] Loaded 2 enabled targets for job=inverter_history_nearline
 [APP] Grouped into 1 account bucket(s)
 [APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=82 plant=NE=50281829 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 5
+[DEBUG] enter rotating device path
+[DEBUG] target_id=83 plant=NE=50979503 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 18
+[DEBUG] enter rotating device path
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=82 plant=NE=50281829 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 5
+[DEBUG] enter rotating device path
+[DEBUG] target_id=83 plant=NE=50979503 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 18
+[DEBUG] enter rotating device path
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=82 plant=NE=50281829 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 5
+[DEBUG] enter rotating device path
+[DEBUG] target_id=83 plant=NE=50979503 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 18
+[DEBUG] enter rotating device path
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 2 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=82 plant=NE=50281829 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 5
+[DEBUG] enter rotating device path
+[DEBUG] target_id=83 plant=NE=50979503 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 18
+[DEBUG] enter rotating device path

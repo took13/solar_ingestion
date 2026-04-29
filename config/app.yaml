@@ -12,7 +12,7 @@ timezone:
 
 api:
   timeout_seconds: 120
-  account_min_interval_seconds: 60
+  account_min_interval_seconds: 75
 
 retry:
   max_attempts: 3
@@ -20,9 +20,9 @@ retry:
 
 scheduler:
   rate_limit_backoff_seconds:
-    first: 120
-    second: 300
-    third: 900
+    first: 600
+    second: 1800
+    third: 3600
 
 cooldown:
   rate_limit_minutes: 10
@@ -30,7 +30,7 @@ cooldown:
 
 pipeline:
   generic_metrics:
-    enabled: false
+    enabled: true
     normalize_chunk_size: 5000
     pending_limit: 100
 

@@ -909,3 +909,746 @@ TypeError: JobRunner.__init__() missing 1 required positional argument: 'api_log
 [APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
 [APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
 [APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\run_normalize_plant_realtime.py", line 1, in <module>
+    from src.main import build_app
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 3, in <module>
+    from src.config_loader import ConfigLoader
+  File "C:\SOLAR\solar_ingestion\src\config_loader.py", line 6, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12188 inserted=56
+[NORMALIZE] raw_id=12189 inserted=40
+[NORMALIZE] raw_id=12190 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12194 inserted=56
+[NORMALIZE] raw_id=12195 inserted=40
+[NORMALIZE] raw_id=12196 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12200 inserted=56
+[NORMALIZE] raw_id=12201 inserted=40
+[NORMALIZE] raw_id=12202 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12205 inserted=56
+[NORMALIZE] raw_id=12206 inserted=40
+[NORMALIZE] raw_id=12207 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12210 inserted=56
+[NORMALIZE] raw_id=12211 inserted=40
+[NORMALIZE] raw_id=12212 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12215 inserted=56
+[NORMALIZE] raw_id=12216 inserted=40
+[NORMALIZE] raw_id=12217 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12220 inserted=56
+[NORMALIZE] raw_id=12221 inserted=40
+[NORMALIZE] raw_id=12222 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12225 inserted=56
+[NORMALIZE] raw_id=12226 inserted=40
+[NORMALIZE] raw_id=12227 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[DEBUG] target_id=187 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[DEBUG] target_id=188 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[DEBUG] target_id=189 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12233 inserted=56
+[NORMALIZE] raw_id=12234 inserted=40
+[NORMALIZE] raw_id=12235 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[DEBUG] target_id=187 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[DEBUG] target_id=188 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[DEBUG] target_id=189 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] raw_id=12279 inserted=56
+[NORMALIZE] raw_id=12280 inserted=40
+[NORMALIZE] raw_id=12281 inserted=48
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[DEBUG] target_id=187 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[DEBUG] target_id=188 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[DEBUG] target_id=189 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] DONE total_metrics=0
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[DEBUG] target_id=187 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[DEBUG] target_id=188 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[DEBUG] target_id=189 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] DONE total_metrics=0
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[DEBUG] target_id=187 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[DEBUG] target_id=188 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[DEBUG] target_id=189 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[NORMALIZE] DONE total_metrics=0
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 3 enabled targets for job=plant_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 1 target(s)
+[DEBUG] target_id=187 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_02 (id=2) will run 1 target(s)
+[DEBUG] target_id=188 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[DEBUG] target_id=189 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===

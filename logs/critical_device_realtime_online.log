@@ -909,3 +909,563 @@ TypeError: JobRunner.__init__() missing 1 required positional argument: 'api_log
 [APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
 [APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
 [APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 6 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[APP] Account=GPSC_PI_02 (id=2) will run 2 target(s)
+[APP] Account=GPSC_PI_03 (id=3) will run 2 target(s)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\SOLAR\solar_ingestion\scripts\test_run_critical_realtime_job.py", line 12, in <module>
+    main()
+  File "C:\SOLAR\solar_ingestion\scripts\test_run_critical_realtime_job.py", line 8, in main
+    app.run_job("critical_device_realtime_online")
+  File "C:\SOLAR\solar_ingestion\src\main.py", line 69, in run_job
+    raise ValueError(f"No enabled targets found for job: {job_name}")
+ValueError: No enabled targets found for job: critical_device_realtime_online
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 32 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 13 target(s)
+[DEBUG] target_id=196 plant=NE=49738145 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 4
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49738145 dev_type=10 batch_no=1 batch_size=4
+[DEBUG] target_id=205 plant=NE=49784611 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 3
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49784611 dev_type=10 batch_no=1 batch_size=3
+[DEBUG] target_id=210 plant=NE=50173922 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=50173922 dev_type=10 batch_no=1 batch_size=1
+[DEBUG] target_id=212 plant=NE=50281829 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 2
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=50281829 dev_type=10 batch_no=1 batch_size=2
+[DEBUG] target_id=216 plant=NE=50834217 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 4
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=50834217 dev_type=10 batch_no=1 batch_size=4
+[DEBUG] target_id=222 plant=NE=54973136 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=54973136 dev_type=10 batch_no=1 batch_size=1
+[DEBUG] target_id=197 plant=NE=49738145 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49738145 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=201 plant=NE=49751847 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49751847 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=206 plant=NE=49784611 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49784611 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=211 plant=NE=50173922 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=50173922 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=213 plant=NE=50281829 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=50281829 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=217 plant=NE=50834217 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=50834217 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=223 plant=NE=54973136 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=54973136 dev_type=17 batch_no=1 batch_size=1
+[APP] Account=GPSC_PI_03 (id=3) will run 12 target(s)
+[DEBUG] target_id=199 plant=NE=49751226 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 2
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49751226 dev_type=10 batch_no=1 batch_size=2
+[DEBUG] success getDevRealKpi batch_no=1
+[DEBUG] target_id=203 plant=NE=49768564 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 2
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49768564 dev_type=10 batch_no=1 batch_size=2
+[DEBUG] success getDevRealKpi batch_no=1
+[DEBUG] target_id=208 plant=NE=49936764 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 3
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49936764 dev_type=10 batch_no=1 batch_size=3
+[DEBUG] success getDevRealKpi batch_no=1
+[DEBUG] target_id=214 plant=NE=50632673 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 5
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=50632673 dev_type=10 batch_no=1 batch_size=5
+[DEBUG] success getDevRealKpi batch_no=1
+[DEBUG] target_id=220 plant=NE=51536060 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 2
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=51536060 dev_type=10 batch_no=1 batch_size=2
+[DEBUG] target_id=226 plant=NE=60843094 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 2
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=60843094 dev_type=10 batch_no=1 batch_size=2
+[DEBUG] target_id=200 plant=NE=49751226 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49751226 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=204 plant=NE=49768564 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49768564 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=209 plant=NE=49936764 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49936764 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=215 plant=NE=50632673 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=50632673 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=221 plant=NE=51536060 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=51536060 dev_type=17 batch_no=1 batch_size=1
+[DEBUG] target_id=227 plant=NE=60843094 dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=60843094 dev_type=17 batch_no=1 batch_size=1
+[APP] Account=GPSC_PI_02 (id=2) will run 7 target(s)
+[DEBUG] target_id=202 plant=NE=49752378 dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] devices count = 1
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=NE=49752378 dev_type=10 batch_no=1 batch_size=1
+[DEBUG] success getDevRealKpi batch_no=1

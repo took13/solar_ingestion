@@ -5,9 +5,17 @@ class TargetRepository:
     def __init__(self, conn):
         self.conn = conn
 
-    def get_active_targets_by_job(self, job_id: int) -> list[dict]:
+    def get_active_targets_by_job(self, job_id: int, wave_group=None) -> list[dict]:
         cursor = self.conn.cursor()
-        cursor.execute("""
+
+        where_wave = ""
+        params = [job_id]
+
+        if wave_group:
+            where_wave = " AND UPPER(COALESCE(t.wave_group, '')) = ?"
+            params.append(wave_group.upper())
+
+        cursor.execute(f"""
             SELECT
                 t.target_id,
                 t.job_id,
@@ -24,7 +32,6 @@ class TargetRepository:
                 t.notes,
                 t.created_at_utc,
                 t.updated_at_utc,
-
                 t.endpoint_name,
                 t.service_class,
                 t.requested_batch_size,
@@ -33,17 +40,20 @@ class TargetRepository:
                 t.min_cycle_minutes,
                 t.schedule_every_minutes,
                 t.priority_weight,
-                t.hard_window_mode
+                t.hard_window_mode,
+                t.wave_group
             FROM ctl.ingest_target t
             WHERE t.job_id = ?
-              AND t.is_enabled = 1
+            AND t.is_enabled = 1
+            {where_wave}
             ORDER BY
                 COALESCE(t.priority_weight, t.priority_no, 999999),
                 t.priority_no,
                 t.target_id
-        """, (job_id,))
+        """, tuple(params))
 
         rows = cursor.fetchall()
+
         return [
             {
                 "target_id": r.target_id,
@@ -61,29 +71,44 @@ class TargetRepository:
                 "notes": r.notes,
                 "created_at_utc": r.created_at_utc,
                 "updated_at_utc": r.updated_at_utc,
-
-                "endpoint_name": getattr(r, "endpoint_name", None),
-                "service_class": getattr(r, "service_class", None),
-                "requested_batch_size": getattr(r, "requested_batch_size", None),
-                "max_batches_per_run": getattr(r, "max_batches_per_run", None),
-                "rotation_enabled": getattr(r, "rotation_enabled", None),
-                "min_cycle_minutes": getattr(r, "min_cycle_minutes", None),
-                "schedule_every_minutes": getattr(r, "schedule_every_minutes", None),
-                "priority_weight": getattr(r, "priority_weight", None),
-                "hard_window_mode": getattr(r, "hard_window_mode", None),
+                "endpoint_name": r.endpoint_name,
+                "service_class": r.service_class,
+                "requested_batch_size": r.requested_batch_size,
+                "max_batches_per_run": r.max_batches_per_run,
+                "rotation_enabled": r.rotation_enabled,
+                "min_cycle_minutes": r.min_cycle_minutes,
+                "schedule_every_minutes": r.schedule_every_minutes,
+                "priority_weight": r.priority_weight,
+                "hard_window_mode": r.hard_window_mode,
+                "wave_group": r.wave_group,
             }
             for r in rows
         ]
 
-    def get_targets_by_job_name(self, job_name: str) -> list[dict]:
+    def get_targets_by_job_name(self, job_name: str, wave_group=None) -> list[dict]:
         cursor = self.conn.cursor()
         cursor.execute("""
             SELECT TOP 1 job_id
             FROM ctl.ingest_job
             WHERE job_name = ?
-              AND is_enabled = 1
+            AND is_enabled = 1
         """, (job_name,))
+
         row = cursor.fetchone()
         if not row:
             return []
-        return self.get_active_targets_by_job(row.job_id)
+
+        return self.get_active_targets_by_job(row.job_id, wave_group=wave_group)
+
+        def get_targets_by_job_name(self, job_name: str) -> list[dict]:
+            cursor = self.conn.cursor()
+            cursor.execute("""
+                SELECT TOP 1 job_id
+                FROM ctl.ingest_job
+                WHERE job_name = ?
+                AND is_enabled = 1
+            """, (job_name,))
+            row = cursor.fetchone()
+            if not row:
+                return []
+            return self.get_active_targets_by_job(row.job_id)

@@ -72,6 +72,37 @@ class MetadataRepository:
             for r in rows
         ]
 
+    def get_devices_for_account_and_type(self, account_id: int, dev_type_id: int) -> list[dict]:
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT DISTINCT
+                d.dev_id,
+                d.dev_dn,
+                d.dev_type_id,
+                d.plant_code,
+                d.dev_name,
+                d.is_active
+            FROM dbo.dim_device d
+            INNER JOIN dbo.plant_account_assignment paa
+                ON paa.plant_code = d.plant_code
+            WHERE paa.account_id = ?
+              AND d.dev_type_id = ?
+              AND d.is_active = 1
+            ORDER BY d.dev_id
+        """, (account_id, dev_type_id))
+        rows = cursor.fetchall()
+        return [
+            {
+                "dev_id": r.dev_id,
+                "dev_dn": r.dev_dn,
+                "dev_type_id": r.dev_type_id,
+                "plant_code": r.plant_code,
+                "dev_name": r.dev_name,
+                "is_active": r.is_active,
+            }
+            for r in rows
+        ]
+
     def get_plant(self, plant_code: str) -> dict | None:
         cursor = self.conn.cursor()
         cursor.execute("""
@@ -120,9 +151,6 @@ class MetadataRepository:
         }
 
     def get_active_plants_for_account(self, account_id: int) -> list[str]:
-        """
-        Used by plant realtime target.
-        """
         cursor = self.conn.cursor()
         cursor.execute("""
             SELECT DISTINCT p.plant_code
