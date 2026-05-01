@@ -52,7 +52,7 @@ class Application:
         self._session_managers: dict[int, SessionManager] = {}
         self._clients: dict[int, HuaweiLegacyClient] = {}
 
-    def run_job(self, job_name: str):
+    def run_job(self, job_name: str, wave_group=None):
         print(f"[APP] Starting job from DB: {job_name}")
 
         job = self.run_repo.get_job_by_name(job_name)
