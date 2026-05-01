@@ -1103,3 +1103,46 @@
 [NORM] raw_id=18790 success rows=624
 === DONE ===
 [Fri 05/01/2026 12:13:55.84] END 
+[Fri 05/01/2026 12:40:00.77] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18821 plant=NE=49738145 devType=1
+[NORM] raw_id=18821 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18821 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18821 success rows=624
+[NORM] processing raw_id=18822 plant=NE=50173922 devType=1
+[NORM] raw_id=18822 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18822 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18822 success rows=624
+[NORM] processing raw_id=18823 plant=NE=49768564 devType=1
+[NORM] raw_id=18823 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18823 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18823 success rows=624
+[NORM] processing raw_id=18824 plant=NE=51536060 devType=1
+[NORM] raw_id=18824 no rows
+[NORM] processing raw_id=18825 plant=NE=49752378 devType=10
+[NORM] raw_id=18825 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18825 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18825 success rows=360
+[NORM] processing raw_id=18826 plant=NE=60843094 devType=1
+[NORM] raw_id=18826 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18826 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18826 success rows=624
+=== DONE ===
+[Fri 05/01/2026 12:43:55.56] END 

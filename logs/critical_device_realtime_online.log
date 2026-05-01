@@ -11539,3 +11539,124 @@ ValueError: No enabled targets found for job: critical_device_realtime_online
 === DONE ===
 [Fri 05/01/2026 12:24:21.48] END 
 [Fri 05/01/2026 12:28:00.77] START 
+[NORM] pending raw rows = 2
+[NORM] processing raw_id=18806 plant=NE=49752378 devType=10
+[NORM] raw_id=18806 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18806 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18806 success rows=360
+[NORM] processing raw_id=18807 plant=NE=49738145 devType=17
+[NORM] raw_id=18807 parsed_rows=720 deduped_rows=720 catalog_rows=40
+[NORM] raw_id=18807 chunk=1 metric_rows=720 catalog_rows=40
+[NORM] raw_id=18807 success rows=720
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=40
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=18
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[Fri 05/01/2026 12:29:19.63] END 
+[Fri 05/01/2026 12:33:00.78] START 
+[NORM] pending raw rows = 1
+[NORM] processing raw_id=18816 plant=NE=49738145 devType=17
+[NORM] raw_id=18816 parsed_rows=720 deduped_rows=720 catalog_rows=40
+[NORM] raw_id=18816 chunk=1 metric_rows=720 catalog_rows=40
+[NORM] raw_id=18816 success rows=720
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=40
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=18
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[Fri 05/01/2026 12:34:19.21] END 
+[Fri 05/01/2026 12:38:00.63] START 
+[NORM] pending raw rows = 2
+[NORM] processing raw_id=18818 plant=NE=49752378 devType=10
+[NORM] raw_id=18818 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18818 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18818 success rows=360
+[NORM] processing raw_id=18819 plant=NE=49738145 devType=17
+[NORM] raw_id=18819 parsed_rows=720 deduped_rows=720 catalog_rows=40
+[NORM] raw_id=18819 chunk=1 metric_rows=720 catalog_rows=40
+[NORM] raw_id=18819 success rows=720
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=40
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=18
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[Fri 05/01/2026 12:39:19.82] END 
+[Fri 05/01/2026 12:43:00.79] START 
+[NORM] pending raw rows = 1
+[NORM] processing raw_id=18827 plant=NE=49738145 devType=17
+[NORM] raw_id=18827 parsed_rows=720 deduped_rows=720 catalog_rows=40
+[NORM] raw_id=18827 chunk=1 metric_rows=720 catalog_rows=40
+[NORM] raw_id=18827 success rows=720
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=40
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=18
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[Fri 05/01/2026 12:44:19.35] END 
+[Fri 05/01/2026 12:48:00.76] START 
+[NORM] pending raw rows = 2
+[NORM] processing raw_id=18829 plant=NE=49752378 devType=10
+[NORM] raw_id=18829 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18829 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18829 success rows=360
+[NORM] processing raw_id=18830 plant=NE=49738145 devType=17
+[NORM] raw_id=18830 parsed_rows=720 deduped_rows=720 catalog_rows=40
+[NORM] raw_id=18830 chunk=1 metric_rows=720 catalog_rows=40
+[NORM] raw_id=18830 success rows=720
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=40
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=18
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[Fri 05/01/2026 12:49:19.76] END 

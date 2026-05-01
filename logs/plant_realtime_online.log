@@ -8870,3 +8870,73 @@ ValueError: No enabled targets found for job: plant_realtime_online
 === MART ===
 === DONE ===
 [Fri 05/01/2026 12:25:03.28] END 
+[Fri 05/01/2026 12:30:00.80] START 
+[NORMALIZE] raw_id=18808 inserted=144
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[Fri 05/01/2026 12:30:03.75] END 
+[Fri 05/01/2026 12:35:00.79] START 
+[NORMALIZE] raw_id=18817 inserted=144
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[Fri 05/01/2026 12:35:03.31] END 
+[Fri 05/01/2026 12:40:00.82] START 
+[NORMALIZE] raw_id=18820 inserted=144
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[Fri 05/01/2026 12:40:03.64] END 
+[Fri 05/01/2026 12:45:00.85] START 
+[NORMALIZE] raw_id=18828 inserted=144
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[Fri 05/01/2026 12:45:03.45] END 
+[Fri 05/01/2026 12:50:00.81] START 
+[NORMALIZE] raw_id=18831 inserted=144
+[NORMALIZE] DONE total_metrics=144
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[Fri 05/01/2026 12:50:03.71] END 
