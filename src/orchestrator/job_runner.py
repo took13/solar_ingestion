@@ -117,16 +117,18 @@ class JobRunner:
                 dev_type_id=target["dev_type_id"],
             )
         else:
+            if target["plant_code"] == "__ACCOUNT__":
+                self._run_account_device_target(run_id, job, target, endpoint_name, service_class)
+                return
+
             devices = self.metadata_repo.get_devices(
                 plant_code=target["plant_code"],
                 dev_type_id=target["dev_type_id"],
             )
 
-        print(f"[DEBUG] devices count = {len(devices)}")
-
-        if not devices:
-            self.checkpoint_service.mark_no_devices(target, run_id)
-            return
+            if not devices:
+                self.checkpoint_service.mark_no_devices(target, run_id)
+                return
 
         checkpoint = self.checkpoint_repo.get_checkpoint(
             job_id=target["job_id"],
@@ -467,3 +469,72 @@ class JobRunner:
         cooldown_until = self._utcnow() + timedelta(seconds=seconds)
         self.metadata_repo.set_account_interface_cooldown(account_id, cooldown_until)
         print(f"[DEBUG] account_id={account_id} rate-limited -> cooldown until {cooldown_until.isoformat()}")
+
+    def _run_account_device_target(
+        self,
+        run_id: int,
+        job: dict,
+        target: dict,
+        endpoint_name: str,
+        service_class: str,
+    ) -> None:
+        plant_codes = self.metadata_repo.get_active_account_plants(target["account_id"])
+
+        if not plant_codes:
+            self.checkpoint_service.mark_skipped(
+                target,
+                run_id,
+                f"No active plant mapping for account_id={target['account_id']}",
+            )
+            return
+
+        for plant_code in plant_codes:
+            plant_target = target.copy()
+            plant_target["plant_code"] = plant_code
+
+            devices = self.metadata_repo.get_devices(
+                plant_code=plant_code,
+                dev_type_id=plant_target["dev_type_id"],
+            )
+
+            if not devices:
+                self.batch_audit_repo.log_batch(
+                    run_id=run_id,
+                    target_id=target["target_id"],
+                    batch_no=0,
+                    batch_size=0,
+                    status="NO_DEVICES",
+                    message=f"No devices for plant={plant_code}, dev_type_id={plant_target['dev_type_id']}",
+                )
+                continue
+
+            checkpoint = self.checkpoint_repo.get_checkpoint(
+                job_id=plant_target["job_id"],
+                account_id=plant_target["account_id"],
+                plant_code=plant_target["plant_code"],
+                dev_type_id=plant_target["dev_type_id"],
+            )
+
+            window = self.window_planner.compute_window(
+                checkpoint=checkpoint,
+                target=plant_target,
+            )
+
+            if not window:
+                self.batch_audit_repo.log_batch(
+                    run_id=run_id,
+                    target_id=target["target_id"],
+                    batch_no=0,
+                    batch_size=0,
+                    status="SKIPPED",
+                    message=f"No runnable window for plant={plant_code}",
+                )
+                continue
+
+            self._run_full_device_target(
+                run_id=run_id,
+                target=plant_target,
+                endpoint_name=endpoint_name,
+                devices=devices,
+                window=window,
+            )

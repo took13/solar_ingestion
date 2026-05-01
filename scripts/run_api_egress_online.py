@@ -1,17 +1,24 @@
-from src.main import build_app
-from src.egress.egress_repo import EgressRepository
-from src.egress.egress_client import EgressClient
-from src.egress.payload_builder import PayloadBuilder
-from src.egress.egress_service import EgressService
+import pyodbc
+
+from src.egress.enserve_job import EnserveEgressJob
 
 
 def main():
-    app = build_app()
-    repo = EgressRepository(app.conn)
-    client = EgressClient()
-    payload_builder = PayloadBuilder()
-    service = EgressService(repo, client, payload_builder)
-    service.run_online(lookback_minutes=30)
+    connection_string = (
+        "DRIVER={ODBC Driver 18 for SQL Server};"
+        "SERVER=SOLAR-DB\\SOLARSQL;"
+        "DATABASE=SolarDataDB;"
+        "UID=sa;"
+        "PWD=p@ssw0rd;"
+        "TrustServerCertificate=yes;"
+    )
+
+    conn = pyodbc.connect(connection_string)
+    try:
+        job = EnserveEgressJob(conn)
+        job.run()
+    finally:
+        conn.close()
 
 
 if __name__ == "__main__":

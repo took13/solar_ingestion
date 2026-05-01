@@ -68,3 +68,1038 @@
 [NORM] raw_id=17852 no rows
 === DONE ===
 [Thu 04/30/2026 23:13:53.53] END 
+[Thu 04/30/2026 23:40:01.13] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 6
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 23
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 4
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 14
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 36
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=17883 plant=NE=49738145 devType=1
+[NORM] raw_id=17883 no rows
+[NORM] processing raw_id=17884 plant=NE=50173922 devType=1
+[NORM] raw_id=17884 no rows
+[NORM] processing raw_id=17885 plant=NE=49768564 devType=1
+[NORM] raw_id=17885 no rows
+[NORM] processing raw_id=17886 plant=NE=51536060 devType=1
+[NORM] raw_id=17886 no rows
+[NORM] processing raw_id=17887 plant=NE=49752378 devType=10
+[NORM] raw_id=17887 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=17887 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=17887 success rows=360
+[NORM] processing raw_id=17888 plant=NE=60843094 devType=1
+[NORM] raw_id=17888 no rows
+=== DONE ===
+[Thu 04/30/2026 23:43:54.34] END 
+[Fri 05/01/2026  0:10:00.80] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 6
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 23
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 4
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 14
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 36
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=17919 plant=NE=49738145 devType=1
+[NORM] raw_id=17919 parsed_rows=208 deduped_rows=208 catalog_rows=104
+[NORM] raw_id=17919 chunk=1 metric_rows=208 catalog_rows=104
+[NORM] raw_id=17919 success rows=208
+[NORM] processing raw_id=17920 plant=NE=50173922 devType=1
+[NORM] raw_id=17920 no rows
+[NORM] processing raw_id=17921 plant=NE=49768564 devType=1
+[NORM] raw_id=17921 no rows
+[NORM] processing raw_id=17922 plant=NE=51536060 devType=1
+[NORM] raw_id=17922 no rows
+[NORM] processing raw_id=17923 plant=NE=49752378 devType=10
+[NORM] raw_id=17923 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=17923 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=17923 success rows=360
+[NORM] processing raw_id=17924 plant=NE=60843094 devType=1
+[NORM] raw_id=17924 no rows
+=== DONE ===
+[Fri 05/01/2026  0:13:56.37] END 
+[Fri 05/01/2026  0:40:00.83] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 6
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 23
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 4
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 14
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] devices count = 36
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 8
+[NORM] processing raw_id=17955 plant=NE=49738145 devType=1
+[NORM] raw_id=17955 no rows
+[NORM] processing raw_id=17956 plant=NE=49752378 devType=10
+[NORM] raw_id=17956 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=17956 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=17956 success rows=360
+[NORM] processing raw_id=17957 plant=NE=50173922 devType=1
+[NORM] raw_id=17957 no rows
+[NORM] processing raw_id=17958 plant=NE=49768564 devType=1
+[NORM] raw_id=17958 no rows
+[NORM] processing raw_id=17959 plant=NE=49738145 devType=17
+[NORM] raw_id=17959 parsed_rows=720 deduped_rows=720 catalog_rows=40
+[NORM] raw_id=17959 chunk=1 metric_rows=720 catalog_rows=40
+[NORM] raw_id=17959 success rows=720
+[NORM] processing raw_id=17960 plant=NE=51536060 devType=1
+[NORM] raw_id=17960 no rows
+[NORM] processing raw_id=17961 plant=NE=49752378 devType=10
+[NORM] raw_id=17961 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=17961 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=17961 success rows=360
+[NORM] processing raw_id=17962 plant=NE=60843094 devType=1
+[NORM] raw_id=17962 no rows
+=== DONE ===
+[Fri 05/01/2026  0:43:54.09] END 
+[Fri 05/01/2026  1:10:00.80] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=17993 plant=NE=49738145 devType=1
+[NORM] raw_id=17993 parsed_rows=208 deduped_rows=208 catalog_rows=104
+[NORM] raw_id=17993 chunk=1 metric_rows=208 catalog_rows=104
+[NORM] raw_id=17993 success rows=208
+[NORM] processing raw_id=17994 plant=NE=50173922 devType=1
+[NORM] raw_id=17994 no rows
+[NORM] processing raw_id=17995 plant=NE=49768564 devType=1
+[NORM] raw_id=17995 no rows
+[NORM] processing raw_id=17996 plant=NE=51536060 devType=1
+[NORM] raw_id=17996 no rows
+[NORM] processing raw_id=17997 plant=NE=49752378 devType=10
+[NORM] raw_id=17997 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=17997 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=17997 success rows=360
+[NORM] processing raw_id=17998 plant=NE=60843094 devType=1
+[NORM] raw_id=17998 no rows
+=== DONE ===
+[Fri 05/01/2026  1:13:55.82] END 
+[Fri 05/01/2026  1:40:00.81] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 1
+[NORM] processing raw_id=18034 plant=NE=60843094 devType=1
+[NORM] raw_id=18034 no rows
+=== DONE ===
+[Fri 05/01/2026  1:43:52.89] END 
+[Fri 05/01/2026  2:10:00.79] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18065 plant=NE=49738145 devType=1
+[NORM] raw_id=18065 parsed_rows=208 deduped_rows=208 catalog_rows=104
+[NORM] raw_id=18065 chunk=1 metric_rows=208 catalog_rows=104
+[NORM] raw_id=18065 success rows=208
+[NORM] processing raw_id=18066 plant=NE=50173922 devType=1
+[NORM] raw_id=18066 no rows
+[NORM] processing raw_id=18067 plant=NE=49768564 devType=1
+[NORM] raw_id=18067 no rows
+[NORM] processing raw_id=18068 plant=NE=51536060 devType=1
+[NORM] raw_id=18068 no rows
+[NORM] processing raw_id=18069 plant=NE=49752378 devType=10
+[NORM] raw_id=18069 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18069 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18069 success rows=360
+[NORM] processing raw_id=18070 plant=NE=60843094 devType=1
+[NORM] raw_id=18070 no rows
+=== DONE ===
+[Fri 05/01/2026  2:13:54.63] END 
+[Fri 05/01/2026  2:40:00.79] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18101 plant=NE=49738145 devType=1
+[NORM] raw_id=18101 no rows
+[NORM] processing raw_id=18102 plant=NE=50173922 devType=1
+[NORM] raw_id=18102 no rows
+[NORM] processing raw_id=18103 plant=NE=49768564 devType=1
+[NORM] raw_id=18103 no rows
+[NORM] processing raw_id=18104 plant=NE=51536060 devType=1
+[NORM] raw_id=18104 no rows
+[NORM] processing raw_id=18105 plant=NE=49752378 devType=10
+[NORM] raw_id=18105 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18105 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18105 success rows=360
+[NORM] processing raw_id=18106 plant=NE=60843094 devType=1
+[NORM] raw_id=18106 no rows
+=== DONE ===
+[Fri 05/01/2026  2:43:53.26] END 
+[Fri 05/01/2026  3:10:00.79] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18137 plant=NE=49738145 devType=1
+[NORM] raw_id=18137 parsed_rows=208 deduped_rows=208 catalog_rows=104
+[NORM] raw_id=18137 chunk=1 metric_rows=208 catalog_rows=104
+[NORM] raw_id=18137 success rows=208
+[NORM] processing raw_id=18138 plant=NE=50173922 devType=1
+[NORM] raw_id=18138 no rows
+[NORM] processing raw_id=18139 plant=NE=49768564 devType=1
+[NORM] raw_id=18139 no rows
+[NORM] processing raw_id=18140 plant=NE=51536060 devType=1
+[NORM] raw_id=18140 no rows
+[NORM] processing raw_id=18141 plant=NE=49752378 devType=10
+[NORM] raw_id=18141 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18141 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18141 success rows=360
+[NORM] processing raw_id=18142 plant=NE=60843094 devType=1
+[NORM] raw_id=18142 no rows
+=== DONE ===
+[Fri 05/01/2026  3:13:53.99] END 
+[Fri 05/01/2026  3:40:00.82] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18173 plant=NE=49738145 devType=1
+[NORM] raw_id=18173 no rows
+[NORM] processing raw_id=18174 plant=NE=50173922 devType=1
+[NORM] raw_id=18174 no rows
+[NORM] processing raw_id=18175 plant=NE=49768564 devType=1
+[NORM] raw_id=18175 no rows
+[NORM] processing raw_id=18176 plant=NE=51536060 devType=1
+[NORM] raw_id=18176 no rows
+[NORM] processing raw_id=18177 plant=NE=49752378 devType=10
+[NORM] raw_id=18177 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18177 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18177 success rows=360
+[NORM] processing raw_id=18178 plant=NE=60843094 devType=1
+[NORM] raw_id=18178 no rows
+=== DONE ===
+[Fri 05/01/2026  3:43:53.32] END 
+[Fri 05/01/2026  4:10:00.77] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18209 plant=NE=49738145 devType=1
+[NORM] raw_id=18209 parsed_rows=208 deduped_rows=208 catalog_rows=104
+[NORM] raw_id=18209 chunk=1 metric_rows=208 catalog_rows=104
+[NORM] raw_id=18209 success rows=208
+[NORM] processing raw_id=18210 plant=NE=50173922 devType=1
+[NORM] raw_id=18210 no rows
+[NORM] processing raw_id=18211 plant=NE=49768564 devType=1
+[NORM] raw_id=18211 no rows
+[NORM] processing raw_id=18212 plant=NE=51536060 devType=1
+[NORM] raw_id=18212 no rows
+[NORM] processing raw_id=18213 plant=NE=49752378 devType=10
+[NORM] raw_id=18213 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18213 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18213 success rows=360
+[NORM] processing raw_id=18214 plant=NE=60843094 devType=1
+[NORM] raw_id=18214 no rows
+=== DONE ===
+[Fri 05/01/2026  4:13:53.63] END 
+[Fri 05/01/2026  4:40:00.79] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18245 plant=NE=49738145 devType=1
+[NORM] raw_id=18245 no rows
+[NORM] processing raw_id=18246 plant=NE=50173922 devType=1
+[NORM] raw_id=18246 no rows
+[NORM] processing raw_id=18247 plant=NE=49768564 devType=1
+[NORM] raw_id=18247 no rows
+[NORM] processing raw_id=18248 plant=NE=51536060 devType=1
+[NORM] raw_id=18248 no rows
+[NORM] processing raw_id=18249 plant=NE=49752378 devType=10
+[NORM] raw_id=18249 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18249 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18249 success rows=360
+[NORM] processing raw_id=18250 plant=NE=60843094 devType=1
+[NORM] raw_id=18250 no rows
+=== DONE ===
+[Fri 05/01/2026  4:43:53.63] END 
+[Fri 05/01/2026  5:10:00.79] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18281 plant=NE=49738145 devType=1
+[NORM] raw_id=18281 parsed_rows=208 deduped_rows=208 catalog_rows=104
+[NORM] raw_id=18281 chunk=1 metric_rows=208 catalog_rows=104
+[NORM] raw_id=18281 success rows=208
+[NORM] processing raw_id=18282 plant=NE=50173922 devType=1
+[NORM] raw_id=18282 no rows
+[NORM] processing raw_id=18283 plant=NE=49768564 devType=1
+[NORM] raw_id=18283 no rows
+[NORM] processing raw_id=18284 plant=NE=51536060 devType=1
+[NORM] raw_id=18284 no rows
+[NORM] processing raw_id=18285 plant=NE=49752378 devType=10
+[NORM] raw_id=18285 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18285 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18285 success rows=360
+[NORM] processing raw_id=18286 plant=NE=60843094 devType=1
+[NORM] raw_id=18286 no rows
+=== DONE ===
+[Fri 05/01/2026  5:13:54.06] END 
+[Fri 05/01/2026  5:40:00.80] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18317 plant=NE=49738145 devType=1
+[NORM] raw_id=18317 no rows
+[NORM] processing raw_id=18318 plant=NE=50173922 devType=1
+[NORM] raw_id=18318 no rows
+[NORM] processing raw_id=18319 plant=NE=49768564 devType=1
+[NORM] raw_id=18319 no rows
+[NORM] processing raw_id=18320 plant=NE=51536060 devType=1
+[NORM] raw_id=18320 no rows
+[NORM] processing raw_id=18321 plant=NE=49752378 devType=10
+[NORM] raw_id=18321 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18321 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18321 success rows=360
+[NORM] processing raw_id=18322 plant=NE=60843094 devType=1
+[NORM] raw_id=18322 no rows
+=== DONE ===
+[Fri 05/01/2026  5:43:53.72] END 
+[Fri 05/01/2026  6:10:00.80] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18353 plant=NE=49738145 devType=1
+[NORM] raw_id=18353 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18353 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18353 success rows=624
+[NORM] processing raw_id=18354 plant=NE=50173922 devType=1
+[NORM] raw_id=18354 parsed_rows=416 deduped_rows=416 catalog_rows=104
+[NORM] raw_id=18354 chunk=1 metric_rows=416 catalog_rows=104
+[NORM] raw_id=18354 success rows=416
+[NORM] processing raw_id=18355 plant=NE=49768564 devType=1
+[NORM] raw_id=18355 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18355 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18355 success rows=624
+[NORM] processing raw_id=18356 plant=NE=51536060 devType=1
+[NORM] raw_id=18356 no rows
+[NORM] processing raw_id=18357 plant=NE=49752378 devType=10
+[NORM] raw_id=18357 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18357 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18357 success rows=360
+[NORM] processing raw_id=18358 plant=NE=60843094 devType=1
+[NORM] raw_id=18358 no rows
+=== DONE ===
+[Fri 05/01/2026  6:13:54.87] END 
+[Fri 05/01/2026  6:40:00.78] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18389 plant=NE=49738145 devType=1
+[NORM] raw_id=18389 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18389 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18389 success rows=624
+[NORM] processing raw_id=18390 plant=NE=50173922 devType=1
+[NORM] raw_id=18390 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18390 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18390 success rows=624
+[NORM] processing raw_id=18391 plant=NE=49768564 devType=1
+[NORM] raw_id=18391 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18391 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18391 success rows=624
+[NORM] processing raw_id=18392 plant=NE=51536060 devType=1
+[NORM] raw_id=18392 no rows
+[NORM] processing raw_id=18393 plant=NE=49752378 devType=10
+[NORM] raw_id=18393 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18393 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18393 success rows=360
+[NORM] processing raw_id=18394 plant=NE=60843094 devType=1
+[NORM] raw_id=18394 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18394 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18394 success rows=624
+=== DONE ===
+[Fri 05/01/2026  6:43:55.11] END 
+[Fri 05/01/2026  7:10:00.80] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18425 plant=NE=49738145 devType=1
+[NORM] raw_id=18425 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18425 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18425 success rows=624
+[NORM] processing raw_id=18426 plant=NE=50173922 devType=1
+[NORM] raw_id=18426 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18426 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18426 success rows=624
+[NORM] processing raw_id=18427 plant=NE=49768564 devType=1
+[NORM] raw_id=18427 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18427 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18427 success rows=624
+[NORM] processing raw_id=18428 plant=NE=51536060 devType=1
+[NORM] raw_id=18428 no rows
+[NORM] processing raw_id=18429 plant=NE=49752378 devType=10
+[NORM] raw_id=18429 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18429 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18429 success rows=360
+[NORM] processing raw_id=18430 plant=NE=60843094 devType=1
+[NORM] raw_id=18430 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18430 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18430 success rows=624
+=== DONE ===
+[Fri 05/01/2026  7:13:55.12] END 
+[Fri 05/01/2026  7:40:00.81] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18461 plant=NE=49738145 devType=1
+[NORM] raw_id=18461 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18461 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18461 success rows=624
+[NORM] processing raw_id=18462 plant=NE=50173922 devType=1
+[NORM] raw_id=18462 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18462 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18462 success rows=624
+[NORM] processing raw_id=18463 plant=NE=49768564 devType=1
+[NORM] raw_id=18463 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18463 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18463 success rows=624
+[NORM] processing raw_id=18464 plant=NE=51536060 devType=1
+[NORM] raw_id=18464 no rows
+[NORM] processing raw_id=18465 plant=NE=49752378 devType=10
+[NORM] raw_id=18465 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18465 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18465 success rows=360
+[NORM] processing raw_id=18466 plant=NE=60843094 devType=1
+[NORM] raw_id=18466 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18466 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18466 success rows=624
+=== DONE ===
+[Fri 05/01/2026  7:43:59.33] END 
+[Fri 05/01/2026  8:10:00.84] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18497 plant=NE=49738145 devType=1
+[NORM] raw_id=18497 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18497 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18497 success rows=624
+[NORM] processing raw_id=18498 plant=NE=50173922 devType=1
+[NORM] raw_id=18498 parsed_rows=416 deduped_rows=416 catalog_rows=104
+[NORM] raw_id=18498 chunk=1 metric_rows=416 catalog_rows=104
+[NORM] raw_id=18498 success rows=416
+[NORM] processing raw_id=18499 plant=NE=49768564 devType=1
+[NORM] raw_id=18499 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18499 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18499 success rows=624
+[NORM] processing raw_id=18500 plant=NE=51536060 devType=1
+[NORM] raw_id=18500 no rows
+[NORM] processing raw_id=18501 plant=NE=49752378 devType=10
+[NORM] raw_id=18501 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18501 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18501 success rows=360
+[NORM] processing raw_id=18502 plant=NE=60843094 devType=1
+[NORM] raw_id=18502 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18502 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18502 success rows=624
+=== DONE ===
+[Fri 05/01/2026  8:14:02.39] END 
+[Fri 05/01/2026  8:40:00.80] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18533 plant=NE=49738145 devType=1
+[NORM] raw_id=18533 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18533 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18533 success rows=624
+[NORM] processing raw_id=18534 plant=NE=50173922 devType=1
+[NORM] raw_id=18534 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18534 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18534 success rows=624
+[NORM] processing raw_id=18535 plant=NE=49768564 devType=1
+[NORM] raw_id=18535 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18535 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18535 success rows=624
+[NORM] processing raw_id=18536 plant=NE=51536060 devType=1
+[NORM] raw_id=18536 no rows
+[NORM] processing raw_id=18537 plant=NE=49752378 devType=10
+[NORM] raw_id=18537 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18537 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18537 success rows=360
+[NORM] processing raw_id=18538 plant=NE=60843094 devType=1
+[NORM] raw_id=18538 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18538 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18538 success rows=624
+=== DONE ===
+[Fri 05/01/2026  8:43:59.82] END 
+[Fri 05/01/2026  9:10:00.84] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18569 plant=NE=49738145 devType=1
+[NORM] raw_id=18569 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18569 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18569 success rows=624
+[NORM] processing raw_id=18570 plant=NE=50173922 devType=1
+[NORM] raw_id=18570 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18570 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18570 success rows=624
+[NORM] processing raw_id=18571 plant=NE=49768564 devType=1
+[NORM] raw_id=18571 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18571 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18571 success rows=624
+[NORM] processing raw_id=18572 plant=NE=51536060 devType=1
+[NORM] raw_id=18572 no rows
+[NORM] processing raw_id=18573 plant=NE=49752378 devType=10
+[NORM] raw_id=18573 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18573 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18573 success rows=360
+[NORM] processing raw_id=18574 plant=NE=60843094 devType=1
+[NORM] raw_id=18574 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18574 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18574 success rows=624
+=== DONE ===
+[Fri 05/01/2026  9:13:55.77] END 
+[Fri 05/01/2026  9:40:00.81] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18605 plant=NE=49738145 devType=1
+[NORM] raw_id=18605 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18605 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18605 success rows=624
+[NORM] processing raw_id=18606 plant=NE=50173922 devType=1
+[NORM] raw_id=18606 parsed_rows=208 deduped_rows=208 catalog_rows=104
+[NORM] raw_id=18606 chunk=1 metric_rows=208 catalog_rows=104
+[NORM] raw_id=18606 success rows=208
+[NORM] processing raw_id=18607 plant=NE=49768564 devType=1
+[NORM] raw_id=18607 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18607 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18607 success rows=624
+[NORM] processing raw_id=18608 plant=NE=51536060 devType=1
+[NORM] raw_id=18608 no rows
+[NORM] processing raw_id=18609 plant=NE=49752378 devType=10
+[NORM] raw_id=18609 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18609 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18609 success rows=360
+[NORM] processing raw_id=18610 plant=NE=60843094 devType=1
+[NORM] raw_id=18610 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18610 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18610 success rows=624
+=== DONE ===
+[Fri 05/01/2026  9:43:57.27] END 
+[Fri 05/01/2026 10:10:00.80] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18641 plant=NE=49738145 devType=1
+[NORM] raw_id=18641 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18641 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18641 success rows=624
+[NORM] processing raw_id=18642 plant=NE=50173922 devType=1
+[NORM] raw_id=18642 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18642 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18642 success rows=624
+[NORM] processing raw_id=18643 plant=NE=49768564 devType=1
+[NORM] raw_id=18643 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18643 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18643 success rows=624
+[NORM] processing raw_id=18644 plant=NE=51536060 devType=1
+[NORM] raw_id=18644 no rows
+[NORM] processing raw_id=18645 plant=NE=49752378 devType=10
+[NORM] raw_id=18645 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18645 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18645 success rows=360
+[NORM] processing raw_id=18646 plant=NE=60843094 devType=1
+[NORM] raw_id=18646 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18646 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18646 success rows=624
+=== DONE ===
+[Fri 05/01/2026 10:13:56.54] END 
+[Fri 05/01/2026 10:40:00.80] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18677 plant=NE=49738145 devType=1
+[NORM] raw_id=18677 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18677 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18677 success rows=624
+[NORM] processing raw_id=18678 plant=NE=50173922 devType=1
+[NORM] raw_id=18678 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18678 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18678 success rows=624
+[NORM] processing raw_id=18679 plant=NE=49768564 devType=1
+[NORM] raw_id=18679 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18679 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18679 success rows=624
+[NORM] processing raw_id=18680 plant=NE=51536060 devType=1
+[NORM] raw_id=18680 no rows
+[NORM] processing raw_id=18681 plant=NE=49752378 devType=10
+[NORM] raw_id=18681 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18681 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18681 success rows=360
+[NORM] processing raw_id=18682 plant=NE=60843094 devType=1
+[NORM] raw_id=18682 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18682 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18682 success rows=624
+=== DONE ===
+[Fri 05/01/2026 10:43:55.75] END 
+[Fri 05/01/2026 11:10:00.79] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18713 plant=NE=49738145 devType=1
+[NORM] raw_id=18713 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18713 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18713 success rows=624
+[NORM] processing raw_id=18714 plant=NE=50173922 devType=1
+[NORM] raw_id=18714 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18714 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18714 success rows=624
+[NORM] processing raw_id=18715 plant=NE=49768564 devType=1
+[NORM] raw_id=18715 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18715 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18715 success rows=624
+[NORM] processing raw_id=18716 plant=NE=51536060 devType=1
+[NORM] raw_id=18716 no rows
+[NORM] processing raw_id=18717 plant=NE=49752378 devType=10
+[NORM] raw_id=18717 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18717 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18717 success rows=360
+[NORM] processing raw_id=18718 plant=NE=60843094 devType=1
+[NORM] raw_id=18718 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18718 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18718 success rows=624
+=== DONE ===
+[Fri 05/01/2026 11:13:56.30] END 
+[Fri 05/01/2026 11:40:00.79] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18749 plant=NE=49738145 devType=1
+[NORM] raw_id=18749 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18749 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18749 success rows=624
+[NORM] processing raw_id=18750 plant=NE=50173922 devType=1
+[NORM] raw_id=18750 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18750 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18750 success rows=624
+[NORM] processing raw_id=18751 plant=NE=49768564 devType=1
+[NORM] raw_id=18751 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18751 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18751 success rows=624
+[NORM] processing raw_id=18752 plant=NE=51536060 devType=1
+[NORM] raw_id=18752 no rows
+[NORM] processing raw_id=18753 plant=NE=49752378 devType=10
+[NORM] raw_id=18753 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18753 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18753 success rows=360
+[NORM] processing raw_id=18754 plant=NE=60843094 devType=1
+[NORM] raw_id=18754 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18754 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18754 success rows=624
+=== DONE ===
+[Fri 05/01/2026 11:43:56.12] END 
+[Fri 05/01/2026 12:10:00.79] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 5 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 2 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=228 plant=NE=49738145 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=237 plant=NE=50173922 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 3 target(s)
+[DEBUG] target_id=233 plant=NE=49768564 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=240 plant=NE=51536060 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=243 plant=NE=60843094 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 6
+[NORM] processing raw_id=18785 plant=NE=49738145 devType=1
+[NORM] raw_id=18785 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18785 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18785 success rows=624
+[NORM] processing raw_id=18786 plant=NE=50173922 devType=1
+[NORM] raw_id=18786 parsed_rows=416 deduped_rows=416 catalog_rows=104
+[NORM] raw_id=18786 chunk=1 metric_rows=416 catalog_rows=104
+[NORM] raw_id=18786 success rows=416
+[NORM] processing raw_id=18787 plant=NE=49768564 devType=1
+[NORM] raw_id=18787 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18787 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18787 success rows=624
+[NORM] processing raw_id=18788 plant=NE=51536060 devType=1
+[NORM] raw_id=18788 no rows
+[NORM] processing raw_id=18789 plant=NE=49752378 devType=10
+[NORM] raw_id=18789 parsed_rows=360 deduped_rows=360 catalog_rows=9
+[NORM] raw_id=18789 chunk=1 metric_rows=360 catalog_rows=9
+[NORM] raw_id=18789 success rows=360
+[NORM] processing raw_id=18790 plant=NE=60843094 devType=1
+[NORM] raw_id=18790 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=18790 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=18790 success rows=624
+=== DONE ===
+[Fri 05/01/2026 12:13:55.84] END 

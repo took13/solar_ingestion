@@ -182,3 +182,20 @@ class MetadataRepository:
             WHERE account_id = ?
         """, (account_id,))
         self.conn.commit()
+
+    def get_active_account_plants(self, account_id: int) -> list[str]:
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT DISTINCT
+                paa.plant_code
+            FROM dbo.plant_account_assignment paa
+            INNER JOIN dbo.dim_plant p
+                ON p.plant_code = paa.plant_code
+            WHERE paa.account_id = ?
+            AND ISNULL(p.is_active, 1) = 1
+            AND paa.effective_to IS NULL
+            AND paa.plant_code IS NOT NULL
+            ORDER BY paa.plant_code
+        """, (account_id,))
+
+        return [r.plant_code for r in cursor.fetchall()]
