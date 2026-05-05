@@ -76,22 +76,40 @@ class JobRunner:
         return run_id
 
     def _collapse_targets(self, targets: list[dict]) -> list[dict]:
+        """
+        Collapse only explicit account-scope getDevRealKpi targets.
+
+        IMPORTANT:
+        Plant-specific getDevRealKpi targets must NOT be collapsed to __ACCOUNT__.
+        This is required for inverter_realtime_online because Enserve needs only
+        selected plants such as NE=50281829 and NE=50979503.
+        """
         collapsed: list[dict] = []
-        seen_device_realtime: set[tuple[int, int]] = set()
+        seen_account_scope: set[tuple[int, int]] = set()
 
         for target in targets:
             endpoint_name = target.get("endpoint_name")
-            if endpoint_name == "getDevRealKpi":
+            plant_code = target.get("plant_code")
+
+            # Collapse only explicit __ACCOUNT__ targets
+            if endpoint_name == "getDevRealKpi" and plant_code == "__ACCOUNT__":
                 key = (target["account_id"], target["dev_type_id"])
-                if key in seen_device_realtime:
+
+                if key in seen_account_scope:
                     continue
-                seen_device_realtime.add(key)
+
+                seen_account_scope.add(key)
+
                 synthetic = dict(target)
                 synthetic["plant_code"] = "__ACCOUNT__"
                 synthetic["is_account_scope"] = True
                 collapsed.append(synthetic)
-            else:
-                collapsed.append(target)
+                continue
+
+            # Keep plant-specific targets as-is
+            target = dict(target)
+            target["is_account_scope"] = False
+            collapsed.append(target)
 
         return collapsed
 
@@ -310,6 +328,16 @@ class JobRunner:
         self.checkpoint_service.mark_success(target, run_id, None)
 
     def _run_full_device_target(self, run_id: int, target: dict, endpoint_name: str, devices: list[dict], window: dict | None) -> None:
+        # Dedupe devices by dev_id to avoid duplicated devIds in request payload
+        deduped_devices = {}
+        for d in devices:
+            dev_id = d.get("dev_id")
+            if dev_id is None:
+                continue
+            deduped_devices[int(dev_id)] = d
+
+        devices = list(deduped_devices.values())
+
         requested_batch_size = target.get("requested_batch_size") or target.get("batch_size") or 10
         batches = self.batch_planner.split_items(items=devices, endpoint_name=endpoint_name, requested_batch_size=requested_batch_size)
         max_batches = target.get("max_batches_per_run") or len(batches)

@@ -23,7 +23,12 @@ class GenericNormalizeJob:
 
         for row in rows:
             raw_id = row["raw_id"]
-            print(f"[NORM] processing raw_id={raw_id} plant={row['plant_code']} devType={row['dev_type_id']}")
+            print(
+                f"[NORM] processing raw_id={raw_id} "
+                f"api={row['api_name']} "
+                f"plant={row['plant_code']} "
+                f"devType={row['dev_type_id']}"
+            )
 
             try:
                 response_body = json.loads(row["response_json"]) if row["response_json"] else {}
@@ -36,6 +41,25 @@ class GenericNormalizeJob:
                     dev_type_id=row["dev_type_id"],
                     source_api=row["api_name"],
                 )
+
+                # ---------------------------------------------------------------------
+                # SAFETY FIX:
+                # getDevRealKpi response contains devId/sn but does NOT contain
+                # stationCode per device record.
+                #
+                # raw.api_call.plant_code can be:
+                #   - "__ACCOUNT__"
+                #   - comma-separated plant list
+                #   - only the first plant in a multi-plant device batch
+                #
+                # Therefore, for device realtime API, plant_code must be resolved
+                # from dbo.dim_device by dev_id before inserting to norm.device_metric_long.
+                # ---------------------------------------------------------------------
+                if row["api_name"] == "getDevRealKpi" and generic_rows:
+                    self._apply_device_plant_lookup(
+                        raw_id=raw_id,
+                        rows=generic_rows,
+                    )
 
                 if not generic_rows:
                     self.status_service.mark_success(raw_id=raw_id, generic_row_count=0)
@@ -112,6 +136,72 @@ class GenericNormalizeJob:
             }
             for r in rows
         ]
+
+    def _apply_device_plant_lookup(self, raw_id: int, rows: list[dict]) -> None:
+        dev_ids = {
+            int(r["dev_id"])
+            for r in rows
+            if r.get("dev_id") is not None
+        }
+
+        if not dev_ids:
+            print(f"[WARN] raw_id={raw_id} getDevRealKpi has no dev_id in parsed rows")
+            return
+
+        device_lookup = self._get_device_lookup(dev_ids)
+
+        missing_dev_ids = set()
+
+        for r in rows:
+            dev_id = r.get("dev_id")
+
+            if dev_id is None:
+                continue
+
+            dev_id = int(dev_id)
+            info = device_lookup.get(dev_id)
+
+            if info:
+                r["plant_code"] = info["plant_code"]
+                r["plant_id"] = info["plant_id"]
+            else:
+                missing_dev_ids.add(dev_id)
+
+        if missing_dev_ids:
+            print(
+                f"[WARN] raw_id={raw_id} getDevRealKpi has "
+                f"{len(missing_dev_ids)} dev_id(s) not found in dbo.dim_device: "
+                f"{sorted(list(missing_dev_ids))[:10]}"
+            )
+
+    def _get_device_lookup(self, dev_ids: set[int]) -> dict[int, dict]:
+        if not dev_ids:
+            return {}
+
+        placeholders = ",".join("?" for _ in dev_ids)
+
+        sql = f"""
+            SELECT
+                d.dev_id,
+                d.plant_code,
+                p.plant_id
+            FROM dbo.dim_device d
+            LEFT JOIN dbo.dim_plant p
+                ON p.plant_code = d.plant_code
+            WHERE d.dev_id IN ({placeholders})
+        """
+
+        cursor = self.conn.cursor()
+        cursor.execute(sql, tuple(dev_ids))
+
+        lookup = {}
+        for r in cursor.fetchall():
+            lookup[int(r.dev_id)] = {
+                "plant_code": r.plant_code,
+                "plant_id": r.plant_id,
+            }
+
+        return lookup
 
     def _dedup_rows(self, rows: list[dict]) -> list[dict]:
         seen = {}
