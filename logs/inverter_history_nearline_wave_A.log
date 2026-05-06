@@ -7296,3 +7296,33 @@
 [NORM] raw_id=26320 success rows=624
 === DONE ===
 [Tue 05/05/2026 15:04:00.78] END 
+[Tue 05/05/2026 15:30:00.86] START 
+=== INGESTION ===
+[APP] Starting job from DB: inverter_history_nearline
+[APP] Loaded 6 enabled targets for job=inverter_history_nearline
+[APP] Grouped into 3 account bucket(s)
+[APP] Account=GPSC_PI_01 (id=1) will run 2 target(s)
+[DEBUG] target_id=82 plant=NE=50281829 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=231 plant=NE=49751847 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_02 (id=2) will run 3 target(s)
+[DEBUG] target_id=83 plant=NE=50979503 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=235 plant=NE=49786676 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[DEBUG] target_id=242 plant=NE=56663402 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+[APP] Account=GPSC_PI_03 (id=3) will run 1 target(s)
+[DEBUG] target_id=238 plant=NE=50632673 dev_type=1 endpoint=getDevHistoryKpi service_class=nearline_rotating
+[DEBUG] enter rotating device path
+=== NORMALIZE (GENERIC DEVICE) ===
+[NORM] pending raw rows = 2
+[NORM] processing raw_id=26359 api=getDevHistoryKpi plant=NE=56663402 devType=1
+[NORM] raw_id=26359 no rows
+[NORM] processing raw_id=26360 api=getDevHistoryKpi plant=NE=50632673 devType=1
+[NORM] raw_id=26360 parsed_rows=624 deduped_rows=624 catalog_rows=104
+[NORM] raw_id=26360 chunk=1 metric_rows=624 catalog_rows=104
+[NORM] raw_id=26360 success rows=624
+=== DONE ===
+[Tue 05/05/2026 15:33:56.76] END 
