@@ -14,13 +14,26 @@ def main():
     DECLARE @FromUtc datetime2(0) = DATEADD(hour, -4, SYSUTCDATETIME());
     DECLARE @ToUtc   datetime2(0) = DATEADD(minute, 10, SYSUTCDATETIME());
 
+    PRINT CONCAT('[MART] Window FromUtc=', CONVERT(varchar(19), @FromUtc, 120),
+                 ' ToUtc=', CONVERT(varchar(19), @ToUtc, 120));
+
     EXEC mart.usp_load_fact_dev_meter_5min
         @FromUtc = @FromUtc,
         @ToUtc   = @ToUtc;
 
+    PRINT '[MART] Completed meter 5min load';
+
     EXEC mart.usp_load_fact_dev_emi_5min
         @FromUtc = @FromUtc,
         @ToUtc   = @ToUtc;
+
+    PRINT '[MART] Completed EMI 5min load';
+
+    EXEC mart.usp_load_fact_dev_inverter_5min
+        @FromUtc = @FromUtc,
+        @ToUtc   = @ToUtc;
+
+    PRINT '[MART] Completed inverter 5min load';
     """
 
     cursor.execute(sql)
