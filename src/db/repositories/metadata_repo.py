@@ -85,12 +85,17 @@ class MetadataRepository:
             FROM dbo.dim_device d
             INNER JOIN dbo.plant_account_assignment paa
                 ON paa.plant_code = d.plant_code
+            INNER JOIN dbo.dim_plant p
+                ON p.plant_code = d.plant_code
             WHERE paa.account_id = ?
-              AND d.dev_type_id = ?
-              AND d.is_active = 1
+            AND paa.effective_to IS NULL
+            AND ISNULL(p.is_active, 1) = 1
+            AND d.dev_type_id = ?
+            AND d.is_active = 1
+            AND d.dev_id IS NOT NULL
             ORDER BY d.dev_id
         """, (account_id, dev_type_id))
-        rows = cursor.fetchall()
+
         return [
             {
                 "dev_id": r.dev_id,
@@ -100,7 +105,7 @@ class MetadataRepository:
                 "dev_name": r.dev_name,
                 "is_active": r.is_active,
             }
-            for r in rows
+            for r in cursor.fetchall()
         ]
 
     def get_plant(self, plant_code: str) -> dict | None:

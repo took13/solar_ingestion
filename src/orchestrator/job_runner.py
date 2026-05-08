@@ -348,7 +348,26 @@ class JobRunner:
         for batch_no, batch in enumerate(selected_batches, start=1):
             dev_ids = [d["dev_id"] for d in batch]
             if endpoint_name == "getDevRealKpi":
-                request_payload = {"devTypeId": target["dev_type_id"], "devIds": ",".join(str(x) for x in dev_ids)}
+                request_payload = {
+                    "devTypeId": target["dev_type_id"],
+                    "devIds": ",".join(str(x) for x in dev_ids),
+                }
+
+                if target.get("plant_code") == "__ACCOUNT__" or target.get("is_account_scope"):
+                    expanded_plant_codes = sorted({
+                        str(d.get("plant_code"))
+                        for d in devices
+                        if d.get("plant_code")
+                    })
+                    request_payload.update({
+                        "targetPlantCode": "__ACCOUNT__",
+                        "expandedPlantCount": len(expanded_plant_codes),
+                        "expandedDeviceCount": len(devices),
+                        "batchNo": batch_no,
+                        "batchSize": len(dev_ids),
+                        "source": "account_scope_expansion",
+                    })
+
                 api_name = "getDevRealKpi"
                 endpoint_path = "/thirdData/getDevRealKpi"
             elif endpoint_name == "getDevHistoryKpi":

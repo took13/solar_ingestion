@@ -6,7 +6,7 @@ from typing import Optional
 
 import requests
 
-from src.api.exceptions import HuaweiLoginError
+from src.api.exceptions import HuaweiLoginError, HuaweiRateLimitError
 
 
 @dataclass
@@ -79,8 +79,19 @@ class SessionManager:
             raise HuaweiLoginError(f"Login returned non-JSON response: {response.text[:1000]}") from e
 
         if not body.get("success") or body.get("failCode") != 0:
+            fail_code = body.get("failCode")
+            message = body.get("message")
+
+            # Huawei returns failCode=407 when the login API flow-control limit is exceeded.
+            # Treat it as a rate-limit event so the orchestrator can apply account cooldown/backoff
+            # instead of retrying as a generic login failure.
+            if fail_code == 407:
+                raise HuaweiRateLimitError(
+                    f"Login rate limited: failCode={fail_code}, message={message}"
+                )
+
             raise HuaweiLoginError(
-                f"Login failed: failCode={body.get('failCode')}, message={body.get('message')}"
+                f"Login failed: failCode={fail_code}, message={message}"
             )
 
         token = response.headers.get("XSRF-TOKEN")
