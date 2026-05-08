@@ -6,6 +6,16 @@ class TargetRepository:
         self.conn = conn
 
     def get_active_targets_by_job(self, job_id: int, wave_group=None) -> list[dict]:
+        """
+        Load enabled ingest targets for a job.
+
+        Long-term active/inactive plant rule:
+        - Account-scope targets with plant_code='__ACCOUNT__' are allowed.
+          They will be expanded later using active plants only.
+        - Plant-specific targets are allowed only when dbo.dim_plant.is_active = 1.
+        - Targets for inactive API accounts are excluded.
+        - Unknown plant_code is excluded for plant-specific targets.
+        """
         cursor = self.conn.cursor()
 
         where_wave = ""
@@ -15,7 +25,8 @@ class TargetRepository:
             where_wave = " AND UPPER(COALESCE(t.wave_group, '')) = ?"
             params.append(wave_group.upper())
 
-        cursor.execute(f"""
+        cursor.execute(
+            f"""
             SELECT
                 t.target_id,
                 t.job_id,
@@ -43,14 +54,26 @@ class TargetRepository:
                 t.hard_window_mode,
                 t.wave_group
             FROM ctl.ingest_target t
+            INNER JOIN dbo.dim_api_account a
+                ON a.account_id = t.account_id
+               AND ISNULL(a.is_active, 0) = 1
+            LEFT JOIN dbo.dim_plant p
+                ON p.plant_code = t.plant_code
             WHERE t.job_id = ?
-            AND t.is_enabled = 1
-            {where_wave}
+              AND t.is_enabled = 1
+              AND
+              (
+                    t.plant_code = '__ACCOUNT__'
+                 OR ISNULL(p.is_active, 0) = 1
+              )
+              {where_wave}
             ORDER BY
                 COALESCE(t.priority_weight, t.priority_no, 999999),
                 t.priority_no,
                 t.target_id
-        """, tuple(params))
+            """,
+            tuple(params),
+        )
 
         rows = cursor.fetchall()
 
@@ -87,28 +110,19 @@ class TargetRepository:
 
     def get_targets_by_job_name(self, job_name: str, wave_group=None) -> list[dict]:
         cursor = self.conn.cursor()
-        cursor.execute("""
+
+        cursor.execute(
+            """
             SELECT TOP 1 job_id
             FROM ctl.ingest_job
             WHERE job_name = ?
-            AND is_enabled = 1
-        """, (job_name,))
+              AND is_enabled = 1
+            """,
+            (job_name,),
+        )
 
         row = cursor.fetchone()
         if not row:
             return []
 
         return self.get_active_targets_by_job(row.job_id, wave_group=wave_group)
-
-        def get_targets_by_job_name(self, job_name: str) -> list[dict]:
-            cursor = self.conn.cursor()
-            cursor.execute("""
-                SELECT TOP 1 job_id
-                FROM ctl.ingest_job
-                WHERE job_name = ?
-                AND is_enabled = 1
-            """, (job_name,))
-            row = cursor.fetchone()
-            if not row:
-                return []
-            return self.get_active_targets_by_job(row.job_id)

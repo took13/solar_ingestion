@@ -124,51 +124,129 @@ def load_enabled_targets(cursor):
 
     return targets
 
-
 def load_latest_4_rows_for_plant(cursor, plant_code):
     """
     Load latest 4 x 15-minute records for one plant.
-    Current behavior:
-    - Sends the latest 4 available 15-min records.
-    - Future improvement: add checkpoint to avoid duplicate sending.
+
+    Fix:
+    - irradiance_wm2 should not rely only on mart.vw_enserve_15min_export.irradiance_wm2
+      because current view maps from horiz_radiant_line, which may be NULL.
+    - Use fallback from norm.device_metric_long devType 10:
+        horiz_radiant_line -> radiant_line -> 0.0
+    - temperature_c:
+        temperature -> pv_temperature -> view temperature -> 0.0
     """
     cursor.execute(
         """
         WITH ranked AS
         (
             SELECT
-                plant_code,
-                collect_time_utc,
-                power_kw,
-                number_inverter,
-                CAST(NULL AS FLOAT) AS irradiance_wm2,
-                CAST(NULL AS FLOAT) AS temperature_c,
-                reporting_inverter_count,
+                e.plant_code,
+                e.collect_time_utc,
+                e.power_kw,
+                e.number_inverter,
+                e.reporting_inverter_count,
+                e.irradiance_wm2 AS view_irradiance_wm2,
+                e.temperature_c AS view_temperature_c,
                 ROW_NUMBER() OVER
                 (
-                    PARTITION BY plant_code
-                    ORDER BY collect_time_utc DESC
+                    PARTITION BY e.plant_code
+                    ORDER BY e.collect_time_utc DESC
                 ) AS rn
-            FROM mart.vw_enserve_15min_export
-            WHERE plant_code = ?
+            FROM mart.vw_enserve_15min_export e
+            WHERE e.plant_code = ?
         )
         SELECT
-            plant_code,
-            collect_time_utc,
-            power_kw,
-            number_inverter,
-            irradiance_wm2,
-            temperature_c,
-            reporting_inverter_count
-        FROM ranked
-        WHERE rn <= 4
-        ORDER BY collect_time_utc
+            r.plant_code,
+            r.collect_time_utc,
+            r.power_kw,
+            r.number_inverter,
+
+            CAST(
+                COALESCE(
+                    NULLIF(horiz.metric_value_num, 0),
+                    NULLIF(radiant.metric_value_num, 0),
+                    NULLIF(r.view_irradiance_wm2, 0),
+                    0.0
+                ) AS FLOAT
+            ) AS irradiance_wm2,
+
+            CAST(
+                COALESCE(
+                    temp.metric_value_num,
+                    pvtemp.metric_value_num,
+                    r.view_temperature_c,
+                    0.0
+                ) AS FLOAT
+            ) AS temperature_c,
+
+            r.reporting_inverter_count
+
+        FROM ranked r
+
+        OUTER APPLY
+        (
+            SELECT TOP 1
+                d.metric_value_num
+            FROM norm.device_metric_long d
+            WHERE d.plant_code = r.plant_code
+              AND d.dev_type_id = 10
+              AND d.metric_name = 'horiz_radiant_line'
+              AND d.metric_value_num IS NOT NULL
+              AND d.collect_time_utc <= r.collect_time_utc
+              AND d.collect_time_utc >= DATEADD(minute, -30, r.collect_time_utc)
+            ORDER BY d.collect_time_utc DESC
+        ) horiz
+
+        OUTER APPLY
+        (
+            SELECT TOP 1
+                d.metric_value_num
+            FROM norm.device_metric_long d
+            WHERE d.plant_code = r.plant_code
+              AND d.dev_type_id = 10
+              AND d.metric_name = 'radiant_line'
+              AND d.metric_value_num IS NOT NULL
+              AND d.collect_time_utc <= r.collect_time_utc
+              AND d.collect_time_utc >= DATEADD(minute, -30, r.collect_time_utc)
+            ORDER BY d.collect_time_utc DESC
+        ) radiant
+
+        OUTER APPLY
+        (
+            SELECT TOP 1
+                d.metric_value_num
+            FROM norm.device_metric_long d
+            WHERE d.plant_code = r.plant_code
+              AND d.dev_type_id = 10
+              AND d.metric_name = 'temperature'
+              AND d.metric_value_num IS NOT NULL
+              AND d.collect_time_utc <= r.collect_time_utc
+              AND d.collect_time_utc >= DATEADD(minute, -30, r.collect_time_utc)
+            ORDER BY d.collect_time_utc DESC
+        ) temp
+
+        OUTER APPLY
+        (
+            SELECT TOP 1
+                d.metric_value_num
+            FROM norm.device_metric_long d
+            WHERE d.plant_code = r.plant_code
+              AND d.dev_type_id = 10
+              AND d.metric_name = 'pv_temperature'
+              AND d.metric_value_num IS NOT NULL
+              AND d.collect_time_utc <= r.collect_time_utc
+              AND d.collect_time_utc >= DATEADD(minute, -30, r.collect_time_utc)
+            ORDER BY d.collect_time_utc DESC
+        ) pvtemp
+
+        WHERE r.rn <= 4
+        ORDER BY r.collect_time_utc
         """,
         plant_code,
     )
 
     return cursor.fetchall()
-
 
 def build_records(rows):
     records = []

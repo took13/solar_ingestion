@@ -132,9 +132,11 @@ def load_previous_day_rows_for_plant(cursor, plant_code):
     - Sends the previous day's 15-min data
     - Expected: 96 records per plant if data is complete
 
-    Note:
-    This uses GETDATE() because the mart timestamp currently follows local operational time.
-    If the timestamp pipeline is fully normalized to UTC later, this can be changed to UTC logic.
+    Fix:
+    - irradiance_wm2 fallback:
+        horiz_radiant_line -> radiant_line -> view irradiance -> 0.0
+    - temperature_c fallback:
+        temperature -> pv_temperature -> view temperature -> 0.0
     """
     cursor.execute(
         """
@@ -143,18 +145,93 @@ def load_previous_day_rows_for_plant(cursor, plant_code):
         DECLARE @ToTime   datetime2(0) = CAST(@TodayLocal AS datetime2(0));
 
         SELECT
-            plant_code,
-            collect_time_utc,
-            power_kw,
-            number_inverter,
-            CAST(NULL AS FLOAT) AS irradiance_wm2,
-            CAST(NULL AS FLOAT) AS temperature_c,
-            reporting_inverter_count
-        FROM mart.vw_enserve_15min_export
-        WHERE plant_code = ?
-          AND collect_time_utc >= @FromTime
-          AND collect_time_utc <  @ToTime
-        ORDER BY collect_time_utc
+            e.plant_code,
+            e.collect_time_utc,
+            e.power_kw,
+            e.number_inverter,
+
+            CAST(
+                COALESCE(
+                    NULLIF(horiz.metric_value_num, 0),
+                    NULLIF(radiant.metric_value_num, 0),
+                    NULLIF(e.irradiance_wm2, 0),
+                    0.0
+                ) AS FLOAT
+            ) AS irradiance_wm2,
+
+            CAST(
+                COALESCE(
+                    temp.metric_value_num,
+                    pvtemp.metric_value_num,
+                    e.temperature_c,
+                    0.0
+                ) AS FLOAT
+            ) AS temperature_c,
+
+            e.reporting_inverter_count
+
+        FROM mart.vw_enserve_15min_export e
+
+        OUTER APPLY
+        (
+            SELECT TOP 1
+                d.metric_value_num
+            FROM norm.device_metric_long d
+            WHERE d.plant_code = e.plant_code
+              AND d.dev_type_id = 10
+              AND d.metric_name = 'horiz_radiant_line'
+              AND d.metric_value_num IS NOT NULL
+              AND d.collect_time_utc <= e.collect_time_utc
+              AND d.collect_time_utc >= DATEADD(minute, -30, e.collect_time_utc)
+            ORDER BY d.collect_time_utc DESC
+        ) horiz
+
+        OUTER APPLY
+        (
+            SELECT TOP 1
+                d.metric_value_num
+            FROM norm.device_metric_long d
+            WHERE d.plant_code = e.plant_code
+              AND d.dev_type_id = 10
+              AND d.metric_name = 'radiant_line'
+              AND d.metric_value_num IS NOT NULL
+              AND d.collect_time_utc <= e.collect_time_utc
+              AND d.collect_time_utc >= DATEADD(minute, -30, e.collect_time_utc)
+            ORDER BY d.collect_time_utc DESC
+        ) radiant
+
+        OUTER APPLY
+        (
+            SELECT TOP 1
+                d.metric_value_num
+            FROM norm.device_metric_long d
+            WHERE d.plant_code = e.plant_code
+              AND d.dev_type_id = 10
+              AND d.metric_name = 'temperature'
+              AND d.metric_value_num IS NOT NULL
+              AND d.collect_time_utc <= e.collect_time_utc
+              AND d.collect_time_utc >= DATEADD(minute, -30, e.collect_time_utc)
+            ORDER BY d.collect_time_utc DESC
+        ) temp
+
+        OUTER APPLY
+        (
+            SELECT TOP 1
+                d.metric_value_num
+            FROM norm.device_metric_long d
+            WHERE d.plant_code = e.plant_code
+              AND d.dev_type_id = 10
+              AND d.metric_name = 'pv_temperature'
+              AND d.metric_value_num IS NOT NULL
+              AND d.collect_time_utc <= e.collect_time_utc
+              AND d.collect_time_utc >= DATEADD(minute, -30, e.collect_time_utc)
+            ORDER BY d.collect_time_utc DESC
+        ) pvtemp
+
+        WHERE e.plant_code = ?
+          AND e.collect_time_utc >= @FromTime
+          AND e.collect_time_utc <  @ToTime
+        ORDER BY e.collect_time_utc
         """,
         plant_code,
     )
