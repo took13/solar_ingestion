@@ -12,13 +12,9 @@ class EnservePayloadBuilder:
             data = {
                 "power_kw": float(r["power_kw"]),
                 "number_inverter": int(r["number_inverter"]),
+                "irradiance_wm2": float(r.get("irradiance_wm2") or 0.0),
+                "temperature_c": float(r.get("temperature_c") or 0.0),
             }
-
-            if r.get("irradiance_wm2") is not None:
-                data["irradiance_wm2"] = float(r["irradiance_wm2"])
-
-            if r.get("temperature_c") is not None:
-                data["temperature_c"] = float(r["temperature_c"])
 
             records.append({
                 "timestamp": self._format_utc_z(r["collect_time_utc"]),

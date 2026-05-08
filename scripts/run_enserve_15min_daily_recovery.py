@@ -147,10 +147,10 @@ def load_previous_day_rows_for_plant(cursor, plant_code):
             collect_time_utc,
             power_kw,
             number_inverter,
-            irradiance_wm2,
-            temperature_c,
+            CAST(NULL AS FLOAT) AS irradiance_wm2,
+            CAST(NULL AS FLOAT) AS temperature_c,
             reporting_inverter_count
-        FROM mart.vw_enserve_15min
+        FROM mart.vw_enserve_15min_export
         WHERE plant_code = ?
           AND collect_time_utc >= @FromTime
           AND collect_time_utc <  @ToTime
@@ -174,8 +174,10 @@ def build_records(rows):
             continue
 
         data = {
-            "power_kw": float(r.power_kw),
+            "power_kw": float(r.power_kw or 0.0),
             "number_inverter": int(r.number_inverter or 0),
+            "irradiance_wm2": float(r.irradiance_wm2 or 0.0),
+            "temperature_c": float(r.temperature_c or 0.0),
         }
 
         # Optional numeric fields: omit if missing

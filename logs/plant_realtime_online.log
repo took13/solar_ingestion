@@ -1813,3 +1813,213 @@
 [RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
 [EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
 [CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30846 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30849 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30850 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30851 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30854 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30855 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30856 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30859 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30860 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30861 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30864 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30865 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30866 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORMALIZE] raw_id=30869 inserted=120
+[NORMALIZE] DONE total_metrics=120
+=== INGESTION ===
+[APP] Starting job from DB: plant_realtime_online
+[APP] Loaded 1 enabled targets for job=plant_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 1 target(s)
+[DEBUG] target_id=244 plant=__ACCOUNT__ dev_type=-1 endpoint=getStationRealKpi service_class=online_full
+[DEBUG] enter plant realtime path
+=== NORMALIZE ===
+=== MART ===
+=== DONE ===
+[RUN] job=plant_realtime_online mode=DAY module=scripts.run_pipeline_plant_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_plant_realtime
+[CWD]  C:\SOLAR\solar_ingestion

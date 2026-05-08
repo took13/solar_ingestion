@@ -46,3 +46,6 @@ test:
   dev_ids:
     - 1234567890123
     - 1234567890456
+    
+export:
+  realtime_text_output_dir: "\\\\10.48.161.128\\solar_data"

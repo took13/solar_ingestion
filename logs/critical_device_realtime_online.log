@@ -1078,3 +1078,138 @@
 [RUN] job=critical_device_realtime_online mode=DAY module=scripts.run_pipeline_critical_realtime
 [EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_critical_realtime
 [CWD]  C:\SOLAR\solar_ingestion
+[NORM] pending raw rows = 2
+[NORM] processing raw_id=30847 api=getDevRealKpi plant=NE=49752378 devType=10
+[NORM] raw_id=30847 parsed_rows=342 deduped_rows=342 catalog_rows=9
+[NORM] raw_id=30847 chunk=1 metric_rows=342 catalog_rows=9
+[NORM] raw_id=30847 success rows=342
+[NORM] processing raw_id=30848 api=getDevRealKpi plant=NE=49738145 devType=17
+[NORM] raw_id=30848 parsed_rows=600 deduped_rows=600 catalog_rows=40
+[NORM] raw_id=30848 chunk=1 metric_rows=600 catalog_rows=40
+[NORM] raw_id=30848 success rows=600
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=38
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=15
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[RUN] job=critical_device_realtime_online mode=DAY module=scripts.run_pipeline_critical_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_critical_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORM] pending raw rows = 2
+[NORM] processing raw_id=30852 api=getDevRealKpi plant=NE=49752378 devType=10
+[NORM] raw_id=30852 parsed_rows=342 deduped_rows=342 catalog_rows=9
+[NORM] raw_id=30852 chunk=1 metric_rows=342 catalog_rows=9
+[NORM] raw_id=30852 success rows=342
+[NORM] processing raw_id=30853 api=getDevRealKpi plant=NE=49738145 devType=17
+[NORM] raw_id=30853 parsed_rows=600 deduped_rows=600 catalog_rows=40
+[NORM] raw_id=30853 chunk=1 metric_rows=600 catalog_rows=40
+[NORM] raw_id=30853 success rows=600
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=38
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=15
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[RUN] job=critical_device_realtime_online mode=DAY module=scripts.run_pipeline_critical_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_critical_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORM] pending raw rows = 2
+[NORM] processing raw_id=30857 api=getDevRealKpi plant=NE=49752378 devType=10
+[NORM] raw_id=30857 parsed_rows=342 deduped_rows=342 catalog_rows=9
+[NORM] raw_id=30857 chunk=1 metric_rows=342 catalog_rows=9
+[NORM] raw_id=30857 success rows=342
+[NORM] processing raw_id=30858 api=getDevRealKpi plant=NE=49738145 devType=17
+[NORM] raw_id=30858 parsed_rows=600 deduped_rows=600 catalog_rows=40
+[NORM] raw_id=30858 chunk=1 metric_rows=600 catalog_rows=40
+[NORM] raw_id=30858 success rows=600
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=38
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=15
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[RUN] job=critical_device_realtime_online mode=DAY module=scripts.run_pipeline_critical_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_critical_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORM] pending raw rows = 2
+[NORM] processing raw_id=30862 api=getDevRealKpi plant=NE=49752378 devType=10
+[NORM] raw_id=30862 parsed_rows=342 deduped_rows=342 catalog_rows=9
+[NORM] raw_id=30862 chunk=1 metric_rows=342 catalog_rows=9
+[NORM] raw_id=30862 success rows=342
+[NORM] processing raw_id=30863 api=getDevRealKpi plant=NE=49738145 devType=17
+[NORM] raw_id=30863 parsed_rows=600 deduped_rows=600 catalog_rows=40
+[NORM] raw_id=30863 chunk=1 metric_rows=600 catalog_rows=40
+[NORM] raw_id=30863 success rows=600
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=38
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=15
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[RUN] job=critical_device_realtime_online mode=DAY module=scripts.run_pipeline_critical_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_critical_realtime
+[CWD]  C:\SOLAR\solar_ingestion
+[NORM] pending raw rows = 2
+[NORM] processing raw_id=30867 api=getDevRealKpi plant=NE=49752378 devType=10
+[NORM] raw_id=30867 parsed_rows=342 deduped_rows=342 catalog_rows=9
+[NORM] raw_id=30867 chunk=1 metric_rows=342 catalog_rows=9
+[NORM] raw_id=30867 success rows=342
+[NORM] processing raw_id=30868 api=getDevRealKpi plant=NE=49738145 devType=17
+[NORM] raw_id=30868 parsed_rows=600 deduped_rows=600 catalog_rows=40
+[NORM] raw_id=30868 chunk=1 metric_rows=600 catalog_rows=40
+[NORM] raw_id=30868 success rows=600
+=== INGESTION ===
+[APP] Starting job from DB: critical_device_realtime_online
+[APP] Loaded 2 enabled targets for job=critical_device_realtime_online
+[APP] Grouped into 1 account bucket(s)
+[APP] Account=GPSC_EJS (id=4) will run 2 target(s)
+[DEBUG] target_id=245 plant=__ACCOUNT__ dev_type=10 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=10 batch_no=1 batch_size=38
+[DEBUG] target_id=246 plant=__ACCOUNT__ dev_type=17 endpoint=getDevRealKpi service_class=online_full
+[DEBUG] realtime device path -> window bypassed
+[DEBUG] enter full device path
+[DEBUG] calling getDevRealKpi plant=__ACCOUNT__ dev_type=17 batch_no=1 batch_size=15
+=== NORMALIZE (GENERIC DEVICE) ===
+=== DONE ===
+[RUN] job=critical_device_realtime_online mode=DAY module=scripts.run_pipeline_critical_realtime
+[EXEC] C:\SOLAR\solar_ingestion\.venv\Scripts\python.exe -m scripts.run_pipeline_critical_realtime
+[CWD]  C:\SOLAR\solar_ingestion

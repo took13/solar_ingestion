@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -8,6 +9,10 @@ from pathlib import Path
 from src.main import build_app
 
 
+# Safe fallback only. Production should use one of:
+# 1) --output-dir "\\server\share\folder"
+# 2) environment variable SOLAR_REALTIME_TEXT_OUTPUT_DIR
+# 3) config/app.yaml -> export.realtime_text_output_dir
 DEFAULT_OUTPUT_DIR = Path("exports") / "realtime_text"
 
 
@@ -17,8 +22,13 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--output-dir",
-        default=str(DEFAULT_OUTPUT_DIR),
-        help="Output directory for exported text files. Example: Z:\\SolarRealtime or \\\\server\\share\\solar_data",
+        default=None,
+        help=(
+            "Output directory for exported text files. "
+            "Example: \\\\10.x.x.x\\solar_data or Z:\\SolarRealtime. "
+            "If omitted, uses env SOLAR_REALTIME_TEXT_OUTPUT_DIR, then config/app.yaml "
+            "export.realtime_text_output_dir, then local fallback exports/realtime_text."
+        ),
     )
     parser.add_argument(
         "--include-late",
@@ -43,6 +53,27 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def resolve_output_dir(args: argparse.Namespace, app_config: dict) -> Path:
+    """
+    Output directory priority:
+    1. CLI --output-dir
+    2. Environment variable SOLAR_REALTIME_TEXT_OUTPUT_DIR
+    3. config/app.yaml export.realtime_text_output_dir
+    4. local fallback exports/realtime_text
+
+    This prevents accidental local export when Task Scheduler does not pass arguments,
+    as long as app.yaml is configured correctly.
+    """
+    output_dir = (
+        args.output_dir
+        or os.environ.get("SOLAR_REALTIME_TEXT_OUTPUT_DIR")
+        or app_config.get("export", {}).get("realtime_text_output_dir")
+        or str(DEFAULT_OUTPUT_DIR)
+    )
+
+    return Path(output_dir)
+
+
 def build_status_filter(include_late: bool, include_missing: bool) -> tuple[str, list[str]]:
     statuses = ["FRESH"]
 
@@ -59,11 +90,11 @@ def build_status_filter(include_late: bool, include_missing: bool) -> tuple[str,
 def main() -> int:
     args = parse_args()
 
-    output_dir = Path(args.output_dir)
-
     app = build_app()
     conn = app.conn
     cursor = conn.cursor()
+
+    output_dir = resolve_output_dir(args, app.app_config)
 
     placeholders, statuses = build_status_filter(
         include_late=args.include_late,
@@ -134,6 +165,13 @@ def main() -> int:
         f"stale={stale_count}"
     )
     print(f"[EXPORT] output_dir={output_dir}")
+
+    if str(output_dir).replace("\\", "/").startswith("exports/"):
+        print(
+            "[EXPORT][WARN] Using local fallback exports folder. "
+            "For production, set config/app.yaml export.realtime_text_output_dir "
+            "or pass --output-dir to Task Scheduler."
+        )
 
     if args.dry_run:
         print("[EXPORT] Dry run only. No file written.")
