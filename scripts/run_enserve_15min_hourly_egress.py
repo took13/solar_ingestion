@@ -8,6 +8,8 @@ from src.main import build_app
 
 
 PLANT_CODES = ("NE=50281829", "NE=50979503")
+VIEW_NAME = "mart.vw_enserve_15min_export"
+MAX_RECORDS_PER_TARGET = 4
 
 
 def to_iso_utc(dt):
@@ -18,16 +20,6 @@ def to_iso_utc(dt):
         return dt
 
     return dt.replace(tzinfo=timezone.utc).isoformat().replace("+00:00", "Z")
-
-
-def is_valid_optional(value):
-    if value is None:
-        return False
-
-    if isinstance(value, str) and value.strip() in ("", "-"):
-        return False
-
-    return True
 
 
 def create_egress_run(cursor, conn):
@@ -111,7 +103,7 @@ def load_enabled_targets(cursor):
 
         targets.append(
             {
-                "egress_target_id": r.egress_target_id,
+                "egress_target_id": int(r.egress_target_id),
                 "plant_code": r.plant_code,
                 "endpoint_url": r.endpoint_url,
                 "auth_token": r.auth_token,
@@ -124,154 +116,74 @@ def load_enabled_targets(cursor):
 
     return targets
 
-def load_latest_4_rows_for_plant(cursor, plant_code):
-    """
-    Load latest 4 x 15-minute records for one plant.
 
-    Fix:
-    - irradiance_wm2 should not rely only on mart.vw_enserve_15min_export.irradiance_wm2
-      because current view maps from horiz_radiant_line, which may be NULL.
-    - Use fallback from norm.device_metric_long devType 10:
-        horiz_radiant_line -> radiant_line -> 0.0
-    - temperature_c:
-        temperature -> pv_temperature -> view temperature -> 0.0
-    """
+def load_checkpoint(cursor, egress_target_id, plant_code):
     cursor.execute(
         """
-        WITH ranked AS
-        (
-            SELECT
-                e.plant_code,
-                e.collect_time_utc,
-                e.power_kw,
-                e.number_inverter,
-                e.reporting_inverter_count,
-                e.irradiance_wm2 AS view_irradiance_wm2,
-                e.temperature_c AS view_temperature_c,
-                ROW_NUMBER() OVER
-                (
-                    PARTITION BY e.plant_code
-                    ORDER BY e.collect_time_utc DESC
-                ) AS rn
-            FROM mart.vw_enserve_15min_export e
-            WHERE e.plant_code = ?
-        )
         SELECT
-            r.plant_code,
-            r.collect_time_utc,
-            r.power_kw,
-            r.number_inverter,
-
-            CAST(
-                COALESCE(
-                    NULLIF(horiz.metric_value_num, 0),
-                    NULLIF(radiant.metric_value_num, 0),
-                    NULLIF(r.view_irradiance_wm2, 0),
-                    0.0
-                ) AS FLOAT
-            ) AS irradiance_wm2,
-
-            CAST(
-                COALESCE(
-                    temp.metric_value_num,
-                    pvtemp.metric_value_num,
-                    r.view_temperature_c,
-                    0.0
-                ) AS FLOAT
-            ) AS temperature_c,
-
-            r.reporting_inverter_count
-
-        FROM ranked r
-
-        OUTER APPLY
-        (
-            SELECT TOP 1
-                d.metric_value_num
-            FROM norm.device_metric_long d
-            WHERE d.plant_code = r.plant_code
-              AND d.dev_type_id = 10
-              AND d.metric_name = 'horiz_radiant_line'
-              AND d.metric_value_num IS NOT NULL
-              AND d.collect_time_utc <= r.collect_time_utc
-              AND d.collect_time_utc >= DATEADD(minute, -30, r.collect_time_utc)
-            ORDER BY d.collect_time_utc DESC
-        ) horiz
-
-        OUTER APPLY
-        (
-            SELECT TOP 1
-                d.metric_value_num
-            FROM norm.device_metric_long d
-            WHERE d.plant_code = r.plant_code
-              AND d.dev_type_id = 10
-              AND d.metric_name = 'radiant_line'
-              AND d.metric_value_num IS NOT NULL
-              AND d.collect_time_utc <= r.collect_time_utc
-              AND d.collect_time_utc >= DATEADD(minute, -30, r.collect_time_utc)
-            ORDER BY d.collect_time_utc DESC
-        ) radiant
-
-        OUTER APPLY
-        (
-            SELECT TOP 1
-                d.metric_value_num
-            FROM norm.device_metric_long d
-            WHERE d.plant_code = r.plant_code
-              AND d.dev_type_id = 10
-              AND d.metric_name = 'temperature'
-              AND d.metric_value_num IS NOT NULL
-              AND d.collect_time_utc <= r.collect_time_utc
-              AND d.collect_time_utc >= DATEADD(minute, -30, r.collect_time_utc)
-            ORDER BY d.collect_time_utc DESC
-        ) temp
-
-        OUTER APPLY
-        (
-            SELECT TOP 1
-                d.metric_value_num
-            FROM norm.device_metric_long d
-            WHERE d.plant_code = r.plant_code
-              AND d.dev_type_id = 10
-              AND d.metric_name = 'pv_temperature'
-              AND d.metric_value_num IS NOT NULL
-              AND d.collect_time_utc <= r.collect_time_utc
-              AND d.collect_time_utc >= DATEADD(minute, -30, r.collect_time_utc)
-            ORDER BY d.collect_time_utc DESC
-        ) pvtemp
-
-        WHERE r.rn <= 4
-        ORDER BY r.collect_time_utc
+            last_success_end_utc,
+            last_attempt_end_utc,
+            last_status,
+            last_error_message
+        FROM ops.api_egress_checkpoint
+        WHERE egress_target_id = ?
+          AND plant_code = ?
         """,
+        egress_target_id,
         plant_code,
     )
 
+    row = cursor.fetchone()
+
+    if row is None:
+        raise RuntimeError(
+            f"Missing ops.api_egress_checkpoint for "
+            f"egress_target_id={egress_target_id}, plant_code={plant_code}"
+        )
+
+    return row
+
+
+def load_next_rows_after_checkpoint(cursor, plant_code, last_success_end_utc):
+    """
+    Load the next 4 x 15-minute records after checkpoint.
+
+    This intentionally does NOT use latest 4 rows. It sends records in ascending
+    chronological order to prevent duplicate resend.
+    """
+    cursor.execute(
+        f"""
+        SELECT TOP ({MAX_RECORDS_PER_TARGET})
+            plant_code,
+            collect_time_utc,
+            power_kw,
+            number_inverter,
+            irradiance_wm2,
+            temperature_c
+        FROM {VIEW_NAME}
+        WHERE plant_code = ?
+          AND collect_time_utc > ?
+          AND power_kw IS NOT NULL
+          AND number_inverter IS NOT NULL
+        ORDER BY collect_time_utc ASC
+        """,
+        plant_code,
+        last_success_end_utc,
+    )
+
     return cursor.fetchall()
+
 
 def build_records(rows):
     records = []
 
     for r in rows:
-        if r.power_kw is None:
-            print(
-                f"[EGRESS][SKIP] plant={r.plant_code} "
-                f"time={r.collect_time_utc} power_kw is NULL"
-            )
-            continue
-
         data = {
             "power_kw": float(r.power_kw or 0.0),
             "number_inverter": int(r.number_inverter or 0),
             "irradiance_wm2": float(r.irradiance_wm2 or 0.0),
             "temperature_c": float(r.temperature_c or 0.0),
         }
-
-        # Optional numeric fields: omit if missing
-        if is_valid_optional(r.irradiance_wm2):
-            data["irradiance_wm2"] = float(r.irradiance_wm2)
-
-        if is_valid_optional(r.temperature_c):
-            data["temperature_c"] = float(r.temperature_c)
 
         records.append(
             {
@@ -434,6 +346,60 @@ def insert_egress_log(
     conn.commit()
 
 
+def update_checkpoint_success(
+    cursor,
+    conn,
+    egress_target_id,
+    plant_code,
+    success_end_utc,
+):
+    cursor.execute(
+        """
+        UPDATE ops.api_egress_checkpoint
+        SET
+            last_success_end_utc = ?,
+            last_attempt_end_utc = ?,
+            last_status = 'SUCCESS',
+            last_error_message = NULL,
+            updated_at_utc = SYSUTCDATETIME()
+        WHERE egress_target_id = ?
+          AND plant_code = ?
+        """,
+        success_end_utc,
+        success_end_utc,
+        egress_target_id,
+        plant_code,
+    )
+    conn.commit()
+
+
+def update_checkpoint_failure(
+    cursor,
+    conn,
+    egress_target_id,
+    plant_code,
+    attempt_end_utc,
+    error_message,
+):
+    cursor.execute(
+        """
+        UPDATE ops.api_egress_checkpoint
+        SET
+            last_attempt_end_utc = ?,
+            last_status = 'FAILED',
+            last_error_message = ?,
+            updated_at_utc = SYSUTCDATETIME()
+        WHERE egress_target_id = ?
+          AND plant_code = ?
+        """,
+        attempt_end_utc,
+        error_message[:1000] if error_message else None,
+        egress_target_id,
+        plant_code,
+    )
+    conn.commit()
+
+
 def main():
     app = build_app()
     conn = app.conn
@@ -446,6 +412,7 @@ def main():
 
     overall_success = True
     success_count = 0
+    skipped_count = 0
     failed_count = 0
     summary_messages = []
 
@@ -455,6 +422,7 @@ def main():
 
         for target in targets:
             plant_code = target["plant_code"]
+            egress_target_id = target["egress_target_id"]
             response = None
             request_body = None
             rows = []
@@ -463,11 +431,33 @@ def main():
             print(f"[EGRESS] Processing plant={plant_code}")
 
             try:
-                rows = load_latest_4_rows_for_plant(cursor, plant_code)
+                cp = load_checkpoint(cursor, egress_target_id, plant_code)
+                last_success_end_utc = cp.last_success_end_utc
+
+                if last_success_end_utc is None:
+                    raise RuntimeError(
+                        f"last_success_end_utc is NULL for "
+                        f"egress_target_id={egress_target_id}, plant_code={plant_code}"
+                    )
+
+                print(
+                    f"[EGRESS] checkpoint plant={plant_code} "
+                    f"last_success_end_utc={last_success_end_utc}"
+                )
+
+                rows = load_next_rows_after_checkpoint(
+                    cursor=cursor,
+                    plant_code=plant_code,
+                    last_success_end_utc=last_success_end_utc,
+                )
 
                 if not rows:
-                    msg = f"No rows to send for plant={plant_code}"
-                    print(f"[EGRESS] {msg}")
+                    msg = (
+                        f"No new rows after checkpoint for plant={plant_code}, "
+                        f"checkpoint={last_success_end_utc}"
+                    )
+                    print(f"[EGRESS][SKIP] {msg}")
+                    skipped_count += 1
                     summary_messages.append(msg)
                     continue
 
@@ -475,11 +465,29 @@ def main():
 
                 if not records:
                     msg = f"No valid records after filtering for plant={plant_code}"
-                    print(f"[EGRESS] {msg}")
+                    print(f"[EGRESS][SKIP] {msg}")
+                    skipped_count += 1
                     summary_messages.append(msg)
                     continue
 
-                print(f"[EGRESS] Prepared records for plant={plant_code}: {len(records)}")
+                window_start = min(r.collect_time_utc for r in rows)
+                window_end = max(r.collect_time_utc for r in rows)
+
+                # Defensive guard against duplicate resend.
+                if window_end <= last_success_end_utc:
+                    msg = (
+                        f"Defensive skip: window_end={window_end} <= "
+                        f"checkpoint={last_success_end_utc} for plant={plant_code}"
+                    )
+                    print(f"[EGRESS][SKIP] {msg}")
+                    skipped_count += 1
+                    summary_messages.append(msg)
+                    continue
+
+                print(
+                    f"[EGRESS] Prepared records for plant={plant_code}: "
+                    f"{len(records)} window={window_start} -> {window_end}"
+                )
                 print(json.dumps(records, ensure_ascii=False, indent=2)[:2000])
 
                 response, request_body = send_records_with_retry(
@@ -501,7 +509,7 @@ def main():
                     cursor=cursor,
                     conn=conn,
                     egress_run_id=egress_run_id,
-                    egress_target_id=target["egress_target_id"],
+                    egress_target_id=egress_target_id,
                     plant_code=plant_code,
                     rows=rows,
                     request_body=request_body,
@@ -511,11 +519,29 @@ def main():
                 )
 
                 if response.ok:
+                    update_checkpoint_success(
+                        cursor=cursor,
+                        conn=conn,
+                        egress_target_id=egress_target_id,
+                        plant_code=plant_code,
+                        success_end_utc=window_end,
+                    )
+
                     success_count += 1
                     summary_messages.append(
-                        f"plant={plant_code} sent {len(records)} records successfully"
+                        f"plant={plant_code} sent {len(records)} records successfully "
+                        f"checkpoint={window_end}"
                     )
                 else:
+                    update_checkpoint_failure(
+                        cursor=cursor,
+                        conn=conn,
+                        egress_target_id=egress_target_id,
+                        plant_code=plant_code,
+                        attempt_end_utc=window_end,
+                        error_message=error_message,
+                    )
+
                     overall_success = False
                     failed_count += 1
                     summary_messages.append(
@@ -533,7 +559,6 @@ def main():
                 summary_messages.append(f"plant={plant_code} failed: {error_text}")
 
                 # Best effort DB log for plant failure.
-                # IMPORTANT: use rows=rows, not rows=[], so window_start/window_end are not NULL.
                 try:
                     if request_body is None:
                         request_body = {"records": records}
@@ -542,7 +567,7 @@ def main():
                         cursor=cursor,
                         conn=conn,
                         egress_run_id=egress_run_id,
-                        egress_target_id=target["egress_target_id"],
+                        egress_target_id=egress_target_id,
                         plant_code=plant_code,
                         rows=rows,
                         request_body=request_body,
@@ -550,6 +575,18 @@ def main():
                         status="FAILED",
                         error_message=error_text,
                     )
+
+                    if rows:
+                        window_end = max(r.collect_time_utc for r in rows)
+                        update_checkpoint_failure(
+                            cursor=cursor,
+                            conn=conn,
+                            egress_target_id=egress_target_id,
+                            plant_code=plant_code,
+                            attempt_end_utc=window_end,
+                            error_message=error_text,
+                        )
+
                 except Exception as log_error:
                     print(
                         f"[EGRESS][WARN] failed to insert failure log "
@@ -558,6 +595,8 @@ def main():
 
         if failed_count == 0 and success_count > 0:
             final_status = "SUCCESS"
+        elif failed_count == 0 and success_count == 0 and skipped_count > 0:
+            final_status = "SKIPPED"
         elif success_count > 0 and failed_count > 0:
             final_status = "PARTIAL_SUCCESS"
         else:
