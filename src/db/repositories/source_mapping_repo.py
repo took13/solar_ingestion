@@ -31,10 +31,11 @@ class SourceMappingRepository:
                 latitude,
                 longitude,
                 capacity_kwp,
+                api_key_secret_name,
                 is_active
             FROM dbo.dim_plant_source_map
             WHERE source_system_code = ?
-              AND is_active = 1
+            AND is_active = 1
         """
 
         params: list[Any] = [source_system_code]
