@@ -104,7 +104,10 @@ class SolarEdgeCanonicalNormalizer:
                 timezone_name,
             )
 
-            mappings = self.mapping_lookup.get(("PLANT", source_metric_name), [])
+            mappings = self.mapping_lookup.get(
+                ("PLANT", source_metric_name.strip().upper()),
+                [],
+            )
 
             for mapping in mappings:
                 rows.append(
@@ -146,7 +149,10 @@ class SolarEdgeCanonicalNormalizer:
                 continue
 
             values = meter.get("values") or []
-            mappings = self.mapping_lookup.get(("PLANT", source_metric_name), [])
+            mappings = self.mapping_lookup.get(
+                ("PLANT", source_metric_name.strip().upper()),
+                [],
+            )
 
             if not mappings:
                 continue

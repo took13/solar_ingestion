@@ -81,8 +81,8 @@ class MetricMappingRepository:
 
         for row in rows:
             key = (
-                str(row["source_device_scope"]),
-                str(row["source_metric_name"]),
+                str(row["source_device_scope"]).strip().upper(),
+                str(row["source_metric_name"]).strip().upper(),
             )
             lookup.setdefault(key, []).append(row)
 

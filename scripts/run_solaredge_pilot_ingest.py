@@ -333,7 +333,7 @@ def parse_args():
 
     parser.add_argument(
         "--meters",
-        default="Production,FeedIn,Purchased,SelfConsumption",
+        default="PRODUCTION,FEEDIN,PURCHASED,SELFCONSUMPTION",
         help="Comma-separated SolarEdge energyDetails meters",
     )
 
