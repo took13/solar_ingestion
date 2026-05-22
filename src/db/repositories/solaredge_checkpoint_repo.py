@@ -106,3 +106,65 @@ class SolarEdgeCheckpointRepository:
     def _rows_to_dicts(self, cursor) -> list[dict[str, Any]]:
         columns = [col[0] for col in cursor.description]
         return [dict(zip(columns, row)) for row in cursor.fetchall()]
+    
+    def mark_success(
+        self,
+        *,
+        internal_plant_code: str,
+        source_plant_code: str,
+        endpoint_name: str,
+        start_local,
+        end_local,
+        start_utc,
+        end_utc,
+        raw_id: int,
+        source_system_code: str = "SOLAREDGE",
+    ) -> int:
+        """
+        Update checkpoint หลัง endpoint ingest สำเร็จ
+
+        Safety:
+        - ไม่ให้ checkpoint ถอยหลัง ถ้า end_utc เก่ากว่า last_success_end_utc เดิม
+        """
+
+        cursor = self.conn.cursor()
+
+        cursor.execute(
+            """
+            UPDATE ctl.solaredge_ingest_checkpoint
+            SET
+                internal_plant_code = ?,
+                last_success_start_local = ?,
+                last_success_end_local = ?,
+                last_success_start_utc = ?,
+                last_success_end_utc = ?,
+                last_raw_id = ?,
+                last_status = 'SUCCESS',
+                consecutive_failures = 0,
+                last_error_message = NULL,
+                updated_at_utc = SYSUTCDATETIME()
+            WHERE source_system_code = ?
+                AND source_plant_code = ?
+                AND endpoint_name = ?
+                AND (
+                    last_success_end_utc IS NULL
+                    OR ? >= last_success_end_utc
+                    );
+            """,
+            (
+                internal_plant_code,
+                start_local,
+                end_local,
+                start_utc,
+                end_utc,
+                raw_id,
+                source_system_code,
+                source_plant_code,
+                endpoint_name,
+                end_utc,
+            ),
+        )
+
+        affected = cursor.rowcount
+        self.conn.commit()
+        return affected

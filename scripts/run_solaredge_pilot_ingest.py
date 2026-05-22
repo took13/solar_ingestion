@@ -6,21 +6,24 @@ from zoneinfo import ZoneInfo
 
 from src.config_loader import ConfigLoader
 from src.db.connection import create_connection
+
 from src.db.repositories.raw_v2_repo import RawV2Repository
 from src.db.repositories.source_mapping_repo import SourceMappingRepository
 from src.db.repositories.metric_mapping_repo import MetricMappingRepository
 from src.db.repositories.canonical_metric_repo import CanonicalMetricRepository
 from src.db.repositories.solar_plant_mart_repo import SolarPlantMartRepository
+from src.db.repositories.solaredge_checkpoint_repo import SolarEdgeCheckpointRepository
+
 from src.solaredge.client import SolarEdgeClient
-from src.solaredge.canonical_normalizer import SolarEdgeCanonicalNormalizer
 from src.solaredge.credential_resolver import SolarEdgeCredentialResolver
+from src.solaredge.canonical_normalizer import SolarEdgeCanonicalNormalizer
+
 
 SOURCE_SYSTEM = "SOLAREDGE"
 
 
 def main():
     args = parse_args()
-
 
     app_config = ConfigLoader().load_app_config()
     conn = create_connection(app_config["database"]["connection_string"])
@@ -30,6 +33,7 @@ def main():
     metric_repo = MetricMappingRepository(conn)
     canonical_repo = CanonicalMetricRepository(conn)
     mart_repo = SolarPlantMartRepository(conn)
+    checkpoint_repo = SolarEdgeCheckpointRepository(conn)
 
     plant_map = source_repo.get_one_active_plant_map(
         source_system_code=SOURCE_SYSTEM,
@@ -41,11 +45,13 @@ def main():
             f"No active plant mapping found for SOLAREDGE site_id={args.site_id}. "
             "Please insert dbo.dim_plant_source_map first."
         )
-    credential_resolver = SolarEdgeCredentialResolver()
-    api_key = credential_resolver.get_api_key(plant_map.get("api_key_secret_name"))
+
     internal_plant_code = plant_map["internal_plant_code"]
     source_plant_code = plant_map["source_plant_code"]
     timezone_name = plant_map.get("timezone_name") or args.timezone
+
+    credential_resolver = SolarEdgeCredentialResolver()
+    api_key = credential_resolver.get_api_key(plant_map.get("api_key_secret_name"))
 
     start_utc = parse_local_to_utc_naive(args.start_local, timezone_name)
     end_utc = parse_local_to_utc_naive(args.end_local, timezone_name)
@@ -69,6 +75,7 @@ def main():
             metric_repo=metric_repo,
             canonical_repo=canonical_repo,
             mart_repo=mart_repo,
+            checkpoint_repo=checkpoint_repo,
             internal_plant_code=internal_plant_code,
             source_plant_code=source_plant_code,
             timezone_name=timezone_name,
@@ -85,6 +92,7 @@ def main():
             metric_repo=metric_repo,
             canonical_repo=canonical_repo,
             mart_repo=mart_repo,
+            checkpoint_repo=checkpoint_repo,
             internal_plant_code=internal_plant_code,
             source_plant_code=source_plant_code,
             timezone_name=timezone_name,
@@ -108,6 +116,7 @@ def run_site_power(
     metric_repo: MetricMappingRepository,
     canonical_repo: CanonicalMetricRepository,
     mart_repo: SolarPlantMartRepository,
+    checkpoint_repo: SolarEdgeCheckpointRepository,
     internal_plant_code: str,
     source_plant_code: str,
     timezone_name: str,
@@ -120,11 +129,15 @@ def run_site_power(
 
     print(f"--- Running {endpoint_name} ---")
 
+    request_started_at_utc = datetime.now(timezone.utc)
+
     response = client.get_site_power(
         site_id=source_plant_code,
         start_time_local=start_local,
         end_time_local=end_local,
     )
+
+    request_finished_at_utc = datetime.now(timezone.utc)
 
     raw_id = raw_repo.insert_api_call_v2(
         {
@@ -153,8 +166,8 @@ def run_site_power(
             "fail_code": None,
             "fail_message": None,
 
-            "request_started_at_utc": datetime.now(timezone.utc),
-            "request_finished_at_utc": datetime.now(timezone.utc),
+            "request_started_at_utc": request_started_at_utc,
+            "request_finished_at_utc": request_finished_at_utc,
         }
     )
 
@@ -187,9 +200,21 @@ def run_site_power(
         end_utc=end_utc,
     )
 
+    checkpoint_rows = checkpoint_repo.mark_success(
+        internal_plant_code=internal_plant_code,
+        source_plant_code=source_plant_code,
+        endpoint_name=endpoint_name,
+        start_local=start_local,
+        end_local=end_local,
+        start_utc=start_utc,
+        end_utc=end_utc,
+        raw_id=raw_id,
+    )
+
     print(f"[OK] {endpoint_name}: raw_id={raw_id}")
     print(f"[OK] {endpoint_name}: canonical_rows={canonical_count}")
     print(f"[OK] {endpoint_name}: mart_power_rows={mart_count}")
+    print(f"[OK] {endpoint_name}: checkpoint_rows={checkpoint_rows}")
 
 
 def run_energy_details(
@@ -199,6 +224,7 @@ def run_energy_details(
     metric_repo: MetricMappingRepository,
     canonical_repo: CanonicalMetricRepository,
     mart_repo: SolarPlantMartRepository,
+    checkpoint_repo: SolarEdgeCheckpointRepository,
     internal_plant_code: str,
     source_plant_code: str,
     timezone_name: str,
@@ -212,6 +238,8 @@ def run_energy_details(
 
     print(f"--- Running {endpoint_name} ---")
 
+    request_started_at_utc = datetime.now(timezone.utc)
+
     response = client.get_energy_details(
         site_id=source_plant_code,
         start_time_local=start_local,
@@ -219,6 +247,8 @@ def run_energy_details(
         time_unit="QUARTER_OF_AN_HOUR",
         meters=meters,
     )
+
+    request_finished_at_utc = datetime.now(timezone.utc)
 
     raw_id = raw_repo.insert_api_call_v2(
         {
@@ -249,8 +279,8 @@ def run_energy_details(
             "fail_code": None,
             "fail_message": None,
 
-            "request_started_at_utc": datetime.now(timezone.utc),
-            "request_finished_at_utc": datetime.now(timezone.utc),
+            "request_started_at_utc": request_started_at_utc,
+            "request_finished_at_utc": request_finished_at_utc,
         }
     )
 
@@ -283,9 +313,21 @@ def run_energy_details(
         end_utc=end_utc,
     )
 
+    checkpoint_rows = checkpoint_repo.mark_success(
+        internal_plant_code=internal_plant_code,
+        source_plant_code=source_plant_code,
+        endpoint_name=endpoint_name,
+        start_local=start_local,
+        end_local=end_local,
+        start_utc=start_utc,
+        end_utc=end_utc,
+        raw_id=raw_id,
+    )
+
     print(f"[OK] {endpoint_name}: raw_id={raw_id}")
     print(f"[OK] {endpoint_name}: canonical_rows={canonical_count}")
     print(f"[OK] {endpoint_name}: mart_energy_rows={mart_count}")
+    print(f"[OK] {endpoint_name}: checkpoint_rows={checkpoint_rows}")
 
 
 def parse_local_to_utc_naive(date_text: str, timezone_name: str) -> datetime:
