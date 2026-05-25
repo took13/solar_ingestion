@@ -1,28 +1,30 @@
 """
 Smoke test: SolarEdge auto-window dry-run from checkpoint.
 
-Purpose:
-- Read SolarEdge plant mapping from dbo.dim_plant_source_map
-- Read last successful checkpoint from ctl.solaredge_ingest_checkpoint
-- Calculate the next ingestion window
-- Print only
+This script follows the existing SolarToPI / Huawei connection pattern:
 
-Safe by design:
+    from src.config_loader import ConfigLoader
+    from src.db.connection import create_connection
+
+    config_loader = ConfigLoader(...)
+    app_config = config_loader.load_app_config()
+    conn = create_connection(app_config["database"]["connection_string"])
+
+Important:
+- No pyodbc import in this script
+- No environment variable connection string
 - No SolarEdge API call
-- No raw insert
-- No canonical insert
-- No mart insert
+- No DB write
 - No checkpoint update
 - No API key value printed
 
-Run example:
-python scripts\\smoke_solaredge_auto_window_dry_run.py --plant-code SE_GC5 --endpoint-name sitePower --window-minutes 60 --lag-minutes 30
+Run:
+    python scripts\\smoke_solaredge_auto_window_dry_run.py --plant-code SE_GC5 --endpoint-name sitePower --window-minutes 60 --lag-minutes 30
 """
 
 from __future__ import annotations
 
 import argparse
-import importlib
 import os
 import sys
 from dataclasses import dataclass
@@ -32,11 +34,19 @@ from typing import Any, Iterable, Optional
 from zoneinfo import ZoneInfo
 
 
-# Ensure project root is importable when running as:
-# python scripts\smoke_solaredge_auto_window_dry_run.py
+# ---------------------------------------------------------------------------
+# Project import path
+# ---------------------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
+
+
+# ---------------------------------------------------------------------------
+# Reuse existing project modules exactly like Huawei scripts
+# ---------------------------------------------------------------------------
+from src.config_loader import ConfigLoader
+from src.db.connection import create_connection
 
 
 @dataclass
@@ -59,83 +69,31 @@ class Checkpoint:
 
 def load_app_config() -> dict[str, Any]:
     """
-    Try to load app_config using common project config patterns.
-    Existing SolarToPI scripts use:
-        create_connection(app_config["database"]["connection_string"])
+    Reuse project ConfigLoader.
+
+    Existing project style found in:
+    - src/main.py
+    - scripts/run_job_if_allowed.py
     """
 
-    candidates = [
-        "src.config",
-        "src.config.settings",
-        "src.config.config",
-        "src.core.config",
-        "src.config_loader",
-    ]
+    try:
+        config_loader = ConfigLoader(PROJECT_ROOT / "config")
+    except TypeError:
+        config_loader = ConfigLoader()
 
-    last_errors: list[str] = []
-
-    for module_name in candidates:
-        try:
-            module = importlib.import_module(module_name)
-
-            if hasattr(module, "app_config"):
-                return getattr(module, "app_config")
-
-            if hasattr(module, "config"):
-                config = getattr(module, "config")
-                if isinstance(config, dict):
-                    return config
-
-            if hasattr(module, "load_config"):
-                config = module.load_config()
-                if isinstance(config, dict):
-                    return config
-
-            if hasattr(module, "get_config"):
-                config = module.get_config()
-                if isinstance(config, dict):
-                    return config
-
-            last_errors.append(f"{module_name}: imported but no app_config/config/load_config/get_config")
-
-        except Exception as exc:
-            last_errors.append(f"{module_name}: {type(exc).__name__}: {exc}")
-
-    raise RuntimeError(
-        "Cannot load project app_config. "
-        "Please check import pattern from existing scripts such as smoke_mapping_read.py.\n\n"
-        + "\n".join(last_errors)
-    )
+    return config_loader.load_app_config()
 
 
 def get_conn() -> Any:
     """
-    Use the same DB connection pattern as existing project scripts:
-        from src.db.connection import create_connection
-        conn = create_connection(app_config['database']['connection_string'])
+    Open SQL Server connection using existing app.yaml connection string.
 
-    Note:
-    - This script intentionally does not import pyodbc directly.
-    - pyodbc is used only inside src.db.connection, same as existing scripts.
+    No environment variable.
+    No direct pyodbc import here.
     """
 
-    try:
-        from src.db.connection import create_connection
-    except ModuleNotFoundError as exc:
-        raise RuntimeError(
-            "Cannot import src.db.connection.create_connection. "
-            "Please run from project root C:\\SOLAR\\solar_ingestion and activate .venv."
-        ) from exc
-
     app_config = load_app_config()
-
-    try:
-        conn_str = app_config["database"]["connection_string"]
-    except Exception as exc:
-        raise RuntimeError(
-            "app_config was loaded but app_config['database']['connection_string'] was not found."
-        ) from exc
-
+    conn_str = app_config["database"]["connection_string"]
     return create_connection(conn_str)
 
 
@@ -159,6 +117,7 @@ def table_has_column(conn: Any, schema_name: str, table_name: str, column_name: 
       AND TABLE_NAME = ?
       AND COLUMN_NAME = ?;
     """
+
     cur = conn.cursor()
     cur.execute(sql, schema_name, table_name, column_name)
     return cur.fetchone() is not None
@@ -172,8 +131,10 @@ def floor_to_15min(dt: datetime) -> datetime:
 def ensure_local_tz(dt: Optional[datetime], tz: ZoneInfo) -> Optional[datetime]:
     if dt is None:
         return None
+
     if dt.tzinfo is None:
         return dt.replace(tzinfo=tz)
+
     return dt.astimezone(tz)
 
 
@@ -181,20 +142,27 @@ def to_utc_naive(dt: datetime) -> datetime:
     return dt.astimezone(timezone.utc).replace(tzinfo=None)
 
 
+def parse_local_datetime(value: str, tz: ZoneInfo) -> datetime:
+    dt = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+    return dt.replace(tzinfo=tz)
+
+
 def read_active_mapping(conn: Any, plant_code: str) -> PlantMapping:
     """
-    Read SolarEdge mapping for one internal plant code.
+    Read SolarEdge plant mapping.
 
-    Expected table:
-        dbo.dim_plant_source_map
+    Required concept:
+        SolarEdge siteId
+        -> dbo.dim_plant_source_map.api_key_secret_name
+        -> Windows Environment Variable name
+        -> SolarEdgeClient(api_key)
 
-    Important:
-        api_key_secret_name stores ENV VAR NAME only, not actual API key.
+    This script prints only api_key_secret_name and env existence.
+    It never prints actual API key value.
     """
 
     has_is_active = table_has_column(conn, "dbo", "dim_plant_source_map", "is_active")
-
-    where_is_active = "AND ISNULL(is_active, 1) = 1" if has_is_active else ""
+    is_active_filter = "AND ISNULL(is_active, 1) = 1" if has_is_active else ""
 
     sql = f"""
     SELECT TOP (1)
@@ -202,7 +170,7 @@ def read_active_mapping(conn: Any, plant_code: str) -> PlantMapping:
     FROM dbo.dim_plant_source_map
     WHERE internal_plant_code = ?
       AND api_key_secret_name LIKE 'SOLAREDGE_API_KEY_%'
-      {where_is_active}
+      {is_active_filter}
     ORDER BY internal_plant_code;
     """
 
@@ -220,17 +188,24 @@ def read_active_mapping(conn: Any, plant_code: str) -> PlantMapping:
 
     internal_plant_code = pick_value(
         d,
-        ["internal_plant_code", "plant_code", "canonical_plant_code"],
+        [
+            "internal_plant_code",
+            "plant_code",
+            "canonical_plant_code",
+        ],
     )
 
     site_id = pick_value(
         d,
         [
-            "source_plant_id",
-            "source_site_id",
+            "source_plant_code",   # actual column in dbo.dim_plant_source_map
             "site_id",
-            "external_plant_id",
+            "source_site_id",
             "source_siteid",
+            "source_plant_id",
+            "external_site_id",
+            "external_plant_id",
+            "source_id",
             "solaredge_site_id",
         ],
     )
@@ -242,18 +217,25 @@ def read_active_mapping(conn: Any, plant_code: str) -> PlantMapping:
             "time_zone",
             "timezone_name",
             "source_timezone",
+            "source_timezone_name",
             "plant_timezone",
+            "plant_timezone_name",
         ],
         default="Asia/Bangkok",
     )
 
-    api_key_secret_name = pick_value(d, ["api_key_secret_name"])
+    api_key_secret_name = pick_value(
+        d,
+        [
+            "api_key_secret_name",
+        ],
+    )
 
     missing = []
     if not internal_plant_code:
         missing.append("internal_plant_code")
     if not site_id:
-        missing.append("source_plant_id / site_id")
+        missing.append("source_plant_code / site_id / source_site_id / source_plant_id")
     if not api_key_secret_name:
         missing.append("api_key_secret_name")
 
@@ -274,11 +256,7 @@ def read_active_mapping(conn: Any, plant_code: str) -> PlantMapping:
     )
 
 
-def read_checkpoint(
-    conn: Any,
-    plant_code: str,
-    endpoint_name: str,
-) -> Checkpoint:
+def read_checkpoint(conn: Any, plant_code: str, endpoint_name: str) -> Checkpoint:
     sql = """
     SELECT TOP (1)
         last_success_start_local,
@@ -317,11 +295,6 @@ def read_checkpoint(
         last_raw_id=d.get("last_raw_id"),
         last_status=d.get("last_status"),
     )
-
-
-def parse_local_datetime(value: str, tz: ZoneInfo) -> datetime:
-    dt = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
-    return dt.replace(tzinfo=tz)
 
 
 def main() -> int:
@@ -403,8 +376,7 @@ def main() -> int:
     next_start_utc = to_utc_naive(next_start_local)
     next_end_utc = to_utc_naive(next_end_local)
 
-    # Safe secret check:
-    # Print only env var name and existence. Never print API key value.
+    # Do not print actual API key.
     api_key_env_exists = bool(os.getenv(mapping.api_key_secret_name))
 
     print("")
@@ -437,6 +409,7 @@ def main() -> int:
     print("No API call executed. No DB write executed.")
     print("")
 
+    conn.close()
     return 0
 
 
