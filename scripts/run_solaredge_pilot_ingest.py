@@ -1,7 +1,14 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+    
 import argparse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 from src.config_loader import ConfigLoader
@@ -53,8 +60,59 @@ def main():
     credential_resolver = SolarEdgeCredentialResolver()
     api_key = credential_resolver.get_api_key(plant_map.get("api_key_secret_name"))
 
-    start_utc = parse_local_to_utc_naive(args.start_local, timezone_name)
-    end_utc = parse_local_to_utc_naive(args.end_local, timezone_name)
+    if args.auto_window:
+        if args.endpoint == "both":
+            raise RuntimeError(
+                "--auto-window does not support --endpoint both in this step. "
+                "Run sitePower and energyDetails separately first."
+            )
+
+        window = resolve_auto_window(
+            checkpoint_repo=checkpoint_repo,
+            source_plant_code=source_plant_code,
+            endpoint_name=args.endpoint,
+            timezone_name=timezone_name,
+            window_minutes=args.window_minutes,
+            lag_minutes=args.lag_minutes,
+            bootstrap_start_local=args.bootstrap_start_local,
+        )
+
+        print_auto_window_plan(
+            internal_plant_code=internal_plant_code,
+            source_plant_code=source_plant_code,
+            timezone_name=timezone_name,
+            endpoint_name=args.endpoint,
+            window=window,
+        )
+
+        if args.dry_run:
+            print("")
+            print("[DRY-RUN] No API call executed. No DB write executed.")
+            conn.close()
+            return
+
+        if window["status"] != "READY":
+            print("")
+            print("[SKIP] Window is not due yet. No API call executed.")
+            conn.close()
+            return
+
+        start_local = window["start_local"]
+        end_local = window["end_local"]
+        start_utc = window["start_utc"]
+        end_utc = window["end_utc"]
+
+    else:
+        if not args.start_local or not args.end_local:
+            raise RuntimeError(
+                "Manual mode requires --start-local and --end-local. "
+                "Or use --auto-window."
+            )
+
+        start_local=start_local,
+        end_local=end_local,
+        start_utc = parse_local_to_utc_naive(start_local, timezone_name)
+        end_utc = parse_local_to_utc_naive(end_local, timezone_name)
 
     client = SolarEdgeClient(api_key=api_key)
 
@@ -62,8 +120,8 @@ def main():
     print(f"site_id={source_plant_code}")
     print(f"internal_plant_code={internal_plant_code}")
     print(f"timezone={timezone_name}")
-    print(f"start_local={args.start_local}")
-    print(f"end_local={args.end_local}")
+    print(f"start_local={start_local}")
+    print(f"end_local={end_local}")
     print(f"start_utc={start_utc}")
     print(f"end_utc={end_utc}")
     print("")
@@ -337,6 +395,115 @@ def parse_local_to_utc_naive(date_text: str, timezone_name: str) -> datetime:
 
     return local_dt.astimezone(timezone.utc).replace(tzinfo=None)
 
+def floor_to_15min(dt: datetime) -> datetime:
+    minute = (dt.minute // 15) * 15
+    return dt.replace(minute=minute, second=0, microsecond=0)
+
+
+def to_utc_naive(local_dt: datetime) -> datetime:
+    return local_dt.astimezone(timezone.utc).replace(tzinfo=None)
+
+
+def parse_local_with_tz(date_text: str, timezone_name: str) -> datetime:
+    local_tz = ZoneInfo(timezone_name)
+    local_dt = datetime.strptime(date_text, "%Y-%m-%d %H:%M:%S")
+    return local_dt.replace(tzinfo=local_tz)
+
+
+def format_local(dt: datetime) -> str:
+    return dt.strftime("%Y-%m-%d %H:%M:%S")
+
+
+def resolve_auto_window(
+    *,
+    checkpoint_repo: SolarEdgeCheckpointRepository,
+    source_plant_code: str,
+    endpoint_name: str,
+    timezone_name: str,
+    window_minutes: int,
+    lag_minutes: int,
+    bootstrap_start_local: str | None,
+) -> dict:
+    tz = ZoneInfo(timezone_name)
+
+    checkpoint = checkpoint_repo.get_checkpoint(
+        source_plant_code=source_plant_code,
+        endpoint_name=endpoint_name,
+        source_system_code=SOURCE_SYSTEM,
+    )
+
+    if checkpoint and checkpoint.get("last_success_end_local"):
+        next_start_local = checkpoint["last_success_end_local"]
+        if next_start_local.tzinfo is None:
+            next_start_local = next_start_local.replace(tzinfo=tz)
+        else:
+            next_start_local = next_start_local.astimezone(tz)
+
+        start_reason = "checkpoint.last_success_end_local"
+
+    elif bootstrap_start_local:
+        next_start_local = parse_local_with_tz(bootstrap_start_local, timezone_name)
+        start_reason = "bootstrap-start-local"
+
+    else:
+        raise RuntimeError(
+            f"No checkpoint found for source_plant_code={source_plant_code}, "
+            f"endpoint_name={endpoint_name}, and --bootstrap-start-local not provided."
+        )
+
+    now_local = datetime.now(tz)
+    available_end_local = floor_to_15min(now_local - timedelta(minutes=lag_minutes))
+
+    proposed_end_local = next_start_local + timedelta(minutes=window_minutes)
+    next_end_local = min(proposed_end_local, available_end_local)
+
+    status = "READY" if next_end_local > next_start_local else "NOT_DUE"
+
+    return {
+        "status": status,
+        "start_reason": start_reason,
+        "checkpoint": checkpoint,
+        "start_local": format_local(next_start_local),
+        "end_local": format_local(next_end_local),
+        "start_utc": to_utc_naive(next_start_local),
+        "end_utc": to_utc_naive(next_end_local),
+        "available_end_local": format_local(available_end_local),
+    }
+
+
+def print_auto_window_plan(
+    *,
+    internal_plant_code: str,
+    source_plant_code: str,
+    timezone_name: str,
+    endpoint_name: str,
+    window: dict,
+):
+    checkpoint = window.get("checkpoint") or {}
+
+    print("")
+    print("=== SolarEdge Auto Window Plan ===")
+    print(f"status                  : {window['status']}")
+    print(f"internal_plant_code     : {internal_plant_code}")
+    print(f"site_id                 : {source_plant_code}")
+    print(f"endpoint_name           : {endpoint_name}")
+    print(f"timezone                : {timezone_name}")
+    print(f"start_reason            : {window['start_reason']}")
+    print(f"available_end_local     : {window['available_end_local']}")
+    print("")
+    print("--- checkpoint ---")
+    print(f"last_status             : {checkpoint.get('last_status')}")
+    print(f"last_raw_id             : {checkpoint.get('last_raw_id')}")
+    print(f"last_success_start_local: {checkpoint.get('last_success_start_local')}")
+    print(f"last_success_end_local  : {checkpoint.get('last_success_end_local')}")
+    print(f"last_success_start_utc  : {checkpoint.get('last_success_start_utc')}")
+    print(f"last_success_end_utc    : {checkpoint.get('last_success_end_utc')}")
+    print("")
+    print("--- next window ---")
+    print(f"next_start_local        : {window['start_local']}")
+    print(f"next_end_local          : {window['end_local']}")
+    print(f"next_start_utc          : {window['start_utc']}")
+    print(f"next_end_utc            : {window['end_utc']}")
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -351,13 +518,15 @@ def parse_args():
 
     parser.add_argument(
         "--start-local",
-        required=True,
+        required=False,
+        default=None,
         help='Local site start time, format "YYYY-MM-DD HH:MM:SS"',
     )
 
     parser.add_argument(
         "--end-local",
-        required=True,
+        required=False,
+        default=None,
         help='Local site end time, format "YYYY-MM-DD HH:MM:SS"',
     )
 
@@ -377,6 +546,38 @@ def parse_args():
         "--meters",
         default="PRODUCTION,FEEDIN,PURCHASED,SELFCONSUMPTION",
         help="Comma-separated SolarEdge energyDetails meters",
+    )
+
+    parser.add_argument(
+        "--auto-window",
+        action="store_true",
+        help="Calculate next window from ctl.solaredge_ingest_checkpoint.",
+    )
+
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print auto-window plan only. No API call. No DB write.",
+    )
+
+    parser.add_argument(
+        "--window-minutes",
+        type=int,
+        default=60,
+        help="Auto-window size in minutes. Default = 60.",
+    )
+
+    parser.add_argument(
+        "--lag-minutes",
+        type=int,
+        default=30,
+        help="Safety lag from current local time. Default = 30.",
+    )
+
+    parser.add_argument(
+        "--bootstrap-start-local",
+        default=None,
+        help='Used only when checkpoint does not exist. Format "YYYY-MM-DD HH:MM:SS".',
     )
 
     return parser.parse_args()
