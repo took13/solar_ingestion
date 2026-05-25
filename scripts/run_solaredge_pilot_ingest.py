@@ -6,7 +6,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
-    
+
 import argparse
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
@@ -30,6 +30,151 @@ SOURCE_SYSTEM = "SOLAREDGE"
 
 
 def main():
+    args = parse_args()
+
+    # Same project DB pattern as existing smoke scripts
+    app_config = ConfigLoader().load_app_config()
+    conn = create_connection(app_config["database"]["connection_string"])
+
+    source_repo = SourceMappingRepository(conn)
+    raw_repo = RawV2Repository(conn)
+    metric_repo = MetricMappingRepository(conn)
+    canonical_repo = CanonicalMetricRepository(conn)
+    mart_repo = SolarPlantMartRepository(conn)
+    checkpoint_repo = SolarEdgeCheckpointRepository(conn)
+
+    try:
+        plant_map = source_repo.get_one_active_plant_map(
+            source_system_code=SOURCE_SYSTEM,
+            source_plant_code=args.site_id,
+        )
+
+        if not plant_map:
+            raise RuntimeError(
+                f"No active plant mapping found for SOLAREDGE site_id={args.site_id}. "
+                "Please insert dbo.dim_plant_source_map first."
+            )
+
+        internal_plant_code = plant_map["internal_plant_code"]
+        source_plant_code = plant_map["source_plant_code"]
+        timezone_name = plant_map.get("timezone_name") or args.timezone
+
+        # ------------------------------------------------------------
+        # 1) Resolve ingestion window first
+        #    Dry-run must not resolve API key and must not create client.
+        # ------------------------------------------------------------
+        if args.auto_window:
+            if args.endpoint == "both":
+                raise RuntimeError(
+                    "--auto-window does not support --endpoint both in this step. "
+                    "Run sitePower and energyDetails separately first."
+                )
+
+            window = resolve_auto_window(
+                checkpoint_repo=checkpoint_repo,
+                source_plant_code=source_plant_code,
+                endpoint_name=args.endpoint,
+                timezone_name=timezone_name,
+                window_minutes=args.window_minutes,
+                lag_minutes=args.lag_minutes,
+                bootstrap_start_local=args.bootstrap_start_local,
+            )
+
+            print_auto_window_plan(
+                internal_plant_code=internal_plant_code,
+                source_plant_code=source_plant_code,
+                timezone_name=timezone_name,
+                endpoint_name=args.endpoint,
+                window=window,
+            )
+
+            if args.dry_run:
+                print("")
+                print("[DRY-RUN] No API call executed. No DB write executed.")
+                return
+
+            if window["status"] != "READY":
+                print("")
+                print("[SKIP] Window is not due yet. No API call executed.")
+                return
+
+            start_local = window["start_local"]
+            end_local = window["end_local"]
+            start_utc = window["start_utc"]
+            end_utc = window["end_utc"]
+
+        else:
+            if not args.start_local or not args.end_local:
+                raise RuntimeError(
+                    "Manual mode requires --start-local and --end-local. "
+                    "Or use --auto-window."
+                )
+
+            start_local = args.start_local
+            end_local = args.end_local
+            start_utc = parse_local_to_utc_naive(start_local, timezone_name)
+            end_utc = parse_local_to_utc_naive(end_local, timezone_name)
+
+        # ------------------------------------------------------------
+        # 2) Resolve SolarEdge API key only for real API run
+        #    This keeps --dry-run safe.
+        # ------------------------------------------------------------
+        credential_resolver = SolarEdgeCredentialResolver()
+        api_key = credential_resolver.get_api_key(plant_map.get("api_key_secret_name"))
+        client = SolarEdgeClient(api_key=api_key)
+
+        print("=== SolarEdge Pilot Ingestion ===")
+        print(f"site_id={source_plant_code}")
+        print(f"internal_plant_code={internal_plant_code}")
+        print(f"timezone={timezone_name}")
+        print(f"start_local={start_local}")
+        print(f"end_local={end_local}")
+        print(f"start_utc={start_utc}")
+        print(f"end_utc={end_utc}")
+        print("")
+
+        if args.endpoint in ("sitePower", "both"):
+            run_site_power(
+                client=client,
+                raw_repo=raw_repo,
+                metric_repo=metric_repo,
+                canonical_repo=canonical_repo,
+                mart_repo=mart_repo,
+                checkpoint_repo=checkpoint_repo,
+                internal_plant_code=internal_plant_code,
+                source_plant_code=source_plant_code,
+                timezone_name=timezone_name,
+                start_local=start_local,
+                end_local=end_local,
+                start_utc=start_utc,
+                end_utc=end_utc,
+            )
+
+        if args.endpoint in ("energyDetails", "both"):
+            run_energy_details(
+                client=client,
+                raw_repo=raw_repo,
+                metric_repo=metric_repo,
+                canonical_repo=canonical_repo,
+                mart_repo=mart_repo,
+                checkpoint_repo=checkpoint_repo,
+                internal_plant_code=internal_plant_code,
+                source_plant_code=source_plant_code,
+                timezone_name=timezone_name,
+                start_local=start_local,
+                end_local=end_local,
+                start_utc=start_utc,
+                end_utc=end_utc,
+                meters=args.meters,
+            )
+
+        print("")
+        print("[OK] SolarEdge pilot ingestion completed")
+
+    finally:
+        conn.close()
+
+
     args = parse_args()
 
     app_config = ConfigLoader().load_app_config()
