@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Any, Dict, List, Optional
 
 from src.domain.enums import ValueType
@@ -5,6 +7,18 @@ from src.domain.time_utils import epoch_ms_to_utc
 
 
 class GenericNormalizer:
+    """
+    Generic Huawei device normalizer.
+
+    Safety behavior:
+    - Requires whitelist rules per source_api + dev_type_id
+    - Blocks metrics not in whitelist
+    - Skips NULL values unless keep_null=1
+    - Suppresses metric_value_raw_text unless keep_raw_text=1
+
+    This prevents all-metric long normalization from exploding norm.device_metric_long.
+    """
+
     def normalize(
         self,
         response_body: Dict[str, Any],
@@ -13,28 +27,58 @@ class GenericNormalizer:
         plant_id: Optional[int],
         dev_type_id: int,
         source_api: str,
-    ) -> List[dict]:
+        whitelist_rules: Optional[dict[str, dict[str, Any]]] = None,
+        require_whitelist: bool = True,
+    ) -> dict[str, Any]:
         rows: List[dict] = []
+
+        stats = {
+            "raw_id": raw_id,
+            "source_api": source_api,
+            "dev_type_id": dev_type_id,
+            "record_count": 0,
+            "parsed_metric_count": 0,
+            "allowed_metric_count": 0,
+            "blocked_metric_count": 0,
+            "skipped_null_count": 0,
+            "raw_text_suppressed_count": 0,
+            "skipped_no_collect_time_count": 0,
+            "skipped_bad_collect_time_count": 0,
+            "skipped_no_dev_id_count": 0,
+            "output_row_count": 0,
+        }
+
+        whitelist_rules = whitelist_rules or {}
+
+        if require_whitelist and not whitelist_rules:
+            raise RuntimeError(
+                f"No enabled whitelist rules found for source_api={source_api}, "
+                f"dev_type_id={dev_type_id}. Refusing to normalize all metrics."
+            )
 
         data = response_body.get("data") or []
         params = response_body.get("params") or {}
         response_current_ms = params.get("currentTime")
 
         for record in data:
-            # getDevHistoryKpi has collectTime per record
-            # getDevRealKpi usually has no collectTime, so use params.currentTime
+            stats["record_count"] += 1
+
+            # getDevHistoryKpi has collectTime per record.
+            # getDevRealKpi usually has no collectTime, so use params.currentTime.
             collect_ms = record.get("collectTime") or response_current_ms
             if collect_ms is None:
+                stats["skipped_no_collect_time_count"] += 1
+                continue
+
+            try:
+                collect_time_utc = epoch_ms_to_utc(int(collect_ms))
+            except Exception:
+                stats["skipped_bad_collect_time_count"] += 1
                 continue
 
             dev_id = record.get("devId") or record.get("id")
             dev_dn = record.get("devDn") or record.get("dn") or record.get("sn")
             metric_map = record.get("dataItemMap") or record.get("dataItems") or {}
-
-            try:
-                collect_time_utc = epoch_ms_to_utc(int(collect_ms))
-            except Exception:
-                continue
 
             if dev_id is None and dev_dn and "NE=" in str(dev_dn):
                 try:
@@ -43,10 +87,34 @@ class GenericNormalizer:
                     dev_id = None
 
             if dev_id is None:
+                stats["skipped_no_dev_id_count"] += 1
                 continue
 
             for metric_name, value in metric_map.items():
+                metric_name = str(metric_name)
+                stats["parsed_metric_count"] += 1
+
+                rule = whitelist_rules.get(metric_name)
+
+                if require_whitelist and rule is None:
+                    stats["blocked_metric_count"] += 1
+                    continue
+
+                keep_null = bool(rule.get("keep_null", False)) if rule else False
+                keep_raw_text = bool(rule.get("keep_raw_text", False)) if rule else False
+
                 parsed = self._parse_value(value)
+
+                if parsed["value_type"] == ValueType.NULL.value and not keep_null:
+                    stats["skipped_null_count"] += 1
+                    continue
+
+                if not keep_raw_text and parsed["metric_value_raw_text"] is not None:
+                    parsed["metric_value_raw_text"] = None
+                    stats["raw_text_suppressed_count"] += 1
+
+                stats["allowed_metric_count"] += 1
+
                 rows.append({
                     "raw_id": raw_id,
                     "plant_id": plant_id,
@@ -65,7 +133,12 @@ class GenericNormalizer:
                     "source_api": source_api,
                 })
 
-        return rows
+        stats["output_row_count"] = len(rows)
+
+        return {
+            "rows": rows,
+            "stats": stats,
+        }
 
     def _parse_value(self, value: Any) -> dict:
         if value is None:
