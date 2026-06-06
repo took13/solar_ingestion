@@ -80,9 +80,8 @@ class JobRunner:
         Collapse only explicit account-scope getDevRealKpi targets.
 
         IMPORTANT:
-        Plant-specific getDevRealKpi targets must NOT be collapsed to __ACCOUNT__.
-        This is required for inverter_realtime_online because Enserve needs only
-        selected plants such as NE=50281829 and NE=50979503.
+        - Plant-specific getDevRealKpi targets must NOT be collapsed.
+        - __SELECTED__ selected-batch target must NOT be collapsed.
         """
         collapsed: list[dict] = []
         seen_account_scope: set[tuple[int, int]] = set()
@@ -106,7 +105,7 @@ class JobRunner:
                 collapsed.append(synthetic)
                 continue
 
-            # Keep plant-specific targets as-is
+            # Keep plant-specific and __SELECTED__ targets as-is
             target = dict(target)
             target["is_account_scope"] = False
             collapsed.append(target)
@@ -129,6 +128,19 @@ class JobRunner:
             self._run_plant_realtime_target(run_id, target)
             return
 
+        if (
+            endpoint_name == "getDevRealKpi"
+            and target.get("plant_code") == "__SELECTED__"
+            and int(target.get("dev_type_id") or 0) == 1
+        ):
+            print("[DEBUG] enter selected inverter realtime path")
+            self._run_selected_inverter_realtime_target(
+                run_id=run_id,
+                target=target,
+                endpoint_name=endpoint_name,
+            )
+            return
+
         if endpoint_name == "getDevRealKpi" and target.get("is_account_scope"):
             devices = self.metadata_repo.get_devices_for_account_and_type(
                 account_id=target["account_id"],
@@ -136,7 +148,13 @@ class JobRunner:
             )
         else:
             if target["plant_code"] == "__ACCOUNT__":
-                self._run_account_device_target(run_id, job, target, endpoint_name, service_class)
+                self._run_account_device_target(
+                    run_id,
+                    job,
+                    target,
+                    endpoint_name,
+                    service_class,
+                )
                 return
 
             devices = self.metadata_repo.get_devices(
@@ -181,6 +199,68 @@ class JobRunner:
         else:
             print("[DEBUG] enter full device path")
             self._run_full_device_target(run_id, target, endpoint_name, devices, window)
+
+    def _run_selected_inverter_realtime_target(
+        self,
+        run_id: int,
+        target: dict,
+        endpoint_name: str,
+    ) -> None:
+        """
+        Selected-batch inverter realtime.
+
+        Purpose:
+        - Avoid 5 plant-specific targets causing 5 account-rate-gated calls.
+        - Use cfg.inverter_realtime_selected_plant as selected plant list.
+        - Expand selected plants to active inverter dev_id.
+        - Reuse _run_full_device_target() so logging, audit, retry, rate gate,
+          checkpoint, and API call behavior stay consistent with existing pattern.
+        """
+        from src.db.repositories.inverter_realtime_selection_repo import (
+            InverterRealtimeSelectionRepository,
+        )
+
+        conn = getattr(self.metadata_repo, "conn", None)
+        if conn is None:
+            conn = getattr(self.metadata_repo, "_conn", None)
+
+        if conn is None:
+            raise RuntimeError(
+                "metadata_repo does not expose conn/_conn. "
+                "Cannot read cfg.inverter_realtime_selected_plant."
+            )
+
+        selection_repo = InverterRealtimeSelectionRepository(conn)
+        devices = selection_repo.list_selected_inverter_devices()
+
+        if not devices:
+            self.checkpoint_service.mark_no_devices(target, run_id)
+            return
+
+        # Safety dedupe before passing to full device path.
+        deduped: dict[int, dict] = {}
+        for d in devices:
+            dev_id = d.get("dev_id")
+            if dev_id is None:
+                continue
+            deduped[int(dev_id)] = d
+
+        selected_devices = list(deduped.values())
+
+        print(
+            f"[DEBUG] selected inverter realtime "
+            f"selected_device_count={len(selected_devices)} "
+            f"selected_plant_count={len({d.get('plant_code') for d in selected_devices})}"
+        )
+
+        # getDevRealKpi is realtime, so window is always None.
+        self._run_full_device_target(
+            run_id=run_id,
+            target=target,
+            endpoint_name=endpoint_name,
+            devices=selected_devices,
+            window=None,
+        )
 
     def _utcnow(self) -> datetime:
         return datetime.now(timezone.utc)
@@ -460,6 +540,21 @@ class JobRunner:
                         "source": "account_scope_expansion",
                     })
 
+                if target.get("plant_code") == "__SELECTED__":
+                    expanded_plant_codes = sorted({
+                        str(d.get("plant_code"))
+                        for d in devices
+                        if d.get("plant_code")
+                    })
+                    request_payload.update({
+                        "targetPlantCode": "__SELECTED__",
+                        "expandedPlantCount": len(expanded_plant_codes),
+                        "expandedDeviceCount": len(devices),
+                        "batchNo": batch_no,
+                        "batchSize": len(dev_ids),
+                        "source": "selected_batch_expansion",
+                    })
+
                 api_name = "getDevRealKpi"
                 endpoint_path = "/thirdData/getDevRealKpi"
 
@@ -721,13 +816,6 @@ class JobRunner:
                 run_id=run_id,
             )
 
-        # IMPORTANT:
-        # nearline_rotating processes only a subset of devices per run.
-        # Do NOT advance checkpoint until the rotation has completed all devices
-        # for this target/window. Otherwise, unprocessed devices will lose this time window.
-        #
-        # When next_offset == 0, the rotation has wrapped around, meaning all
-        # device batches for this target/window have been covered.
         if next_offset == 0:
             self.checkpoint_service.mark_success(target, run_id, window)
         else:
