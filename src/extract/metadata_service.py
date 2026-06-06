@@ -13,8 +13,8 @@ class MetadataService:
             dev_type_id = target.get("dev_type_id")
             plant_code = target.get("plant_code")
 
-            # account-level targets
-            if plant_code == "__ACCOUNT__":
+            # account-level / selected-batch pseudo targets
+            if plant_code in ("__ACCOUNT__", "__SELECTED__"):
                 target["plant"] = None
                 enriched.append(target)
                 continue

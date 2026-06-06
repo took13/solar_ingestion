@@ -9,12 +9,13 @@ class TargetRepository:
         """
         Load enabled ingest targets for a job.
 
-        Long-term active/inactive plant rule:
-        - Account-scope targets with plant_code='__ACCOUNT__' are allowed.
-          They will be expanded later using active plants only.
-        - Plant-specific targets are allowed only when dbo.dim_plant.is_active = 1.
-        - Targets for inactive API accounts are excluded.
-        - Unknown plant_code is excluded for plant-specific targets.
+        Allowed target scopes:
+        - __ACCOUNT__  = account-level expansion
+        - __SELECTED__ = selected-batch expansion, e.g. inverter realtime selected plants
+        - plant-specific target = allowed only when dbo.dim_plant.is_active = 1
+
+        Targets for inactive API accounts are excluded.
+        Unknown plant_code is excluded only for plant-specific targets.
         """
         cursor = self.conn.cursor()
 
@@ -63,7 +64,7 @@ class TargetRepository:
               AND t.is_enabled = 1
               AND
               (
-                    t.plant_code = '__ACCOUNT__'
+                    t.plant_code IN ('__ACCOUNT__', '__SELECTED__')
                  OR ISNULL(p.is_active, 0) = 1
               )
               {where_wave}
