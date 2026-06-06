@@ -19,20 +19,21 @@ class InverterRealtimeSelectionRepository:
         return [str(r.plant_code) for r in cursor.fetchall()]
 
     def list_selected_inverter_devices(self) -> list[dict[str, Any]]:
+        """
+        Keep this query minimal to avoid dependency on optional dim_device columns
+        such as dev_name/dev_dn.
+        """
         sql = """
             SELECT DISTINCT
                 d.plant_code,
-                d.dev_id,
-                d.dev_name,
-                d.dev_dn
+                d.dev_id
             FROM cfg.inverter_realtime_selected_plant p
             JOIN dbo.dim_device d
                 ON d.plant_code = p.plant_code
                AND d.dev_type_id = 1
-               AND d.is_active = 1
+               AND ISNULL(d.is_active, 1) = 1
             WHERE p.is_enabled = 1
             ORDER BY
-                p.priority_no,
                 d.plant_code,
                 d.dev_id;
         """
@@ -43,8 +44,6 @@ class InverterRealtimeSelectionRepository:
             {
                 "plant_code": str(r.plant_code),
                 "dev_id": int(r.dev_id),
-                "dev_name": getattr(r, "dev_name", None),
-                "dev_dn": getattr(r, "dev_dn", None),
             }
             for r in cursor.fetchall()
         ]

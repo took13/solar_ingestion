@@ -206,16 +206,6 @@ class JobRunner:
         target: dict,
         endpoint_name: str,
     ) -> None:
-        """
-        Selected-batch inverter realtime.
-
-        Purpose:
-        - Avoid 5 plant-specific targets causing 5 account-rate-gated calls.
-        - Use cfg.inverter_realtime_selected_plant as selected plant list.
-        - Expand selected plants to active inverter dev_id.
-        - Reuse _run_full_device_target() so logging, audit, retry, rate gate,
-          checkpoint, and API call behavior stay consistent with existing pattern.
-        """
         from src.db.repositories.inverter_realtime_selection_repo import (
             InverterRealtimeSelectionRepository,
         )
@@ -231,13 +221,35 @@ class JobRunner:
             )
 
         selection_repo = InverterRealtimeSelectionRepository(conn)
+
+        selected_plants = selection_repo.list_selected_plants()
+        print(f"[DEBUG] selected inverter selected_plants={selected_plants}")
+
         devices = selection_repo.list_selected_inverter_devices()
+        print(f"[DEBUG] selected inverter repo returned devices={len(devices)}")
+
+        # Fallback: if repository returns 0 devices, reuse existing metadata_repo.get_devices pattern
+        # to avoid mismatch in dim_device active flag / column assumptions.
+        if not devices and selected_plants:
+            fallback_devices = []
+            for plant_code in selected_plants:
+                plant_devices = self.metadata_repo.get_devices(
+                    plant_code=plant_code,
+                    dev_type_id=1,
+                )
+                print(
+                    f"[DEBUG] selected inverter fallback plant={plant_code} "
+                    f"devices={len(plant_devices)}"
+                )
+                fallback_devices.extend(plant_devices)
+
+            devices = fallback_devices
+            print(f"[DEBUG] selected inverter fallback total devices={len(devices)}")
 
         if not devices:
             self.checkpoint_service.mark_no_devices(target, run_id)
             return
 
-        # Safety dedupe before passing to full device path.
         deduped: dict[int, dict] = {}
         for d in devices:
             dev_id = d.get("dev_id")
@@ -250,10 +262,9 @@ class JobRunner:
         print(
             f"[DEBUG] selected inverter realtime "
             f"selected_device_count={len(selected_devices)} "
-            f"selected_plant_count={len({d.get('plant_code') for d in selected_devices})}"
+            f"selected_plant_count={len({d.get('plant_code') for d in selected_devices if d.get('plant_code')})}"
         )
 
-        # getDevRealKpi is realtime, so window is always None.
         self._run_full_device_target(
             run_id=run_id,
             target=target,
@@ -266,7 +277,10 @@ class JobRunner:
         return datetime.now(timezone.utc)
 
     def _plant_code_for_batch(self, target: dict, batch_items: list) -> str:
-        if target.get("plant_code") and target.get("plant_code") != "__ACCOUNT__":
+        if target.get("plant_code") in ("__ACCOUNT__", "__SELECTED__"):
+            return target["plant_code"]
+
+        if target.get("plant_code"):
             return target["plant_code"]
 
         if not batch_items:
