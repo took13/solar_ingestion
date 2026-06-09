@@ -5,7 +5,7 @@ import time
 from dataclasses import dataclass
 from typing import Any
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 
 
@@ -99,6 +99,89 @@ class SolarEdgeClient:
 
         return self._get_json(
             endpoint_name="energyDetails",
+            endpoint_path=endpoint_path,
+            params=params,
+        )
+
+
+    def get_equipment_list(
+        self,
+        *,
+        site_id: str,
+    ) -> SolarEdgeResponse:
+        """
+        GET /equipment/{siteId}/list
+
+        Returns the list of inverters/SMIs with name, model, manufacturer,
+        and serial number. This is useful as a lightweight device inventory.
+        """
+        endpoint_path = f"/equipment/{site_id}/list"
+
+        params = {
+            "api_key": self.api_key,
+        }
+
+        return self._get_json(
+            endpoint_name="equipmentList",
+            endpoint_path=endpoint_path,
+            params=params,
+        )
+
+    def get_site_inventory(
+        self,
+        *,
+        site_id: str,
+    ) -> SolarEdgeResponse:
+        """
+        GET /site/{siteId}/inventory
+
+        Returns site equipment inventory, including inverters/SMIs, meters,
+        gateways, batteries, and sensors. For inverter-level ingestion this is
+        the preferred master-data source because it includes serial numbers.
+        """
+        endpoint_path = f"/site/{site_id}/inventory"
+
+        params = {
+            "api_key": self.api_key,
+        }
+
+        return self._get_json(
+            endpoint_name="inventory",
+            endpoint_path=endpoint_path,
+            params=params,
+        )
+
+    def get_inverter_technical_data(
+        self,
+        *,
+        site_id: str,
+        serial_number: str,
+        start_time_local: str,
+        end_time_local: str,
+    ) -> SolarEdgeResponse:
+        """
+        GET /equipment/{siteId}/{serialNumber}/data
+
+        start_time_local/end_time_local format:
+        YYYY-MM-DD HH:MM:SS
+
+        SolarEdge documentation limits this endpoint to a one-week period per
+        request. The runner must chunk longer backfill ranges.
+        """
+        if not serial_number:
+            raise ValueError("serial_number is required")
+
+        safe_serial = quote(serial_number, safe="")
+        endpoint_path = f"/equipment/{site_id}/{safe_serial}/data"
+
+        params = {
+            "startTime": start_time_local,
+            "endTime": end_time_local,
+            "api_key": self.api_key,
+        }
+
+        return self._get_json(
+            endpoint_name="inverterTechnicalData",
             endpoint_path=endpoint_path,
             params=params,
         )
