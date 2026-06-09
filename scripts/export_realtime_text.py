@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import os
@@ -18,7 +18,7 @@ DEFAULT_OUTPUT_DIR = Path("exports") / "realtime_text"
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Export Solar realtime monitoring text file from mart.vw_export_realtime_text"
+        description="Export Solar realtime monitoring text file from mart.vw_export_realtime_text_optionb"
     )
     parser.add_argument(
         "--output-dir",
@@ -110,7 +110,7 @@ def main() -> int:
             export_line,
             data_status,
             source_age_minute
-        FROM mart.vw_export_realtime_text
+        FROM mart.vw_export_realtime_text_optionb
         WHERE data_status IN ({placeholders})
           AND (
                 value_text IS NOT NULL
@@ -123,7 +123,7 @@ def main() -> int:
     rows = cursor.fetchall()
 
     if not rows:
-        print("[EXPORT][WARN] No rows returned from mart.vw_export_realtime_text")
+        print("[EXPORT][WARN] No rows returned from mart.vw_export_realtime_text_optionb")
         return 2
 
     export_lines: list[str] = []

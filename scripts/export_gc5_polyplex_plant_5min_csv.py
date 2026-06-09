@@ -16,8 +16,8 @@ from src.main import build_app
 SQL = """
 SET NOCOUNT ON;
 
-DECLARE @FromUtc datetime2(0) = '2024-12-31T17:00:00';
-DECLARE @ToUtc   datetime2(0) = '2026-05-20T17:00:00';
+DECLARE @FromUtc datetime2(0) = '2026-05-19T17:00:00';
+DECLARE @ToUtc   datetime2(0) = '2026-06-07T17:00:00';
 
 WITH inv_device_5min AS (
     SELECT

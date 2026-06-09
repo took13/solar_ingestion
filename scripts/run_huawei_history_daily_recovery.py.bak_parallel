@@ -1,0 +1,283 @@
+from __future__ import annotations
+
+import argparse
+import subprocess
+import sys
+from datetime import datetime, timedelta
+from pathlib import Path
+
+from src.main import build_app
+
+
+RETENTION_JOBS = [
+    "dev_history_backfill_retention_acc1",
+    "dev_history_backfill_retention_acc2",
+    "dev_history_backfill_retention_acc3",
+]
+
+PREPARE_SQL = """
+-- Disable devType 10/17 first
+UPDATE t
+SET
+    is_enabled = 0,
+    updated_at_utc = SYSUTCDATETIME()
+FROM ctl.ingest_target t
+JOIN ctl.ingest_job j
+    ON j.job_id = t.job_id
+WHERE j.job_name IN (
+    'dev_history_backfill_retention_acc1',
+    'dev_history_backfill_retention_acc2',
+    'dev_history_backfill_retention_acc3'
+)
+AND t.endpoint_name = 'getDevHistoryKpi'
+AND t.dev_type_id IN (10,17);
+
+-- Enable and tune devType 1 only for selected active/history-expected plants
+UPDATE t
+SET
+    is_enabled = 1,
+    batch_size = 10,
+    requested_batch_size = 10,
+    max_batches_per_run = CEILING(1.0 * x.inverter_count / 10.0),
+    rotation_enabled = 0,
+    hard_window_mode = 'slot',
+    lag_minutes = 15,
+    max_window_minutes = 780,
+    updated_at_utc = SYSUTCDATETIME()
+FROM ctl.ingest_target t
+JOIN ctl.ingest_job j
+    ON j.job_id = t.job_id
+JOIN (
+    SELECT
+        d.plant_code,
+        COUNT(DISTINCT d.dev_id) AS inverter_count
+    FROM dbo.dim_device d
+    LEFT JOIN cfg.plant_data_scope_override o
+        ON o.plant_code = d.plant_code
+    WHERE d.dev_type_id = 1
+      AND ISNULL(o.is_history_expected, 1) = 1
+      AND d.plant_code IN (
+          SELECT plant_code
+          FROM cfg.inverter_realtime_selected_plant
+          WHERE is_enabled = 1
+      )
+    GROUP BY d.plant_code
+) x
+    ON x.plant_code = t.plant_code
+WHERE j.job_name IN (
+    'dev_history_backfill_retention_acc1',
+    'dev_history_backfill_retention_acc2',
+    'dev_history_backfill_retention_acc3'
+)
+AND t.endpoint_name = 'getDevHistoryKpi'
+AND t.dev_type_id = 1;
+
+-- Force disable non-history-expected plants such as shutdown plants
+UPDATE t
+SET
+    is_enabled = 0,
+    updated_at_utc = SYSUTCDATETIME()
+FROM ctl.ingest_target t
+JOIN ctl.ingest_job j
+    ON j.job_id = t.job_id
+JOIN cfg.plant_data_scope_override o
+    ON o.plant_code = t.plant_code
+WHERE j.job_name IN (
+    'dev_history_backfill_retention_acc1',
+    'dev_history_backfill_retention_acc2',
+    'dev_history_backfill_retention_acc3'
+)
+AND t.endpoint_name = 'getDevHistoryKpi'
+AND ISNULL(o.is_history_expected, 1) = 0;
+"""
+
+DISABLE_RETENTION_SQL = """
+UPDATE t
+SET
+    is_enabled = 0,
+    updated_at_utc = SYSUTCDATETIME()
+FROM ctl.ingest_target t
+JOIN ctl.ingest_job j
+    ON j.job_id = t.job_id
+WHERE j.job_name IN (
+    'dev_history_backfill_retention_acc1',
+    'dev_history_backfill_retention_acc2',
+    'dev_history_backfill_retention_acc3'
+)
+AND t.endpoint_name = 'getDevHistoryKpi';
+"""
+
+MART_LOAD_SQL = """
+EXEC mart.usp_load_fact_dev_inverter_5min
+    @FromUtc = ?,
+    @ToUtc   = ?;
+"""
+
+SNAPSHOT_SQL = """
+EXEC ops.usp_refresh_solar_plant_completeness_snapshot;
+"""
+
+
+def previous_daylight_window_utc() -> tuple[datetime, datetime]:
+    """
+    Previous local day daylight window:
+    Thailand 06:00–19:00, converted to UTC.
+    Thailand = UTC+7, no DST.
+    """
+    now_utc = datetime.utcnow().replace(microsecond=0)
+    now_local = now_utc + timedelta(hours=7)
+
+    today_local_midnight = datetime(
+        now_local.year, now_local.month, now_local.day, 0, 0, 0
+    )
+
+    start_local = today_local_midnight - timedelta(days=1) + timedelta(hours=6)
+    end_local = today_local_midnight - timedelta(days=1) + timedelta(hours=19)
+
+    start_utc = start_local - timedelta(hours=7)
+    end_utc = end_local - timedelta(hours=7)
+
+    return start_utc, end_utc
+
+
+def parse_utc(value: str) -> datetime:
+    v = value.strip().replace("Z", "+00:00")
+    dt = datetime.fromisoformat(v)
+    if dt.tzinfo is not None:
+        return dt.astimezone(tz=None).replace(tzinfo=None)
+    return dt
+
+
+def fmt_z(dt: datetime) -> str:
+    return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def exec_sql(sql: str, params: tuple | None = None) -> None:
+    app = build_app()
+    conn = app.conn
+    cur = conn.cursor()
+    try:
+        if params:
+            cur.execute(sql, *params)
+        else:
+            cur.execute(sql)
+        conn.commit()
+    except Exception:
+        try:
+            conn.rollback()
+        except Exception:
+            pass
+        raise
+    finally:
+        try:
+            conn.close()
+        except Exception:
+            pass
+
+
+def run_cmd(args: list[str], cwd: Path) -> None:
+    print("[RUN]", " ".join(args))
+    result = subprocess.run(args, cwd=str(cwd), text=True)
+    if result.returncode != 0:
+        raise RuntimeError(f"Command failed rc={result.returncode}: {' '.join(args)}")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--start", help="UTC ISO, e.g. 2026-06-06T23:00:00Z")
+    parser.add_argument("--end", help="UTC ISO, e.g. 2026-06-07T12:00:00Z")
+    parser.add_argument("--chunk-minutes", type=int, default=780)
+    parser.add_argument("--normalize-limit-raw", type=int, default=2000)
+    parser.add_argument("--skip-backfill", action="store_true")
+    parser.add_argument("--skip-normalize", action="store_true")
+    parser.add_argument("--skip-mart", action="store_true")
+    parser.add_argument("--skip-snapshot", action="store_true")
+    args = parser.parse_args()
+
+    if args.start and args.end:
+        start_utc = parse_utc(args.start)
+        end_utc = parse_utc(args.end)
+    else:
+        start_utc, end_utc = previous_daylight_window_utc()
+
+    if end_utc <= start_utc:
+        raise ValueError("--end must be greater than --start")
+
+    app_dir = Path(__file__).resolve().parents[1]
+
+    print("=== Huawei Inverter History Daily Recovery ===")
+    print(f"START_UTC={fmt_z(start_utc)}")
+    print(f"END_UTC  ={fmt_z(end_utc)}")
+    print(f"chunk_minutes={args.chunk_minutes}")
+
+    try:
+        print("[1/6] Prepare controlled retention targets")
+        exec_sql(PREPARE_SQL)
+
+        if not args.skip_backfill:
+            print("[2/6] Run controlled backfill jobs")
+            for job in RETENTION_JOBS:
+                run_cmd(
+                    [
+                        sys.executable,
+                        "-m",
+                        "scripts.run_backfill",
+                        "--job",
+                        job,
+                        "--start",
+                        fmt_z(start_utc),
+                        "--end",
+                        fmt_z(end_utc),
+                        "--chunk-minutes",
+                        str(args.chunk_minutes),
+                    ],
+                    cwd=app_dir,
+                )
+        else:
+            print("[2/6] Skip backfill")
+
+        if not args.skip_normalize:
+            print("[3/6] Normalize generic")
+            run_cmd(
+                [
+                    sys.executable,
+                    "-m",
+                    "scripts.run_normalize_generic",
+                    "--limit-raw",
+                    str(args.normalize_limit_raw),
+                ],
+                cwd=app_dir,
+            )
+        else:
+            print("[3/6] Skip normalize")
+
+        if not args.skip_mart:
+            print("[4/6] Load mart.fact_dev_inverter_5min")
+            exec_sql(MART_LOAD_SQL, (start_utc, end_utc))
+        else:
+            print("[4/6] Skip mart load")
+
+        if not args.skip_snapshot:
+            print("[5/6] Refresh completeness snapshot")
+            exec_sql(SNAPSHOT_SQL)
+        else:
+            print("[5/6] Skip snapshot")
+
+        print("[6/6] Disable retention targets")
+        exec_sql(DISABLE_RETENTION_SQL)
+
+        print("=== Huawei Inverter History Daily Recovery SUCCESS ===")
+        return 0
+
+    except Exception as exc:
+        print(f"[FAILED] {exc}")
+        print("[CLEANUP] Disable retention targets")
+        try:
+            exec_sql(DISABLE_RETENTION_SQL)
+        except Exception as cleanup_exc:
+            print(f"[CLEANUP][FAILED] {cleanup_exc}")
+        raise
+
+
+if __name__ == "__main__":
+    sys.exit(main())

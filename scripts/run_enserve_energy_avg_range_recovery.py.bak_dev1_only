@@ -1,0 +1,706 @@
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+import time
+from datetime import date, datetime, timedelta, timezone
+from pathlib import Path
+
+import requests
+
+from src.main import build_app
+
+
+DEFAULT_PLANTS = ("NE=50281829", "NE=50979503")
+DEFAULT_SOURCE_JOB = "inverter_history_nearline"
+SEND_VIEW = "mart.vw_enserve_15min_energy_avg_adhoc_send"
+
+STAGE_LOAD_SQL = """
+EXEC ops.usp_load_enserve_energy_avg_adhoc_stage
+    @FromUtc = ?,
+    @ToUtc   = ?;
+"""
+
+
+def parse_yyyy_mm_dd(value: str) -> date:
+    return datetime.strptime(value, "%Y-%m-%d").date()
+
+
+def date_range_inclusive(start_date: date, end_date: date):
+    current = start_date
+    while current <= end_date:
+        yield current
+        current += timedelta(days=1)
+
+
+def fmt_z(dt: datetime) -> str:
+    return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def to_iso_utc(dt) -> str:
+    if isinstance(dt, str):
+        return dt
+
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    else:
+        dt = dt.astimezone(timezone.utc)
+
+    return dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def local_daylight_window_utc(local_date: date):
+    """
+    Enserve daylight window:
+    Thailand local 06:00–19:00 inclusive.
+
+    For SQL half-open filtering, use:
+      start_utc <= collect_time_utc < end_utc_exclusive
+
+    end_utc_inclusive = 19:00 local
+    end_utc_exclusive = 19:15 local
+    """
+    start_local = datetime(local_date.year, local_date.month, local_date.day, 6, 0, 0)
+    end_local_inclusive = datetime(local_date.year, local_date.month, local_date.day, 19, 0, 0)
+    end_local_exclusive = end_local_inclusive + timedelta(minutes=15)
+
+    start_utc = start_local - timedelta(hours=7)
+    end_utc_inclusive = end_local_inclusive - timedelta(hours=7)
+    end_utc_exclusive = end_local_exclusive - timedelta(hours=7)
+
+    return start_utc, end_utc_inclusive, end_utc_exclusive
+
+
+def open_conn():
+    app = build_app()
+    return app.conn
+
+
+def exec_sql(sql: str, params: tuple | None = None) -> None:
+    conn = open_conn()
+    cur = conn.cursor()
+
+    try:
+        if params:
+            cur.execute(sql, *params)
+        else:
+            cur.execute(sql)
+
+        conn.commit()
+
+    except Exception:
+        try:
+            conn.rollback()
+        except Exception:
+            pass
+        raise
+
+    finally:
+        try:
+            conn.close()
+        except Exception:
+            pass
+
+
+def query_sql(sql: str, params: tuple | None = None) -> list:
+    conn = open_conn()
+    cur = conn.cursor()
+
+    try:
+        if params:
+            cur.execute(sql, *params)
+        else:
+            cur.execute(sql)
+
+        return cur.fetchall()
+
+    finally:
+        try:
+            conn.close()
+        except Exception:
+            pass
+
+
+def run_cmd(label: str, cmd: list[str], cwd: Path) -> None:
+    print(f"[CMD][START] {label}")
+    print("[CMD]", " ".join(cmd))
+
+    started = time.monotonic()
+    result = subprocess.run(cmd, cwd=str(cwd), text=True)
+    elapsed = time.monotonic() - started
+
+    print(f"[CMD][END] {label} rc={result.returncode} elapsed_sec={elapsed:.1f}")
+
+    if result.returncode != 0:
+        raise RuntimeError(f"Command failed: {label} rc={result.returncode}")
+
+
+def run_source_prepare(
+    app_dir: Path,
+    source_job: str,
+    start_utc: datetime,
+    end_utc_exclusive: datetime,
+    chunk_minutes: int,
+    normalize_limit_raw: int,
+    skip_backfill: bool,
+    skip_normalize: bool,
+    skip_stage_load: bool,
+) -> None:
+    if not skip_backfill:
+        run_cmd(
+            label="Huawei inverter history backfill",
+            cmd=[
+                sys.executable,
+                "-m",
+                "scripts.run_backfill",
+                "--job",
+                source_job,
+                "--start",
+                fmt_z(start_utc),
+                "--end",
+                fmt_z(end_utc_exclusive),
+                "--chunk-minutes",
+                str(chunk_minutes),
+            ],
+            cwd=app_dir,
+        )
+    else:
+        print("[PREPARE] Skip Huawei backfill")
+
+    if not skip_normalize:
+        run_cmd(
+            label="Normalize generic",
+            cmd=[
+                sys.executable,
+                "-m",
+                "scripts.run_normalize_generic",
+                "--limit-raw",
+                str(normalize_limit_raw),
+            ],
+            cwd=app_dir,
+        )
+    else:
+        print("[PREPARE] Skip normalize")
+
+    if not skip_stage_load:
+        print("[PREPARE] Load Enserve energy avg stage")
+        exec_sql(STAGE_LOAD_SQL, (start_utc, end_utc_exclusive))
+    else:
+        print("[PREPARE] Skip stage load")
+
+
+def load_enabled_targets(plants: tuple[str, ...]) -> dict:
+    placeholders = ",".join("?" for _ in plants)
+
+    sql = f"""
+    SELECT
+        egress_target_id,
+        plant_code,
+        endpoint_url,
+        auth_token,
+        timeout_seconds
+    FROM ops.api_egress_target
+    WHERE is_enabled = 1
+      AND plant_code IN ({placeholders})
+    ORDER BY plant_code;
+    """
+
+    rows = query_sql(sql, plants)
+
+    targets = {}
+
+    for r in rows:
+        if not r.endpoint_url:
+            raise RuntimeError(f"endpoint_url is empty for plant_code={r.plant_code}")
+
+        if not r.auth_token:
+            raise RuntimeError(f"auth_token is empty for plant_code={r.plant_code}")
+
+        targets[str(r.plant_code)] = {
+            "egress_target_id": int(r.egress_target_id),
+            "plant_code": str(r.plant_code),
+            "endpoint_url": str(r.endpoint_url),
+            "auth_token": str(r.auth_token),
+            "timeout_seconds": int(r.timeout_seconds or 30),
+        }
+
+    missing = [p for p in plants if p not in targets]
+    if missing:
+        raise RuntimeError(f"No enabled Enserve egress target found for plant(s): {missing}")
+
+    return targets
+
+
+def load_rows_for_window(
+    plant_code: str,
+    start_utc: datetime,
+    end_utc_exclusive: datetime,
+) -> list:
+    sql = f"""
+    SELECT
+        plant_code,
+        collect_time_utc,
+        power_kw,
+        number_inverter,
+        irradiance_wm2,
+        temperature_c
+    FROM {SEND_VIEW}
+    WHERE plant_code = ?
+      AND collect_time_utc >= ?
+      AND collect_time_utc < ?
+      AND power_kw IS NOT NULL
+      AND number_inverter IS NOT NULL
+    ORDER BY collect_time_utc ASC;
+    """
+
+    return query_sql(sql, (plant_code, start_utc, end_utc_exclusive))
+
+
+def build_records(rows: list) -> list[dict]:
+    records = []
+
+    for r in rows:
+        records.append(
+            {
+                "timestamp": to_iso_utc(r.collect_time_utc),
+                "data": {
+                    "power_kw": float(r.power_kw or 0.0),
+                    "number_inverter": int(r.number_inverter or 0),
+                    "irradiance_wm2": float(r.irradiance_wm2 or 0.0),
+                    "temperature_c": float(r.temperature_c or 0.0),
+                },
+            }
+        )
+
+    return records
+
+
+def create_egress_run(message: str) -> int:
+    conn = open_conn()
+    cur = conn.cursor()
+
+    try:
+        cur.execute(
+            """
+            INSERT INTO ops.api_egress_run
+            (
+                run_mode,
+                triggered_by,
+                status,
+                started_at_utc,
+                ended_at_utc,
+                message
+            )
+            OUTPUT INSERTED.egress_run_id
+            VALUES
+            (
+                'enserve_energy_avg_range_recovery',
+                'python_script',
+                'RUNNING',
+                SYSUTCDATETIME(),
+                NULL,
+                ?
+            );
+            """,
+            message[:4000],
+        )
+
+        row = cur.fetchone()
+        conn.commit()
+        return int(row.egress_run_id)
+
+    except Exception:
+        try:
+            conn.rollback()
+        except Exception:
+            pass
+        raise
+
+    finally:
+        try:
+            conn.close()
+        except Exception:
+            pass
+
+
+def update_egress_run(egress_run_id: int, status: str, message: str) -> None:
+    exec_sql(
+        """
+        UPDATE ops.api_egress_run
+        SET
+            status = ?,
+            ended_at_utc = SYSUTCDATETIME(),
+            message = ?
+        WHERE egress_run_id = ?;
+        """,
+        (status, message[:4000], egress_run_id),
+    )
+
+
+def insert_egress_log(
+    egress_run_id: int,
+    target: dict,
+    window_start_utc,
+    window_end_utc,
+    records: list,
+    request_body: dict | None,
+    response,
+    status: str,
+    error_message: str | None = None,
+) -> None:
+    exec_sql(
+        """
+        INSERT INTO ops.api_egress_log
+        (
+            egress_run_id,
+            egress_target_id,
+            plant_code,
+            window_start_utc,
+            window_end_utc,
+            record_count,
+            request_json,
+            response_text,
+            http_status,
+            status,
+            error_message,
+            request_started_at_utc,
+            request_finished_at_utc
+        )
+        VALUES
+        (
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            SYSUTCDATETIME(),
+            SYSUTCDATETIME()
+        );
+        """,
+        (
+            egress_run_id,
+            target["egress_target_id"],
+            target["plant_code"],
+            window_start_utc,
+            window_end_utc,
+            len(records),
+            json.dumps(request_body or {"records": records}, ensure_ascii=False),
+            response.text[:4000] if response is not None else None,
+            response.status_code if response is not None else None,
+            status,
+            error_message[:1000] if error_message else None,
+        ),
+    )
+
+
+def post_records_with_retry(
+    target: dict,
+    records: list,
+    retry_max: int,
+    retry_wait_seconds: int,
+):
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {target['auth_token']}",
+    }
+
+    body = {"records": records}
+
+    last_response = None
+
+    for attempt in range(1, retry_max + 1):
+        response = requests.post(
+            target["endpoint_url"],
+            headers=headers,
+            json=body,
+            timeout=target["timeout_seconds"],
+        )
+
+        last_response = response
+
+        if response.status_code < 500:
+            return response, body
+
+        if attempt < retry_max:
+            print(
+                f"[SEND][RETRY] plant={target['plant_code']} "
+                f"HTTP {response.status_code}, attempt={attempt}/{retry_max}, "
+                f"wait={retry_wait_seconds}s"
+            )
+            time.sleep(retry_wait_seconds)
+
+    return last_response, body
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Enserve Energy Avg range recovery sender."
+    )
+
+    parser.add_argument("--start-local-date", required=True, help="YYYY-MM-DD, Thailand local date")
+    parser.add_argument("--end-local-date", required=True, help="YYYY-MM-DD, Thailand local date")
+
+    parser.add_argument(
+        "--plant",
+        dest="plants",
+        action="append",
+        help="Plant code. Can be specified multiple times. Default: GC5 and Polyplex.",
+    )
+
+    parser.add_argument("--source-job", default=DEFAULT_SOURCE_JOB)
+    parser.add_argument("--chunk-minutes", type=int, default=780)
+    parser.add_argument("--normalize-limit-raw", type=int, default=1000)
+
+    parser.add_argument(
+        "--prepare-source",
+        action="store_true",
+        help="Run Huawei backfill + normalize + stage load before preview/send.",
+    )
+
+    parser.add_argument("--skip-backfill", action="store_true")
+    parser.add_argument("--skip-normalize", action="store_true")
+    parser.add_argument("--skip-stage-load", action="store_true")
+
+    parser.add_argument(
+        "--send",
+        action="store_true",
+        help="Actually POST records to Enserve. Without this flag, preview only.",
+    )
+
+    parser.add_argument("--sleep-seconds", type=float, default=1.0)
+    parser.add_argument("--retry-max", type=int, default=3)
+    parser.add_argument("--retry-wait-seconds", type=int, default=30)
+    parser.add_argument("--expected-records", type=int, default=53)
+
+    args = parser.parse_args()
+
+    start_date = parse_yyyy_mm_dd(args.start_local_date)
+    end_date = parse_yyyy_mm_dd(args.end_local_date)
+
+    if end_date < start_date:
+        raise ValueError("--end-local-date must be >= --start-local-date")
+
+    plants = tuple(args.plants or DEFAULT_PLANTS)
+    app_dir = Path(__file__).resolve().parents[1]
+
+    print("=== Enserve Energy Avg Range Recovery ===")
+    print(f"local_date_range={start_date} -> {end_date}")
+    print(f"plants={plants}")
+    print(f"source_job={args.source_job}")
+    print(f"prepare_source={args.prepare_source}")
+    print(f"send={args.send}")
+    print(f"source_view={SEND_VIEW}")
+    print("checkpoint_update=NO")
+
+    targets = load_enabled_targets(plants)
+
+    egress_run_id = None
+
+    if args.send:
+        egress_run_id = create_egress_run(
+            message=(
+                f"Enserve energy avg range recovery started "
+                f"local_date_range={start_date}->{end_date}, plants={plants}"
+            )
+        )
+        print(f"[RUN] Created egress_run_id={egress_run_id}")
+
+    success_count = 0
+    skipped_count = 0
+    failed_count = 0
+    warning_count = 0
+    summary_messages = []
+
+    try:
+        for local_date in date_range_inclusive(start_date, end_date):
+            start_utc, end_utc_inclusive, end_utc_exclusive = local_daylight_window_utc(local_date)
+
+            print("--------------------------------------------------")
+            print(
+                f"[DAY] local_date={local_date} "
+                f"utc_window={fmt_z(start_utc)} -> {fmt_z(end_utc_exclusive)} "
+                f"send_last_expected={fmt_z(end_utc_inclusive)}"
+            )
+
+            if args.prepare_source:
+                run_source_prepare(
+                    app_dir=app_dir,
+                    source_job=args.source_job,
+                    start_utc=start_utc,
+                    end_utc_exclusive=end_utc_exclusive,
+                    chunk_minutes=args.chunk_minutes,
+                    normalize_limit_raw=args.normalize_limit_raw,
+                    skip_backfill=args.skip_backfill,
+                    skip_normalize=args.skip_normalize,
+                    skip_stage_load=args.skip_stage_load,
+                )
+            else:
+                print("[PREPARE] Skipped. Use --prepare-source to run Huawei/normalize/stage.")
+
+            for plant_code in plants:
+                target = targets[plant_code]
+                response = None
+                request_body = None
+
+                rows = load_rows_for_window(
+                    plant_code=plant_code,
+                    start_utc=start_utc,
+                    end_utc_exclusive=end_utc_exclusive,
+                )
+
+                records = build_records(rows)
+
+                if len(records) < args.expected_records:
+                    warning_count += 1
+                    print(
+                        f"[WARN] plant={plant_code} local_date={local_date} "
+                        f"records={len(records)} expected={args.expected_records}"
+                    )
+                else:
+                    print(
+                        f"[OK] plant={plant_code} local_date={local_date} "
+                        f"records={len(records)}"
+                    )
+
+                if records:
+                    print(
+                        f"[PREVIEW] plant={plant_code} "
+                        f"first={records[0]['timestamp']} "
+                        f"last={records[-1]['timestamp']} "
+                        f"count={len(records)}"
+                    )
+                else:
+                    skipped_count += 1
+                    msg = f"plant={plant_code} local_date={local_date} no records"
+                    print(f"[SKIP] {msg}")
+                    summary_messages.append(msg)
+                    continue
+
+                if not args.send:
+                    continue
+
+                try:
+                    response, request_body = post_records_with_retry(
+                        target=target,
+                        records=records,
+                        retry_max=args.retry_max,
+                        retry_wait_seconds=args.retry_wait_seconds,
+                    )
+
+                    status = "SUCCESS" if response.ok else "FAILED"
+                    error_message = None if response.ok else response.text[:1000]
+
+                    print(
+                        f"[SEND] plant={plant_code} local_date={local_date} "
+                        f"HTTP={response.status_code} response={response.text[:500]}"
+                    )
+
+                    insert_egress_log(
+                        egress_run_id=egress_run_id,
+                        target=target,
+                        window_start_utc=rows[0].collect_time_utc,
+                        window_end_utc=rows[-1].collect_time_utc,
+                        records=records,
+                        request_body=request_body,
+                        response=response,
+                        status=status,
+                        error_message=error_message,
+                    )
+
+                    if response.ok:
+                        success_count += 1
+                        summary_messages.append(
+                            f"plant={plant_code} local_date={local_date} sent {len(records)} records"
+                        )
+                    else:
+                        failed_count += 1
+                        summary_messages.append(
+                            f"plant={plant_code} local_date={local_date} failed HTTP {response.status_code}"
+                        )
+
+                    response.raise_for_status()
+
+                except Exception as exc:
+                    failed_count += 1
+                    error_text = str(exc)
+
+                    print(
+                        f"[FAILED] plant={plant_code} local_date={local_date} "
+                        f"error={error_text}"
+                    )
+
+                    summary_messages.append(
+                        f"plant={plant_code} local_date={local_date} failed: {error_text}"
+                    )
+
+                    if args.send and egress_run_id is not None:
+                        try:
+                            insert_egress_log(
+                                egress_run_id=egress_run_id,
+                                target=target,
+                                window_start_utc=start_utc,
+                                window_end_utc=end_utc_inclusive,
+                                records=records,
+                                request_body=request_body or {"records": records},
+                                response=response,
+                                status="FAILED",
+                                error_message=error_text,
+                            )
+                        except Exception as log_exc:
+                            print(f"[WARN] failed to insert failure egress log: {log_exc}")
+
+                if args.sleep_seconds and args.sleep_seconds > 0:
+                    time.sleep(args.sleep_seconds)
+
+        if args.send and egress_run_id is not None:
+            if failed_count == 0 and success_count > 0:
+                final_status = "SUCCESS"
+            elif success_count > 0 and failed_count > 0:
+                final_status = "PARTIAL_SUCCESS"
+            elif success_count == 0 and failed_count == 0:
+                final_status = "SKIPPED"
+            else:
+                final_status = "FAILED"
+
+            update_egress_run(
+                egress_run_id=egress_run_id,
+                status=final_status,
+                message=(
+                    f"success={success_count}, failed={failed_count}, "
+                    f"skipped={skipped_count}, warnings={warning_count}. "
+                    + " | ".join(summary_messages)
+                ),
+            )
+
+            print(f"[RUN] Completed egress_run_id={egress_run_id} status={final_status}")
+        else:
+            print(
+                f"[DRY-RUN] Completed preview only. "
+                f"warnings={warning_count}, skipped={skipped_count}. No POST sent."
+            )
+
+        return 0
+
+    except Exception as exc:
+        print(f"[FATAL] {exc}")
+
+        if args.send and egress_run_id is not None:
+            update_egress_run(
+                egress_run_id=egress_run_id,
+                status="FAILED",
+                message=f"fatal error: {exc}",
+            )
+
+        raise
+
+
+if __name__ == "__main__":
+    sys.exit(main())
