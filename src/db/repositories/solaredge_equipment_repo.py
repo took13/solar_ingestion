@@ -146,6 +146,8 @@ class SolarEdgeEquipmentRepository:
                 source_plant_code,
                 serial_number,
                 inverter_name,
+                source_plant_name,
+                timezone_name,
                 manufacturer,
                 model,
                 firmware_version,
