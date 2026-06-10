@@ -11,7 +11,7 @@ Adjust $RepoRoot if the repository is not located at C:\SOLAR\solar_ingestion.
 #>
 
 $RepoRoot = "C:\SOLAR\solar_ingestion"
-$TaskFolder = "SolarToPI"
+$TaskFolder = "SOLAR_Project"
 
 function Register-SolarToPITask {
     param(
@@ -32,17 +32,17 @@ function Register-SolarToPITask {
 }
 
 Register-SolarToPITask `
-    -TaskName "SolarEdge Plant 15min Nearline" `
+    -TaskName "SOLAREDGE_PLANT_15MIN_NEARLINE" `
     -ScriptPath "$RepoRoot\scripts\scheduler\run_solaredge_plant_15min_nearline.ps1" `
     -StartTime "00:01"
 
 Register-SolarToPITask `
-    -TaskName "SolarEdge Sensor 5min Nearline" `
+    -TaskName "SOLAREDGE_SENSOR_5MIN_NEARLINE" `
     -ScriptPath "$RepoRoot\scripts\scheduler\run_solaredge_sensor_5min_nearline.ps1" `
     -StartTime "00:04"
 
 Register-SolarToPITask `
-    -TaskName "SolarEdge Inverter Technical Nearline" `
+    -TaskName "SOLAREDGE_INVERTER_TECHNICAL_NEARLINE" `
     -ScriptPath "$RepoRoot\scripts\scheduler\run_solaredge_inverter_technical_nearline.ps1" `
     -StartTime "00:08"
 
