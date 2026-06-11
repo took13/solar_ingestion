@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -19,7 +21,7 @@ from src.db.repositories.raw_v2_repo import RawV2Repository
 from src.db.repositories.source_mapping_repo import SourceMappingRepository
 from src.db.repositories.solaredge_equipment_repo import SolarEdgeEquipmentRepository
 from src.db.repositories.solaredge_inverter_mart_repo import SolarEdgeInverterMartRepository
-from src.solaredge.client import SolarEdgeClient
+from src.solaredge.client import SolarEdgeClient, SolarEdgeResponse
 from src.solaredge.credential_resolver import SolarEdgeCredentialResolver
 from src.solaredge.inverter_technical_normalizer import SolarEdgeInverterTechnicalNormalizer
 
@@ -27,6 +29,43 @@ from src.solaredge.inverter_technical_normalizer import SolarEdgeInverterTechnic
 SOURCE_SYSTEM = "SOLAREDGE"
 ENDPOINT_NAME = "inverterTechnicalData"
 DEFAULT_TIMEZONE = "Asia/Bangkok"
+
+
+@dataclass(frozen=True)
+class InverterWorkItem:
+    idx: int
+    total: int
+    internal_plant_code: str
+    source_plant_code: str
+    serial_number: str
+    inverter_name: str | None
+    timezone_name: str
+    start_local: datetime
+    end_local: datetime
+    start_utc: datetime
+    end_utc: datetime
+    api_key: str
+    request_timeout_sec: int
+
+
+@dataclass(frozen=True)
+class InverterFetchResult:
+    item: InverterWorkItem
+    response: SolarEdgeResponse
+    request_started_at_utc: datetime
+    request_finished_at_utc: datetime
+
+
+@dataclass(frozen=True)
+class PersistTiming:
+    raw_insert_sec: float
+    normalize_sec: float
+    canonical_upsert_sec: float
+    mart_load_sec: float
+
+    @property
+    def total_sec(self) -> float:
+        return self.raw_insert_sec + self.normalize_sec + self.canonical_upsert_sec + self.mart_load_sec
 
 
 def main() -> int:
@@ -104,6 +143,8 @@ def main() -> int:
         print(f"max_plants       : {args.max_plants if args.max_plants is not None else '*'}")
         print(f"max_inverters    : {args.max_inverters if args.max_inverters is not None else '*'}")
         print(f"sleep_seconds    : {args.sleep_seconds}")
+        print(f"max_workers      : {args.max_workers}")
+        print(f"request_timeout  : {args.request_timeout_sec}s")
         print(f"stop_on_error    : {args.stop_on_error}")
         if args.start_local and args.end_local:
             print(f"window_mode      : explicit")
@@ -127,7 +168,13 @@ def main() -> int:
         total_mart = 0
         total_with_telemetry = 0
         total_no_telemetry = 0
-        client_cache: dict[str, SolarEdgeClient] = {}
+        total_api_elapsed_sec = 0.0
+        total_raw_insert_sec = 0.0
+        total_normalize_sec = 0.0
+        total_canonical_upsert_sec = 0.0
+        total_mart_load_sec = 0.0
+        work_items: list[InverterWorkItem] = []
+        api_key_cache: dict[str, str] = {}
 
         for idx, inverter in enumerate(inverters, start=1):
             internal_plant_code = inverter["internal_plant_code"]
@@ -142,120 +189,130 @@ def main() -> int:
                     f"Missing dbo.dim_plant_source_map for SOLAREDGE site_id={source_plant_code}"
                 )
 
+            api_key = api_key_cache.get(source_plant_code)
+            if api_key is None:
+                api_key = credential_resolver.get_api_key(plant_map.get("api_key_secret_name"))
+                api_key_cache[source_plant_code] = api_key
+
             start_local, end_local = frozen_windows[timezone_name]
             start_utc = local_to_utc_naive(start_local, timezone_name)
             end_utc = local_to_utc_naive(end_local, timezone_name)
-            start_text = fmt_dt(start_local)
-            end_text = fmt_dt(end_local)
 
-            print("-" * 124)
-            print(
-                f"#{idx}/{len(inverters)} Plant={internal_plant_code} | site_id={source_plant_code} | "
-                f"inverter={inverter_name} | serial={serial_number} | timezone={timezone_name}"
-            )
-            print(f"nearline_window local={start_text} -> {end_text} | utc={start_utc} -> {end_utc}")
-
-            if args.dry_run:
-                continue
-
-            try:
-                client = client_cache.get(source_plant_code)
-                if client is None:
-                    api_key = credential_resolver.get_api_key(plant_map.get("api_key_secret_name"))
-                    client = SolarEdgeClient(api_key=api_key)
-                    client_cache[source_plant_code] = client
-
-                request_started_at_utc = datetime.now(timezone.utc)
-                response = client.get_inverter_technical_data(
-                    site_id=source_plant_code,
+            work_items.append(
+                InverterWorkItem(
+                    idx=idx,
+                    total=len(inverters),
+                    internal_plant_code=internal_plant_code,
+                    source_plant_code=source_plant_code,
                     serial_number=serial_number,
-                    start_time_local=start_text,
-                    end_time_local=end_text,
-                )
-                request_finished_at_utc = datetime.now(timezone.utc)
-
-                raw_id = raw_repo.insert_api_call_v2(
-                    {
-                        "source_system_code": SOURCE_SYSTEM,
-                        "endpoint_name": ENDPOINT_NAME,
-                        "endpoint_path": response.endpoint_path,
-                        "internal_plant_code": internal_plant_code,
-                        "source_plant_code": source_plant_code,
-                        "source_device_id": serial_number,
-                        "request_window_start_utc": start_utc,
-                        "request_window_end_utc": end_utc,
-                        "request_grain_sec": 300,
-                        # Never store api_key in DB/logs.
-                        "request_json": {
-                            "site_id": source_plant_code,
-                            "serial_number": serial_number,
-                            "startTime": start_text,
-                            "endTime": end_text,
-                            "nearline_mode": True,
-                            "nearline_window_mode": "frozen_once_per_run",
-                            "run_started_at_utc": fmt_dt(run_started_at_utc.replace(tzinfo=None)),
-                            "lookback_minutes": None if args.start_local else args.lookback_minutes,
-                            "lag_minutes": None if args.start_local else args.lag_minutes,
-                            "bucket_rule": "floor_to_5min_local_then_convert_utc",
-                        },
-                        "response_json": response.response_json,
-                        "http_status": response.http_status,
-                        "api_success_flag": response.http_status == 200,
-                        "fail_code": None,
-                        "fail_message": None,
-                        "request_started_at_utc": request_started_at_utc,
-                        "request_finished_at_utc": request_finished_at_utc,
-                    }
-                )
-
-                telemetries = telemetry_count(response.response_json)
-
-                canonical_rows = normalizer.normalize(
-                    raw_id=raw_id,
-                    response_json=response.response_json,
-                    internal_plant_code=internal_plant_code,
-                    source_plant_code=source_plant_code,
-                    source_device_id=serial_number,
-                    source_device_name=inverter_name,
+                    inverter_name=inverter_name,
                     timezone_name=timezone_name,
-                )
-                canonical_count = canonical_repo.upsert_many(canonical_rows)
-
-                mart_count = mart_repo.load_technical_5min(
-                    source_system_code=SOURCE_SYSTEM,
-                    internal_plant_code=internal_plant_code,
-                    source_plant_code=source_plant_code,
-                    source_device_id=serial_number,
+                    start_local=start_local,
+                    end_local=end_local,
                     start_utc=start_utc,
                     end_utc=end_utc,
+                    api_key=api_key,
+                    request_timeout_sec=args.request_timeout_sec,
                 )
+            )
 
-                total_success += 1
-                total_raw += 1
-                total_canonical += canonical_count
-                total_mart += mart_count
-                if telemetries > 0:
-                    total_with_telemetry += 1
-                    status_label = "OK"
-                else:
-                    total_no_telemetry += 1
-                    status_label = "NO_TELEMETRY"
+        if args.dry_run:
+            for item in work_items:
+                print_work_item(item)
+            return 0
 
-                print(
-                    f"[{status_label}] raw_id={raw_id} http_status={response.http_status} "
-                    f"elapsed_sec={response.elapsed_sec:.2f} "
-                    f"telemetries={telemetries} "
-                    f"canonical_rows={canonical_count} mart_rows={mart_count}"
-                )
+        if args.max_workers == 1:
+            for item in work_items:
+                print_work_item(item)
+                try:
+                    result = fetch_inverter_technical(item=item)
+                    raw_count, canonical_count, mart_count, telemetries, timing = persist_inverter_technical_result(
+                        raw_repo=raw_repo,
+                        canonical_repo=canonical_repo,
+                        mart_repo=mart_repo,
+                        normalizer=normalizer,
+                        run_started_at_utc=run_started_at_utc,
+                        args=args,
+                        result=result,
+                    )
 
-            except Exception as exc:
-                total_failed += 1
-                print(f"[FAIL] {internal_plant_code}/{serial_number}: {exc}")
-                if args.stop_on_error:
-                    raise
+                    total_success += 1
+                    total_raw += raw_count
+                    total_canonical += canonical_count
+                    total_mart += mart_count
+                    total_api_elapsed_sec += float(result.response.elapsed_sec or 0.0)
+                    total_raw_insert_sec += timing.raw_insert_sec
+                    total_normalize_sec += timing.normalize_sec
+                    total_canonical_upsert_sec += timing.canonical_upsert_sec
+                    total_mart_load_sec += timing.mart_load_sec
+                    if telemetries > 0:
+                        total_with_telemetry += 1
+                        status_label = "OK"
+                    else:
+                        total_no_telemetry += 1
+                        status_label = "NO_TELEMETRY"
 
-            if args.sleep_seconds > 0:
-                time.sleep(args.sleep_seconds)
+                    print_result(result=result, status_label=status_label, raw_count=raw_count, canonical_count=canonical_count, mart_count=mart_count, telemetries=telemetries, timing=timing, profile_timing=args.profile_timing)
+
+                except Exception as exc:
+                    total_failed += 1
+                    print(f"[FAIL] {item.internal_plant_code}/{item.serial_number}: {exc}")
+                    if args.stop_on_error:
+                        raise
+
+                if args.sleep_seconds > 0:
+                    time.sleep(args.sleep_seconds)
+        else:
+            print(f"parallel_mode    : enabled max_workers={args.max_workers}")
+            with ThreadPoolExecutor(max_workers=args.max_workers) as executor:
+                future_to_item = {}
+                for item in work_items:
+                    print_work_item(item, prefix="[QUEUE]")
+                    future = executor.submit(fetch_inverter_technical, item=item)
+                    future_to_item[future] = item
+                    if args.sleep_seconds > 0:
+                        time.sleep(args.sleep_seconds)
+
+                for future in as_completed(future_to_item):
+                    item = future_to_item[future]
+                    try:
+                        result = future.result()
+                        raw_count, canonical_count, mart_count, telemetries, timing = persist_inverter_technical_result(
+                            raw_repo=raw_repo,
+                            canonical_repo=canonical_repo,
+                            mart_repo=mart_repo,
+                            normalizer=normalizer,
+                            run_started_at_utc=run_started_at_utc,
+                            args=args,
+                            result=result,
+                        )
+
+                        total_success += 1
+                        total_raw += raw_count
+                        total_canonical += canonical_count
+                        total_mart += mart_count
+                        total_api_elapsed_sec += float(result.response.elapsed_sec or 0.0)
+                        total_raw_insert_sec += timing.raw_insert_sec
+                        total_normalize_sec += timing.normalize_sec
+                        total_canonical_upsert_sec += timing.canonical_upsert_sec
+                        total_mart_load_sec += timing.mart_load_sec
+                        if telemetries > 0:
+                            total_with_telemetry += 1
+                            status_label = "OK"
+                        else:
+                            total_no_telemetry += 1
+                            status_label = "NO_TELEMETRY"
+
+                        print_result(result=result, status_label=status_label, raw_count=raw_count, canonical_count=canonical_count, mart_count=mart_count, telemetries=telemetries, timing=timing, profile_timing=args.profile_timing)
+
+                    except Exception as exc:
+                        total_failed += 1
+                        print(f"[FAIL] {item.internal_plant_code}/{item.serial_number}: {exc}")
+                        if args.stop_on_error:
+                            for pending_future in future_to_item:
+                                if pending_future is not future:
+                                    pending_future.cancel()
+                            raise
 
         print("")
         print("=== Summary ===")
@@ -266,6 +323,14 @@ def main() -> int:
         print(f"raw_calls         : {total_raw}")
         print(f"canonical_rows    : {total_canonical}")
         print(f"mart_rows         : {total_mart}")
+        print("")
+        print("=== Timing Summary ===")
+        print(f"api_elapsed_sum_sec       : {total_api_elapsed_sec:.2f}")
+        print(f"raw_insert_sum_sec        : {total_raw_insert_sec:.2f}")
+        print(f"normalize_sum_sec         : {total_normalize_sec:.2f}")
+        print(f"canonical_upsert_sum_sec  : {total_canonical_upsert_sec:.2f}")
+        print(f"mart_load_sum_sec         : {total_mart_load_sec:.2f}")
+        print(f"persist_sum_sec           : {(total_raw_insert_sec + total_normalize_sec + total_canonical_upsert_sec + total_mart_load_sec):.2f}")
 
         return 0 if total_failed == 0 else 2
 
@@ -289,7 +354,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--lag-minutes", type=int, default=15, help="Dynamic mode end = now - lag. Default = 15.")
     parser.add_argument("--now-local", help='Optional deterministic dynamic-mode anchor: "YYYY-MM-DD HH:MM:SS"')
     parser.add_argument("--timezone", default=DEFAULT_TIMEZONE, help="Fallback timezone if inventory mapping has NULL timezone_name.")
-    parser.add_argument("--sleep-seconds", type=float, default=1.0, help="Sleep between inverter API calls. Default = 1.")
+    parser.add_argument("--sleep-seconds", type=float, default=0.0, help="Sequential mode: sleep between inverter API calls. Parallel mode: optional submission throttle. Default = 0.")
+    parser.add_argument("--max-workers", type=int, default=2, help="Concurrent inverter API fetch workers. Use 1 for sequential. Default = 2, max = 3.")
+    parser.add_argument("--request-timeout-sec", type=int, default=15, help="Per-inverter SolarEdge HTTP timeout in seconds. Default = 15.")
+    parser.add_argument("--profile-timing", action="store_true", help="Print per-inverter DB timing breakdown and run-level timing summary.")
     parser.add_argument("--stop-on-error", action="store_true", help="Stop immediately on first inverter error.")
     return parser.parse_args()
 
@@ -315,8 +383,171 @@ def validate_args(args: argparse.Namespace) -> None:
         raise ValueError("--max-plants must be >= 1.")
     if args.max_inverters is not None and args.max_inverters < 1:
         raise ValueError("--max-inverters must be >= 1.")
+    if args.sleep_seconds < 0:
+        raise ValueError("--sleep-seconds must be >= 0.")
+    if args.max_workers < 1:
+        raise ValueError("--max-workers must be >= 1.")
+    if args.max_workers > 3:
+        raise ValueError("--max-workers must be <= 3 to stay within the controlled SolarEdge API concurrency guardrail.")
+    if args.request_timeout_sec < 3:
+        raise ValueError("--request-timeout-sec must be >= 3.")
+    if args.request_timeout_sec > 60:
+        raise ValueError("--request-timeout-sec must be <= 60.")
 
 
+
+
+def fetch_inverter_technical(*, item: InverterWorkItem) -> InverterFetchResult:
+    """Fetch one inverter response without touching the shared DB connection."""
+    client = SolarEdgeClient(api_key=item.api_key, timeout_sec=item.request_timeout_sec)
+    request_started_at_utc = datetime.now(timezone.utc)
+    response = client.get_inverter_technical_data(
+        site_id=item.source_plant_code,
+        serial_number=item.serial_number,
+        start_time_local=fmt_dt(item.start_local),
+        end_time_local=fmt_dt(item.end_local),
+    )
+    request_finished_at_utc = datetime.now(timezone.utc)
+    return InverterFetchResult(
+        item=item,
+        response=response,
+        request_started_at_utc=request_started_at_utc,
+        request_finished_at_utc=request_finished_at_utc,
+    )
+
+
+def persist_inverter_technical_result(
+    *,
+    raw_repo: RawV2Repository,
+    canonical_repo: CanonicalMetricRepository,
+    mart_repo: SolarEdgeInverterMartRepository,
+    normalizer: SolarEdgeInverterTechnicalNormalizer,
+    run_started_at_utc: datetime,
+    args: argparse.Namespace,
+    result: InverterFetchResult,
+) -> tuple[int, int, int, int, PersistTiming]:
+    """Persist raw/canonical/mart rows in the main thread using the shared DB connection."""
+    item = result.item
+    response = result.response
+
+    raw_insert_started = time.perf_counter()
+    raw_id = raw_repo.insert_api_call_v2(
+        {
+            "source_system_code": SOURCE_SYSTEM,
+            "endpoint_name": ENDPOINT_NAME,
+            "endpoint_path": response.endpoint_path,
+            "internal_plant_code": item.internal_plant_code,
+            "source_plant_code": item.source_plant_code,
+            "source_device_id": item.serial_number,
+            "request_window_start_utc": item.start_utc,
+            "request_window_end_utc": item.end_utc,
+            "request_grain_sec": 300,
+            # Never store api_key in DB/logs.
+            "request_json": {
+                "site_id": item.source_plant_code,
+                "serial_number": item.serial_number,
+                "startTime": fmt_dt(item.start_local),
+                "endTime": fmt_dt(item.end_local),
+                "nearline_mode": True,
+                "nearline_window_mode": "frozen_once_per_run",
+                "parallel_fetch_mode": args.max_workers > 1,
+                "max_workers": args.max_workers,
+                "request_timeout_sec": args.request_timeout_sec,
+                "run_started_at_utc": fmt_dt(run_started_at_utc.replace(tzinfo=None)),
+                "lookback_minutes": None if args.start_local else args.lookback_minutes,
+                "lag_minutes": None if args.start_local else args.lag_minutes,
+                "bucket_rule": "floor_to_5min_local_then_convert_utc",
+            },
+            "response_json": response.response_json,
+            "http_status": response.http_status,
+            "api_success_flag": response.http_status == 200,
+            "fail_code": None,
+            "fail_message": None,
+            "request_started_at_utc": result.request_started_at_utc,
+            "request_finished_at_utc": result.request_finished_at_utc,
+        }
+    )
+    raw_insert_sec = time.perf_counter() - raw_insert_started
+
+    telemetries = telemetry_count(response.response_json)
+
+    normalize_started = time.perf_counter()
+    canonical_rows = normalizer.normalize(
+        raw_id=raw_id,
+        response_json=response.response_json,
+        internal_plant_code=item.internal_plant_code,
+        source_plant_code=item.source_plant_code,
+        source_device_id=item.serial_number,
+        source_device_name=item.inverter_name,
+        timezone_name=item.timezone_name,
+    )
+    normalize_sec = time.perf_counter() - normalize_started
+
+    canonical_upsert_started = time.perf_counter()
+    canonical_count = canonical_repo.upsert_many(canonical_rows)
+    canonical_upsert_sec = time.perf_counter() - canonical_upsert_started
+
+    mart_load_started = time.perf_counter()
+    mart_count = mart_repo.load_technical_5min(
+        source_system_code=SOURCE_SYSTEM,
+        internal_plant_code=item.internal_plant_code,
+        source_plant_code=item.source_plant_code,
+        source_device_id=item.serial_number,
+        start_utc=item.start_utc,
+        end_utc=item.end_utc,
+    )
+    mart_load_sec = time.perf_counter() - mart_load_started
+
+    timing = PersistTiming(
+        raw_insert_sec=raw_insert_sec,
+        normalize_sec=normalize_sec,
+        canonical_upsert_sec=canonical_upsert_sec,
+        mart_load_sec=mart_load_sec,
+    )
+
+    return 1, canonical_count, mart_count, telemetries, timing
+
+
+def print_work_item(item: InverterWorkItem, prefix: str = "") -> None:
+    print("-" * 124)
+    print(
+        f"{prefix} #{item.idx}/{item.total} Plant={item.internal_plant_code} | site_id={item.source_plant_code} | "
+        f"inverter={item.inverter_name} | serial={item.serial_number} | timezone={item.timezone_name}"
+    )
+    print(
+        f"nearline_window local={fmt_dt(item.start_local)} -> {fmt_dt(item.end_local)} | "
+        f"utc={item.start_utc} -> {item.end_utc}"
+    )
+
+
+def print_result(
+    *,
+    result: InverterFetchResult,
+    status_label: str,
+    raw_count: int,
+    canonical_count: int,
+    mart_count: int,
+    telemetries: int,
+    timing: PersistTiming,
+    profile_timing: bool,
+) -> None:
+    item = result.item
+    response = result.response
+    print(
+        f"[{status_label}] #{item.idx}/{item.total} {item.internal_plant_code}/{item.serial_number} "
+        f"http_status={response.http_status} elapsed_sec={response.elapsed_sec:.2f} "
+        f"telemetries={telemetries} raw_calls={raw_count} "
+        f"canonical_rows={canonical_count} mart_rows={mart_count}"
+    )
+    if profile_timing:
+        print(
+            f"[TIMING] #{item.idx}/{item.total} {item.internal_plant_code}/{item.serial_number} "
+            f"raw_insert={timing.raw_insert_sec:.3f}s "
+            f"normalize={timing.normalize_sec:.3f}s "
+            f"canonical_upsert={timing.canonical_upsert_sec:.3f}s "
+            f"mart_load={timing.mart_load_sec:.3f}s "
+            f"persist_total={timing.total_sec:.3f}s"
+        )
 
 def build_frozen_windows(
     *,
